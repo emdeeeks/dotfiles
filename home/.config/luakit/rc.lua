@@ -161,6 +161,10 @@ require "go_up"
 -- End user script loading --
 -----------------------------
 
+webview.init_funcs.show_scrollbars = function(view) 
+    view.show_scrollbars = true 
+end
+
 -- Restore last saved session
 local w = (session and session.restore())
 if w then

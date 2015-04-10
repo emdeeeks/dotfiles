@@ -1,5 +1,11 @@
--- {{{ Key bindings
 globalkeys = awful.util.table.join(
+	awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocc --toggle-pause") end),
+	awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mocp --next") end),
+	awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --prev") end),
+ 	awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%+") end),
+	awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%-") end),
+	awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -30,7 +36,7 @@ globalkeys = awful.util.table.join(
             end
         end),
 
-    -- Standard program
+    -- Standarid program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -133,4 +139,3 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 root.keys(globalkeys)
-

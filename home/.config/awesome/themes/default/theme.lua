@@ -1,5 +1,5 @@
 theme = {}
-theme.font          = "FontAwesome 8"
+theme.font          = "monospace normal 9"
 theme.img_dir 		= home .. "/.config/awesome/themes/default/img"
 
 theme.wallpaper =  home .. "/Dropbox/Wallpapers/2.png"

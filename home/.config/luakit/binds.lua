@@ -89,11 +89,11 @@ add_binds("all", {
         end),
 
     -- Zoom binds
-    but({"Control"}, 4, "Increase text zoom level.",
-        function (w, m) w:zoom_in() end),
+    --but({"Control"}, 4, "Increase text zoom level.",
+    --    function (w, m) w:zoom_in() end),
 
-    but({"Control"}, 5, "Reduce text zoom level.",
-        function (w, m) w:zoom_out() end),
+    --but({"Control"}, 5, "Reduce text zoom level.",
+    --    function (w, m) w:zoom_out() end),
 
     -- Horizontal mouse scroll binds
     but({"Shift"}, 4, "Scroll left.",

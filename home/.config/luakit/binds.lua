@@ -497,7 +497,13 @@ add_cmds({
                 return lousy.bind.match_cmd(w, opts.binds, cmd .. args, opts)
             end
         end),
-
+	
+	cmd("pr[ivate]", "Toggle private browsing",
+       function (w)
+             w.view.enable_private_browsing = not w.view.enable_private_browsing
+             w:update_tablist()
+       end),
+    
     cmd("c[lose]", "Close current tab.",
         function (w) w:close_tab() end),
 

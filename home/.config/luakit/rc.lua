@@ -194,4 +194,5 @@ if unique then
     end)
 end
 
--- vim: et:sw=4:ts=8:sts=4:tw=80
+require "plugins.private_browsing_tabs"
+require "plugins.adblock"

@@ -17,18 +17,42 @@ theme.black			= "#222222"
 
 theme.bg_normal     = theme.black
 theme.bg_focus      = theme.black
-theme.bg_urgent     = theme.black
+theme.bg_urgent     = theme.red
 theme.bg_minimize   = theme.black
 
 theme.fg_normal     = theme.dark_white
-theme.fg_focus      = theme.green
-theme.fg_urgent     = theme.red
+theme.fg_focus      = theme.white
+theme.fg_urgent     = theme.white
 theme.fg_minimize   = theme.dark_white
 
 theme.border_width  = "1"
 theme.border_normal = theme.black
 theme.border_focus  = theme.red
 
+naughty.config.defaults.timeout          = 5
+naughty.config.defaults.screen           = 2
+naughty.config.defaults.position         = "top_right"
+naughty.config.defaults.margin           = 4
+naughty.config.defaults.width            = 300
+naughty.config.defaults.gap              = 1
+naughty.config.defaults.ontop            = true
+naughty.config.defaults.font             = theme.font
+naughty.config.defaults.icon             = nil
+naughty.config.defaults.icon_size        = 16
+naughty.config.defaults.fg               = theme.fg_focus
+naughty.config.defaults.bg               = theme.bg_focus
+naughty.config.defaults.border_color     = theme.divider
+naughty.config.defaults.border_width     = 1
+naughty.config.defaults.hover_timeout    = nil
+naughty.config.presets.critical.timeout          = 5
+naughty.config.defaults.ontop            = true
+naughty.config.defaults.font             = theme.font
+naughty.config.defaults.icon             = nil
+naughty.config.defaults.icon_size        = 16
+naughty.config.presets.critical.fg		 = theme.fg_urgent
+naughty.config.presets.critical.bg		 = theme.bg_urgent
+
+theme.icon_theme = nil
 theme.taglist_squares_sel   	= theme.img_dir .. "/taglist/taglist_squarefw.png"
 theme.taglist_squares_unsel 	= theme.img_dir .. "/taglist/taglist_squarew.png"
 theme.tasklist_floating_icon 	= "/usr/share/awesome/themes/default/tasklist/floatingw.png"
@@ -50,7 +74,6 @@ theme.layout_tiletop 	= theme.img_dir .. "/layouts/tiletop.png"
 theme.layout_spiral  	= theme.img_dir .. "/layouts/spiral.png"
 theme.layout_dwindle 	= theme.img_dir .. "/layouts/dwindle.png"
 
-theme.icon_theme = nil
 
 if theme.wallpaper then
     for s = 1, screen.count() do

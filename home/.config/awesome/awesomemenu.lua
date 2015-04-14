@@ -19,13 +19,13 @@ awesomemenu = awful.menu({
 	items = {
 		{ "manual", terminal .. " -e 'man awesome'" },
 		{ "edit config", editor_cmd .. " " .. awesome.conffile },
-		{ "view live config", "sh " .. home .. "/.scripts/awesome/debug-awesome.sh" },
+		{ "view live config", "sh " .. home .. "/dotfiles/home/.config/awesome/scripts/debug-awesome.sh" },
 		{ "restart", awesome.restart },
 		{ "quit", awesome.quit }
 	}
 })
 
-launcher = wibox.widget.textbox(markup(beautiful.white, 'MENU'))
+launcher = wibox.widget.textbox('MENU')
 
 launcher:buttons(awful.util.table.join(
 	awful.button({ }, 1, function() appsmenu:toggle()  end),

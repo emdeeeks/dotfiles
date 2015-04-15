@@ -34,6 +34,11 @@ vicious.register(cputempwidget, vicious.widgets.thermal, '<span color="' .. them
 
 textclock = awful.widget.textclock(markup("#CC0000", '<span color="' .. theme.magenta .. '">%A %B %d, %R</span>'))
 
+moc = wibox.widget.textbox()
+moc:buttons(awful.util.table.join(
+	awful.button({ }, 1, function () pause_moc() end)
+))
+
 hddwidget = wibox.widget.textbox()
 vicious.register(hddwidget, vicious.widgets.fs, 'Storage: <span color="' .. theme.magenta .. '">${/ used_p}% used</span>',     599)
 hddwidget:buttons(awful.util.table.join(
@@ -54,3 +59,5 @@ yawn = lain.widgets.yawn(556053, {
 		)
 	end
 })
+
+

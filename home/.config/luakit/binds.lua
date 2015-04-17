@@ -49,14 +49,6 @@ menu_binds = {
 
 -- Add binds to special mode "all" which adds its binds to all modes.
 add_binds("all", {
-	key({}, "v", function (w) 
-		local view = w.view
-		local uri = view.hovered_uri or view.uri
-		if uri then
-			luakit.spawn(string.format("mplayer %q", uri))
-		end 
-	end),	
-
     key({}, "Escape", "Return to `normal` mode.",
         function (w) w:set_mode() end),
 
@@ -149,6 +141,13 @@ add_binds("normal", {
             return false
         end),
 
+	key({}, "v", function (w) 
+		local view = w.view
+		local uri = view.hovered_uri or view.uri
+		if uri then
+			luakit.spawn(string.format("mplayer %q", uri))
+		end 
+	end),	
 
     key({}, "i", "Enter `insert` mode.",
         function (w) w:set_mode("insert")  end),

@@ -101,13 +101,22 @@ require "downloads"
 require "downloads_chrome"
 
 -- Set download location
-downloads.default_dir = os.getenv("HOME") .. "/Downloads/luakit"
 downloads.add_signal("download-location", function (uri, file)
     if not file or file == "" then
-        file = (string.match(uri, "/([^/]+)$")
-            or string.match(uri, "^%w+://(.+)")
-            or string.gsub(uri, "/", "_")
-            or "untitled")
+		ext = string.match(file, "(.-)([^\\]-([^%.]+))$")
+
+		-- If the files is an mp3, store it in the music dir
+		-- Otherwise, download it to the downlaods dir.
+		if ext == "mp3" then
+			downloads.default_dir = os.getenv("HOME") .. "/Music"
+		else
+			downloads.default_dir = os.getenv("HOME") .. "/Downloads/luakit"
+		end
+
+		file = (string.match(uri, "/([^/]+)$")
+			or string.match(uri, "^%w+://(.+)")
+			or string.gsub(uri, "/", "_")
+			or "untitled")
     end
     return downloads.default_dir .. "/" .. file
 end)

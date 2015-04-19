@@ -101,16 +101,16 @@ require "downloads"
 require "downloads_chrome"
 
 -- Set download location
-downloads.default_dir = os.getenv("HOME") .. "/Downloads/luakit"
-downloads.add_signal("download-location", function (uri, file)
-    if not file or file == "" then
-        file = (string.match(uri, "/([^/]+)$")
-            or string.match(uri, "^%w+://(.+)")
-            or string.gsub(uri, "/", "_")
-            or "untitled")
-    end
-    return downloads.default_dir .. "/" .. file
-end)
+--downloads.default_dir = os.getenv("HOME") .. "/Downloads/luakit"
+--downloads.add_signal("download-location", function (uri, file)
+--    if not file or file == "" then
+--        file = (string.match(uri, "/([^/]+)$")
+--            or string.match(uri, "^%w+://(.+)")
+--            or string.gsub(uri, "/", "_")
+--            or "untitled")
+--    end
+--    return downloads.default_dir .. "/" .. file
+--end)
 
 -- Example using xdg-open for opening downloads / showing download folders
 --downloads.add_signal("open-file", function (file, mime)
@@ -194,5 +194,4 @@ if unique then
     end)
 end
 
-require "plugins.private_browsing_tabs"
-require "plugins.adblock"
+require "plugins"

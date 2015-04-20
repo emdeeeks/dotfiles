@@ -4,3 +4,6 @@
 [submodule "home/.config/awesome/awesome-revelation"]
 	path = home/.config/awesome/awesome-revelation
 	url = https://bioe007@github.com/bioe007/awesome-revelation.git
+[submodule "home/.config/awesome/lain"]
+	path = home/.config/awesome/lain
+	url = https://github.com/copycat-killer/lain.git

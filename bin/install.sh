@@ -14,7 +14,7 @@ setup () {
 	if ! [ -e $HOME/dotfiles ]; then
 		e_arrow "Setting up"
 		mkdir $HOME/dotfiles
-		git clone http://github.com/synbyte/dotfiles.git $HOME/dotfiles
+		git clone https://github.com/synbyte/dotfiles.git $HOME/dotfiles
 	else
 		cd $HOME/dotfiles
 		e_arrow "Already installed. Updating"

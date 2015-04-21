@@ -1,5 +1,5 @@
 globalkeys = awful.util.table.join(
-	awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocc --toggle-pause") end),
+	awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocp --toggle-pause") end),
 	awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mocp --next") end),
 	awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --prev") end),
  	awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%+") end),

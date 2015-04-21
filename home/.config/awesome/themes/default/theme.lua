@@ -2,7 +2,7 @@ theme = {}
 theme.font          = "monospace normal 9"
 theme.img_dir 		= home .. "/.config/awesome/themes/default/img"
 
-theme.wallpaper =  home .. "/Dropbox/Wallpapers/2.png"
+theme.wallpaper =  theme.img_dir .. "/wallpaper.png"
 
 theme.red			= "#CC6666"
 theme.yellow		= "#F0C674"
@@ -54,7 +54,7 @@ naughty.config.presets.critical.bg		 = theme.black
 theme.icon_theme = nil
 theme.taglist_squares_sel   	= theme.img_dir .. "/taglist/taglist_squarefw.png"
 theme.taglist_squares_unsel 	= theme.img_dir .. "/taglist/taglist_squarew.png"
-theme.tasklist_floating_icon 	= "/usr/share/awesome/themes/default/tasklist/floatingw.png"
+theme.tasklist_floating_icon 	= theme.img_dir .. "/floatingw.png"
 
 theme.menu_submenu_icon = theme.img_dir .. "/submenu.png"
 theme.menu_height 		= "15"
@@ -72,7 +72,6 @@ theme.layout_tile 		= theme.img_dir .. "/layouts/tile.png"
 theme.layout_tiletop 	= theme.img_dir .. "/layouts/tiletop.png"
 theme.layout_spiral  	= theme.img_dir .. "/layouts/spiral.png"
 theme.layout_dwindle 	= theme.img_dir .. "/layouts/dwindle.png"
-
 
 if theme.wallpaper then
     for s = 1, screen.count() do

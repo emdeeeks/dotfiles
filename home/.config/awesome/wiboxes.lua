@@ -79,7 +79,6 @@ for s = 1, screen.count() do
 	left_layout:add(cpuwidget)
 	left_layout:add(spacer)
 	left_layout:add(cputempwidget)
-	left_layout:add(spacer)
 	left_layout:add(divider)
 	left_layout:add(memwidget)
 	left_layout:add(divider)

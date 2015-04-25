@@ -2,7 +2,7 @@ theme = {}
 theme.font          = "monospace normal 9"
 theme.img_dir 		= home .. "/.config/awesome/themes/default/img"
 
-theme.wallpaper =  theme.img_dir .. "/wallpaper.png"
+theme.wallpaper =  theme.img_dir .. "/wallpapers/2.jpg"
 
 theme.red			= "#CC6666"
 theme.yellow		= "#F0C674"

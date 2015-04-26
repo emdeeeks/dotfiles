@@ -50,8 +50,6 @@ naughty.config.defaults.icon             = nil
 naughty.config.defaults.icon_size        = 16
 naughty.config.presets.critical.fg		 = theme.fg_urgent
 naughty.config.presets.critical.bg		 = theme.black
-naughty.config.presets.warning.fg		 = theme.yellow
-naughty.config.presets.warning.bg		 = theme.black
 
 theme.icon_theme = nil
 theme.taglist_squares_sel   	= theme.img_dir .. "/taglist/taglist_squarefw.png"

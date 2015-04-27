@@ -6,6 +6,8 @@ globalkeys = awful.util.table.join(
 	awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%-") end),
 	awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
 
+	awful.key({ }, "XF86Eject", function () awful.util.spawn("~/dotfiles/home/.config/awesome/scripts/imgur-screenshot/imgur-screenshot.sh") end),
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),

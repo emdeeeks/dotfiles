@@ -141,13 +141,22 @@ add_binds("normal", {
             return false
         end),
 
-	key({}, "v", function (w) 
+	key({"Control"}, "v", function (w) 
 		local view = w.view
 		local uri = view.hovered_uri or view.uri
 		if uri then
 			luakit.spawn(string.format("mplayer %q", uri))
 		end 
 	end),	
+
+	key({"Control"}, "l", function (w) 
+		local view = w.view
+		local uri = view.hovered_uri or view.uri
+		if uri then
+			luakit.spawn(string.format("livestreamer %q medium", uri))
+		end 
+	end),	
+
 
     key({}, "i", "Enter `insert` mode.",
         function (w) w:set_mode("insert")  end),

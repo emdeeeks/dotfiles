@@ -91,6 +91,7 @@ for s = 1, screen.count() do
 	left_layout:add(yawn.widget)
 
 	local right_layout = wibox.layout.fixed.horizontal()
+	right_layout:add(moc)
 	right_layout:add(spacer)
 
 	local layout = wibox.layout.align.horizontal()

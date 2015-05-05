@@ -8,3 +8,4 @@ function run_once(cmd)
 end
 
 run_once('luakit')
+run_once('redshift')

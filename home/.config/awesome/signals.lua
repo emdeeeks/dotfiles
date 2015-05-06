@@ -91,6 +91,9 @@ function hook_moc()
         end
 
     end
+	
+	moc_string = moc_string:gsub("&", "")
+
     moc:set_markup(moc_string)
 end
 

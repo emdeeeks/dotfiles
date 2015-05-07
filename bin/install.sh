@@ -8,6 +8,7 @@ apps_to_install=(
 	nginx
 	weechat
 	vim
+	redshift
 )
 
 setup () {

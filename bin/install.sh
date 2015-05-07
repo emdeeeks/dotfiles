@@ -37,9 +37,6 @@ create_symlinks() {
 
 		e_arrow "symlinking $f"
 		ln -s $HOME/dotfiles/home/$f $HOME/
-
-		mv $HOME/dotfiles.old/.config/chromium $HOME/.config/ -u
-		mv $HOME/dotfiles.old/.config/evolution $HOME/.config/ -u
 	done
 }
 
@@ -52,6 +49,8 @@ install_applications() {
 
 wrap_up() {
 	chmod 700 $HOME/.moc/config
+	mv $HOME/dotfiles.old/.config/chromium $HOME/.config/ -u
+	mv $HOME/dotfiles.old/.config/evolution $HOME/.config/ -u
 }
 
 setup

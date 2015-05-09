@@ -56,10 +56,10 @@ theme.ibar_bg           = theme.black
 -- Tab label
 theme.tab_fg            = theme.dark_white
 theme.tab_bg            = theme.black
-theme.tab_ntheme        = theme.red
+theme.tab_ntheme        = theme.dark_white
 theme.selected_fg       = theme.green
 theme.selected_bg       = theme.black
-theme.selected_ntheme   = theme.cyan
+theme.selected_ntheme   = theme.dark_white
 theme.loading_fg        = theme.yellow
 theme.loading_bg        = theme.black
 

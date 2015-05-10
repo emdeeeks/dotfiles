@@ -145,7 +145,7 @@ add_binds("normal", {
 		local view = w.view
 		local uri = view.hovered_uri or view.uri
 		if uri then
-			luakit.spawn(string.format("mplayer %q", uri))
+			luakit.spawn(string.format("mpv %q", uri))
 		end 
 	end),	
 

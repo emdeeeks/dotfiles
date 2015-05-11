@@ -18,7 +18,6 @@ execute pathogen#infect()
 
 "set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
-
 " tabstop settings
 set tabstop=4 " a tab found in a file will be represented with 4 columns
 set softtabstop=4 " when in insert mode <tab> is pressed move 4 columns
@@ -49,8 +48,6 @@ set statusline +=%2*/%L%*					"total lines
 set statusline +=%7*\ Column\:\ %6*%4v	"virtual column number
 set statusline +=\ (%5*%P)\ "percent through file
 
-""set statusline +=%2*0x%04B\ %*			"character under cursor
-
 hi User1 ctermfg=red ctermbg=black
 hi User2 ctermfg=green ctermbg=black
 hi User3 ctermfg=yellow ctermbg=black
@@ -68,10 +65,12 @@ set gcr+=i-ci-sm:InsertCursor
 set gcr+=r-cr:ReplaceCursor-hor20
 set gcr+=c:CommandCursor
 set gcr+=v-ve:VisualCursor
-
 set gcr+=a:blinkon0
 
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
 hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
 hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
 hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
+
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>6

@@ -9,3 +9,4 @@ end
 
 run_once('luakit')
 run_once('redshift')
+run_once('evolution')

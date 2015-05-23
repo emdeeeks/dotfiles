@@ -141,22 +141,15 @@ add_binds("normal", {
             return false
         end),
 
-	key({"Control"}, "v", function (w) 
-		local view = w.view
-		local uri = view.hovered_uri or view.uri
-		if uri then
-			luakit.spawn(string.format("mpv %q", uri))
-		end 
-	end),	
-
-	key({"Control"}, "l", function (w) 
-		local view = w.view
-		local uri = view.hovered_uri or view.uri
-		if uri then
-			luakit.spawn(string.format("livestreamer %q medium", uri))
-		end 
-	end),	
-
+    but({}, 1, "Opens youtube video in mpv", function (w) 
+        local view = w.view
+        local uri = view.hovered_uri or view.uri
+        if string.match(uri, 'youtube.com/watch') then
+            luakit.spawn(string.format("mpv %q", uri))
+            return true
+        end
+        return false
+    end),
 
     key({}, "i", "Enter `insert` mode.",
         function (w) w:set_mode("insert")  end),

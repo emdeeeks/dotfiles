@@ -203,4 +203,6 @@ if unique then
     end)
 end
 
-require "plugins"
+require "plugins.nscript"
+--require "plugins.speed_dial"
+require "plugins.test_chrome"

@@ -19,10 +19,10 @@ execute pathogen#infect()
 "set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
 " tabstop settings
-set tabstop=4 " a tab found in a file will be represented with 4 columns
-set softtabstop=4 " when in insert mode <tab> is pressed move 4 columns
-set shiftwidth=4 " indentation is 4 columns
-"set noexpandtab " tabs are tabs, do not replace with spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
 map <F2> :mksession! ~/.vim_session <cr>
 map <F3> :source ~/.vim_session <cr>
@@ -74,3 +74,4 @@ hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
 
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>6
+

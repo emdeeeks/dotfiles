@@ -145,7 +145,7 @@ add_binds("normal", {
         local view = w.view
         local uri = view.hovered_uri or view.uri
         if string.match(uri, 'youtube.com/watch') then
-            luakit.spawn(string.format("mpv %q --fullscreen --autofit=1024x768  --screen=0", uri))
+            luakit.spawn(string.format("mpv %q --fullscreen --autofit=1024x768  --screen=0 --fs-screen=0", uri))
             return true
         end
         return false

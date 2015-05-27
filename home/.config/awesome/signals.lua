@@ -89,7 +89,8 @@ function hook_moc()
         elseif moc_state == "PAUSE" then 
             moc_string = '<span color="' .. theme.red .. '">Paused:</span> ' .. moc_string
         end
-
+    else
+        return
     end
 	
 	moc_string = moc_string:gsub("&", "")

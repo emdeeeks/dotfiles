@@ -61,17 +61,19 @@ color.calendar.weeknumber=color8
 
 color.recurring=magenta
 color.due.today=red 
-color.overdue=white on red
+color.overdue=red
 color.due=magenta
 color.active=green 
 color.pri.none=
 color.pri.H=yellow
 color.pri.M=white
 color.pri.L=color8
-color.tagged=green
+color.tagged=blue
 color.blocked=on color8
 color.blocking=on black
 color.project.blue=
 color.tag.none=
 color.alternate=
 
+color.vit.header=yellow on black
+color.vit.selection=white on black

@@ -9,6 +9,56 @@ widget_colors = {
 	theme.magenta
 }
 
+-- From: http://awesome.naquadah.org/wiki/Awesome_3_configuration
+function execute_command(command)
+   local fh = io.popen(command)
+   local str = ""
+   for i in fh:lines() do
+      str = str .. i
+   end
+   io.close(fh)
+   return str
+end
+
+-- Helper function to build all you need
+function widget_with_timeout(command, seconds)
+  local object = {}
+  object.command = command
+  
+  object.update = function ()
+    local result = execute_command(object.command)
+  end
+
+  object.timer = timer({ timeout = seconds })
+--  object.timer:add_signal("timeout", object.update)
+  object.timer:start()
+
+  object.update() -- Initialize immediately
+  return object
+end
+
+function widget()
+	for k,v in pairs(widget_colors) do
+		print('<span color"' .. k .. '">' .. v .. '</span>')
+	end
+end
+
+function tasks(filter)
+    taskcount = awful.util.pread('task ' .. filter .. ' count')
+    return taskcount
+end
+
+taskswidget = wibox.widget.textbox()
+widgetmarkup = 'Tasks: <span color="' .. theme.yellow .. '">' .. tasks('status:pending') .. '</span>'
+taskswidget:set_markup(widgetmarkup)
+taskswidgetTimer = timer({ timeout = 300 })
+taskswidgetTimer:connect_signal("timeout",
+  function()
+    taskswidget:set_markup(widgetmarkup)
+  end
+)
+taskswidgetTimer:start()
+
 spacer = wibox.widget.textbox(markup(beautiful.black, " "))
 divider = wibox.widget.textbox(markup(beautiful.divider, " : "))
 
@@ -59,5 +109,3 @@ yawn = lain.widgets.yawn(556053, {
 		)
 	end
 })
-
-

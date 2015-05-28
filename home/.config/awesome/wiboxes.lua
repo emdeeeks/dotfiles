@@ -89,6 +89,8 @@ for s = 1, screen.count() do
 	left_layout:add(hddwidget)
 	left_layout:add(divider)
 	left_layout:add(yawn.widget)
+	left_layout:add(divider)
+	left_layout:add(taskswidget)
 
 	local right_layout = wibox.layout.fixed.horizontal()
 	right_layout:add(moc)

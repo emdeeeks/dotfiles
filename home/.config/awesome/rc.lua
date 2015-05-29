@@ -9,6 +9,7 @@ wibox = require("wibox")
 beautiful = require("beautiful")
 naughty = require("naughty")
 menubar = require("menubar")
+tyrannical = require("tyrannical")
 
 modkey = "Mod4"
 home   = os.getenv("HOME")

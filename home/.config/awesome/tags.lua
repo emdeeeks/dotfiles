@@ -6,6 +6,7 @@ tyrannical.tags = {
         screen      = {1,2},
         layout      = awful.layout.suit.tile,
         instance    = {"web"},
+        intrusive   = true,
         class       = {
             "luakit", "chromium"
         }
@@ -17,6 +18,7 @@ tyrannical.tags = {
         --screen    = screen.count()>1 and 2 or 1,-- Setup on screen 2 if there is more than 1 screen, else on screen 1
         screen      = {1,2},
         layout      = awful.layout.suit.tile,
+        intrusive   = true,
         class = {
             "evolution"
         }
@@ -27,6 +29,7 @@ tyrannical.tags = {
         exclusive   = true,
         screen      = {1,2},
         layout      = awful.layout.suit.tile,
+        intrusive   = true,
         class  = {
             "skype"
         }
@@ -37,12 +40,14 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {1,2},
         layout      = awful.layout.suit.tile,
+        intrusive   = true,
     },
     {
-        name        = "5",
+        name        = "5:weechat",
         init        = true,
-        exclusive   = false,
+        exclusive   = true,
         screen      = {1,2},
+        intrusive   = true,
         layout      = awful.layout.suit.tile,
     },
     {
@@ -50,6 +55,7 @@ tyrannical.tags = {
         init        = true,
         exclusive   = false,
         screen      = {1,2},
+        intrusive   = true,
         layout      = awful.layout.suit.tile,
     },
     {
@@ -57,6 +63,7 @@ tyrannical.tags = {
         init        = true,
         exclusive   = false,
         screen      = {1,2},
+        intrusive   = true,
         layout      = awful.layout.suit.tile,
     },
     {
@@ -64,13 +71,15 @@ tyrannical.tags = {
         init        = true,
         exclusive   = false,
         screen      = {1,2},
+        intrusive   = true,
         layout      = awful.layout.suit.tile,
     },
     {
         name        = "9",
         init        = true,
-        exclusive   = false,
+        exclusive   = false, 
         screen      = {1,2},
+        intrusive   = true,
         layout      = awful.layout.suit.tile,
     },
 }
@@ -81,5 +90,8 @@ tyrannical.properties.intrusive = {
 }
 
 tyrannical.properties.floating = {
-    "flie-roller", "skype"
+    "file-roller", "skype"
 }
+
+tyrannical.settings.block_children_focus_stealing = true --Block popups ()
+tyrannical.settings.group_children = false

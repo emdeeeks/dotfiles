@@ -15,15 +15,15 @@ awful.rules.rules = {
 	},
 	{
 		rule = { class = "luakit" },
-		tag = tags[2][1]
+--		tag = tags[screen.count()][1]
 	},
 	{
 		rule = { class = "evolution" },
-		tag = tags[2][2]
+--		tag = tags[screen.count()][2]
 	},
 	{
 		rule = { class = "skype" },
-		tag = tags[2][3],
+--		tag = tags[screen.count()][3],
 		properties = { floating = true }
 	},
 }

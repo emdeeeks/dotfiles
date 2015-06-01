@@ -13,7 +13,7 @@ tyrannical = require("tyrannical")
 
 modkey = "Mod4"
 home   = os.getenv("HOME")
-terminal = "gnome-terminal"
+terminal = "x-terminal-emulator"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")

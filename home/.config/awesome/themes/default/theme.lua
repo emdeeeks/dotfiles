@@ -20,8 +20,8 @@ theme.bg_focus      = theme.black
 theme.bg_urgent     = theme.black
 theme.bg_minimize   = theme.black
 
-theme.fg_normal     = theme.dark_white
-theme.fg_focus      = theme.white
+theme.fg_normal     = theme.white
+theme.fg_focus      = theme.green
 theme.fg_urgent     = theme.red
 theme.fg_minimize   = theme.dark_white
 
@@ -48,6 +48,9 @@ naughty.config.defaults.ontop            = true
 naughty.config.defaults.font             = theme.font
 naughty.config.defaults.icon             = nil
 naughty.config.defaults.icon_size        = 16
+naughty.config.presets.normal.fg      = theme.white
+naughty.config.presets.normal.bg      = theme.black
+naughty.config.presets.normal.timeout = 10
 naughty.config.presets.critical.fg		 = theme.fg_urgent
 naughty.config.presets.critical.bg		 = theme.black
 naughty.config.presets.critical.timeout		 = 15

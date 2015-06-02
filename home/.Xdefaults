@@ -1,5 +1,5 @@
 ! special
-*.foreground:   #ffffff
+*.foreground:   #dddddd
 *.background:   #222222
 *.cursorColor:  #d0d0d0
 
@@ -40,7 +40,7 @@ URxvt.scrollBar: false
 
 URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*.shading: 15
+URxvt*.shading: 12
 
 *.font:xft:Monospace:size=9
 *.boldFont:xft:Monospace:size=9

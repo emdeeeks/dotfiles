@@ -1,7 +1,5 @@
 MusicDir = "/home/gareth/Music"
 StartInMusicDir = yes
-OnSongChange = "/home/gareth/dotfiles/home/.config/awesome/scripts/mochg"
-#OnSongChange = "/home/gareth/dotfiles/home/.config/awesome/scripts/mochg artist %a songtitle %t album %r"
-OnStop = "/home/gareth/dotfiles/home/.config/awesome/scripts/mochg"
+onSongChange = "/home/gareth/dotfiles/home/.scripts/moc-notification.sh white "%a" "%t" "%f"
 theme = "default"
 ASCIILines = no

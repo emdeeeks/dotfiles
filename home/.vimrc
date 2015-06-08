@@ -1,6 +1,7 @@
 "set background=dark
-"set term=screen-256color
-"let base16colorspace=256
+set t_Co=16
+set term=screen-16color
+let base16colorspace=16
 colorscheme base16-tomorrow
 set laststatus=2
 set number
@@ -12,9 +13,16 @@ set list listchars=tab:▸\ ,eol:¬,trail:·
 
 execute pathogen#infect()
 
+highlight GitGutterAdd ctermbg=none         " an added line
+highlight GitGutterChange ctermbg=none      " a changed line
+highlight GitGutterDelete ctermbg=none      " at least one removed line
+highlight GitGutterChangeDelete ctermbg=none
+
+let g:gitgutter_override_sign_column_highlight = 0
 "highlight clear SignColumn
-:highlight SignColumn ctermbg=none ctermfg=darkgrey
-:highlight LineNr ctermbg=none ctermfg=darkgrey
+let g:gitgutter_sign_column_always = 1
+highlight SignColumn ctermbg=none ctermfg=darkgrey
+highlight LineNr ctermbg=none ctermfg=darkgrey
 
 "set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 

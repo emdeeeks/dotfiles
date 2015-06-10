@@ -77,8 +77,6 @@ function hook_moc()
         moc_file = string.gsub(string.match(moc_info, "File: %C*"), "File: ","")
 		moc_artist = string.gsub(string.match(moc_info, "Artist: %C*"), "Artist: ","")
         moc_title = string.gsub(string.match(moc_info, "SongTitle: %C*"), "SongTitle: ","")
-        moc_curtime = string.gsub(string.match(moc_info, "CurrentTime: %d*:%d*"), "CurrentTime: ","")
-        moc_totaltime = string.gsub(string.match(moc_info, "TotalTime: %d*:%d*"), "TotalTime: ","")
         if moc_artist == "" or moc_title == "" then 
             moc_artist = moc_file
         end

@@ -15,6 +15,8 @@ theme.white 		= "#EEEEEE"
 theme.divider		= "#333333"
 theme.black			= "#222222"
 
+theme.useless_gap_width = 15
+
 theme.bg_normal     = theme.black
 theme.bg_focus      = theme.black
 theme.bg_urgent     = theme.black
@@ -25,9 +27,9 @@ theme.fg_focus      = theme.green
 theme.fg_urgent     = theme.red
 theme.fg_minimize   = theme.dark_white
 
-theme.border_width  = "1"
+theme.border_width  = "3"
 theme.border_normal = theme.black
-theme.border_focus  = theme.red
+theme.border_focus  = theme.green
 
 naughty.config.defaults.timeout          = 5
 naughty.config.defaults.screen           = 2
@@ -82,5 +84,11 @@ if theme.wallpaper then
         gears.wallpaper.maximized(theme.wallpaper, s, true)
     end
 end
+
+theme.lain_icons         = os.getenv("HOME") .. "/.config/awesome/lain/icons/layout/default/"
+theme.layout_termfair    = theme.lain_icons .. "termfairw.png"
+theme.layout_cascade     = theme.lain_icons .. "cascadew.png"
+theme.layout_cascadetile = theme.lain_icons .. "cascadetilew.png"
+theme.layout_centerwork  = theme.lain_icons .. "centerworkw.png"
 
 return theme

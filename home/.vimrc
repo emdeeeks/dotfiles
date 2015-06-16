@@ -9,8 +9,9 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set textwidth=80
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+
+hi ColorColumn guibg=#2d2d2d ctermbg=black
+execute "set colorcolumn=" . join(range(81,335), ',')
 
 execute pathogen#infect()
 

@@ -75,42 +75,6 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 #export TERM=xterm-256color # This makes VIM look like dogs dinner
 
-*.foreground:   #cccccc
-*.background:   #222222
-*.cursorColor:  #d0d0d0
-
-! black
-*.color0:       #151515
-*.color8:       #969896
-
-! red
-*.color1:       #cc6666
-*.color9:       #cc6666
-
-! green
-*.color2:       #B5BD68
-*.color10:      #B5BD68
-
-! yellow
-*.color3:       #F0C674
-*.color11:      #F0C674
-
-! blue
-*.color4:       #81A2BE
-*.color12:      #81A2BE
-
-! magenta
-*.color5:       #B294BB
-*.color13:      #B294BB
-
-! cyan
-*.color6:       #8ABEB7
-*.color14:      #8ABEB7
-
-! white
-*.color7:       #cccccc
-*.color15:      #f5f5f5
-
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0151515" #black
     echo -en "\e]P1cc6666" #darkred

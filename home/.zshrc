@@ -75,20 +75,58 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 #export TERM=xterm-256color # This makes VIM look like dogs dinner
 
-echo -en "\e]P02e3436" #black
-echo -en "\e]P1cc0000" #darkred
-echo -en "\e]P24e9a06" #darkgreen
-echo -en "\e]P3c4a000" #brown
-echo -en "\e]P43465a4" #darkblue
-echo -en "\e]P575507b" #darkmagenta
-echo -en "\e]P606989a" #darkcyan
-echo -en "\e]P7d3d7cf" #lightgrey
-echo -en "\e]P8555753" #darkgrey
-echo -en "\e]P9ef2929" #red
-echo -en "\e]PA8ae234" #green
-echo -en "\e]PBfce94f" #yellow
-echo -en "\e]PC729fcf" #blue
-echo -en "\e]PDad7fa8" #magenta
-echo -en "\e]PE34e2e2" #cyan
-echo -en "\e]PFeeeeec" #white
-clear # Fills terminal with base color
+*.foreground:   #cccccc
+*.background:   #222222
+*.cursorColor:  #d0d0d0
+
+! black
+*.color0:       #151515
+*.color8:       #969896
+
+! red
+*.color1:       #cc6666
+*.color9:       #cc6666
+
+! green
+*.color2:       #B5BD68
+*.color10:      #B5BD68
+
+! yellow
+*.color3:       #F0C674
+*.color11:      #F0C674
+
+! blue
+*.color4:       #81A2BE
+*.color12:      #81A2BE
+
+! magenta
+*.color5:       #B294BB
+*.color13:      #B294BB
+
+! cyan
+*.color6:       #8ABEB7
+*.color14:      #8ABEB7
+
+! white
+*.color7:       #cccccc
+*.color15:      #f5f5f5
+
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P0151515" #black
+    echo -en "\e]P1cc6666" #darkred
+    echo -en "\e]P2B5BD68" #darkgreen
+    echo -en "\e]P3F0C674" #brown
+    echo -en "\e]P481A2BE" #darkblue
+    echo -en "\e]P5B294BB" #darkmagenta
+    echo -en "\e]P68ABEB7" #darkcyan
+    echo -en "\e]P7CCCCCC" #lightgrey
+    echo -en "\e]P8969896" #darkgrey
+    echo -en "\e]P9cc6666" #red
+    echo -en "\e]PAB5BD68" #green
+    echo -en "\e]PBf0c674" #yellow
+    echo -en "\e]PC81A2BE" #blue
+    echo -en "\e]PDB294BB" #magenta
+    echo -en "\e]PE8ABEB7" #cyan
+    echo -en "\e]PFf5f5f5" #white
+    clear # Fills terminal with base color
+fi

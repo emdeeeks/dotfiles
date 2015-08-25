@@ -42,6 +42,11 @@ highlight LineNr ctermbg=none ctermfg=darkgrey
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
 
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
 vmap <C-c> "+y
 map <F2> :mksession! ~/.vim_session <cr>
 map <F3> :source ~/.vim_session <cr>

@@ -51,6 +51,9 @@ end
 taskswidget = wibox.widget.textbox()
 widgetmarkup = 'Tasks: <span color="' .. theme.yellow .. '">' .. tasks('status:pending') .. '</span>'
 taskswidget:set_markup(widgetmarkup)
+taskswidget:buttons(awful.util.table.join(
+  awful.button({ }, 1, function () awful.util.spawn_with_shell(terminal .. " -e vit") end)
+))
 taskswidgetTimer = timer({ timeout = 300 })
 taskswidgetTimer:connect_signal("timeout",
   function()

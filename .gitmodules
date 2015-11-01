@@ -10,3 +10,15 @@
 [submodule "home/.config/awesome/scripts/imgur-screenshot"]
 	path = home/.config/awesome/scripts/imgur-screenshot
 	url = https://github.com/jomo/imgur-screenshot.git
+[submodule "home/.vim/bundle/vim-trailing-whitespace"]
+	path = home/.vim/bundle/vim-trailing-whitespace
+	url = https://github.com/bronson/vim-trailing-whitespace
+[submodule "home/.vim/bundle/vim-startify"]
+	path = home/.vim/bundle/vim-startify
+	url = https://github.com/mhinz/vim-startify
+[submodule "home/.vim/bundle/YouCompleteMe"]
+	path = home/.vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "home/.vim/bundle/vim-autoswap"]
+	path = home/.vim/bundle/vim-autoswap
+	url = https://github.com/gioele/vim-autoswap

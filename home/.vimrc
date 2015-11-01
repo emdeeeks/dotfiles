@@ -65,3 +65,6 @@ set statusline +=%7*Row\:\ %1*%l			"current line
 set statusline +=%2*/%L%*					"total lines
 set statusline +=%7*\ Column\:\ %6*%4v	"virtual column number
 set statusline +=\ (%5*%P)\ "percent through file
+
+hi Pmenu ctermfg=grey ctermbg=black
+hi Pmenusel ctermfg=green ctermbg=black

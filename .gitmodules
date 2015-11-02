@@ -22,3 +22,15 @@
 [submodule "home/.vim/bundle/vim-autoswap"]
 	path = home/.vim/bundle/vim-autoswap
 	url = https://github.com/gioele/vim-autoswap
+[submodule "home/.vim/bundle/easytree.vim"]
+	path = home/.vim/bundle/easytree.vim
+	url = https://github.com/troydm/easytree.vim
+[submodule "home/.vim/bundle/delimitMate"]
+	path = home/.vim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "home/.vim/bundle/skeletons.vim"]
+	path = home/.vim/bundle/skeletons.vim
+	url = https://github.com/tobyS/skeletons.vim.git
+[submodule "home/.vim/bundle/ultisnips"]
+	path = home/.vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git

@@ -7,7 +7,8 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-run_once('luakit')
+--run_once('luakit')
 run_once('redshift')
-run_once('evolution')
-run_once('skype')
+run_once('rescuetime')
+--run_once('evolution')
+--run_once('skype')

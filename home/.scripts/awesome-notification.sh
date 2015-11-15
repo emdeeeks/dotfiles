@@ -2,10 +2,10 @@
 
 if [ $1 ]; then
     echo "naughty.notify({
-        bg = theme.black,
-        fg = theme."$1",
-        title = '"$2"',
-        text = '"$3"', 
+        bg = theme."$1",
+        fg = theme."$2",
+        title = '"$3"',
+        text = '"$4"',
         timeout = 10
     })" | awesome-client
 fi

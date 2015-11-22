@@ -68,3 +68,8 @@ set statusline +=\ (%5*%P)\ "percent through file
 
 hi Pmenu ctermfg=grey ctermbg=black
 hi Pmenusel ctermfg=green ctermbg=black
+
+map <tab> %
+
+nnoremap n nzzzv
+nnoremap N Nzzzv

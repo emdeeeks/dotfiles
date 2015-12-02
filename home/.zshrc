@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="sorin"
+ZSH_THEME="terminalparty"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -30,7 +30,7 @@ ZSH_THEME="sorin"
 # DISABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -48,7 +48,7 @@ ZSH_THEME="sorin"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git battery taskwarrior sublime systemadmin emoji-clock colorize colored-man git-flow composer)
+plugins=(git battery taskwarrior systemadmin emoji-clock colorize colored-man git-flow composer)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -58,7 +58,13 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_GB.UTF-8
+
+if [[ -z "$SSH_CLIENT" ]]; then
+        prompt_host="%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%}"
+else
+        prompt_host=%{$fg_bold[white]%}@%{$reset_color$fg[yellow]%}$([hostname -s])
+fi
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -94,3 +100,33 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFf5f5f5" #white
     clear # Fills terminal with base color
 fi
+
+countdown() {
+   date1=$((`date +%s` + $1)); 
+   while [ "$date1" -ge `date +%s` ]; do 
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
+
+cd() {
+  if [ -n "$1" ]; then
+    builtin cd "$@" && ls --group-directories-first -lah
+  else
+    builtin cd ~ && ls --group-directories-first -lah
+  fi
+}
+
+down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g';}
+
+alias cdh="cd ~"
+alias cds="cd ~/Sites"
+alias family="mpv https://www.arconai.tv/fg/"
+alias adad="mpv https://www.arconai.tv/amerro/"
+alias movie="mpv https://www.arconai.tv/moovaye/"
+alias simpsons="mpv https://www.arconai.tv/s/"
+alias curb="mpv https://www.arconai.tv/cye/"
+alias regular="mpv https://www.arconai.tv/rs/"
+alias rick="mpv https://www.arconai.tv/rm/"
+alias south="mpv https://www.arconai.tv/sp/"
+alias workers="mpv https://www.arconai.tv/workers/"

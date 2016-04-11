@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+case "$1" in
+    *youtube.com*|*youtu.be*|*.webm) mpv "$1";;
+    *.png|*.jpeg|*.jpg) feh -. "$1";;    # feh -. = opens to fit window.
+    *) qutebrowser --target=tab "$1";;
+esac

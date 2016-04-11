@@ -34,3 +34,6 @@
 [submodule "home/.vim/bundle/AnsiEsc"]
 	path = home/.vim/bundle/AnsiEsc
 	url = https://github.com/vim-scripts/AnsiEsc.vim
+[submodule "home/.vim/bundle/sparkup"]
+	path = home/.vim/bundle/sparkup
+	url = https://github.com/rstacruz/sparkup.git

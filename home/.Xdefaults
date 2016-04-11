@@ -1,6 +1,6 @@
 ! special
-*.foreground:   #cccccc
-*.background:   #222222
+*.foreground:   #999999
+*.background:   #000000
 *.cursorColor:  #d0d0d0
 
 ! black
@@ -32,29 +32,28 @@
 *.color14:      #8ABEB7
 
 ! white
-*.color7:       #cccccc
-*.color15:      #f5f5f5
+*.color7:       #EEEEEE
+*.color15:      #999999
 
 URxvt.depth: 32
 URxvt.scrollBar: false
 
 URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*.shading: 12
+URxvt*.shading: 10
 
  *.font:xft:Terminus:size=10:encoding=ibm862
  *.boldFont:xft:Terminus:size=10
 
 Xft.rgba: none
 Xft.hintstyle: hintfull
-!URxvt*letterSpace: -2
 
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/luakit
+URxvt.url-launcher: /usr/local/bin/handle-urxvt-link-click
 URxvt.matcher.button: 1
 URxvt.colorUL: #81A2BE
 URxvt.internalBorder:  8
 
-!URxvt*font: -*-terminus-medium-r-*-*-17-*-*-*-*-*-ibm862--*
-
-
+URxvt*visualBell: true
+XTerm*bellIsUrgent: true
+URxvt.urgentOnBell: true

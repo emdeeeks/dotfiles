@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+SESSION=CakePHP2
+
+if [ `tmux ls 2>/dev/null |grep "$SESSION: "|wc -l` -eq 1 ];then
+    tmux attach -t $SESSION
+else
+    tmux new-session -d -s $SESSION
+
+    tmux send-keys "vim" Enter
+
+    tmux split-window -h -p 36
+    tmux send-keys "./Console/cake Test" Enter
+
+    tmux split-window -v -p 50
+    tmux send-keys "lnav tmp/logs/error.log" Enter
+
+    tmux select-pane -t 1
+
+    tmux bind-key C-T select-pane -t 2 \; send-keys "./Console/cake test app AllTests" Enter \; if-shell 'test #{window_panes} -gt 1' 'last-pane' 'last-window'
+
+    tmux attach -t $SESSION
+fi

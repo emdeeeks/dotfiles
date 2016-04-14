@@ -1,0 +1,12 @@
+#!/bin/bash
+
+COLOR=$1
+TITLE=$2
+TEXT=$3
+
+echo "naughty.notify({
+    fg = theme."$1",
+    bg = theme.bg_normal,
+    text = '<span weight="\"bold"\">"$TITLE"</span><br />"$TEXT"',
+    timeout = 10
+})" | awesome-client

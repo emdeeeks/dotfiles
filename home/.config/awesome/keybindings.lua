@@ -1,30 +1,80 @@
 globalkeys = awful.util.table.join(
-	awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocp --toggle-pause") end),
-	awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mocp --next") end),
-	awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --prev") end),
- 	awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%+") end),
-	awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 5%-") end),
-	awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
+    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocp --toggle-pause") end),
+    awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mocp --next") end),
+    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --prev") end),
+    awful.key({ }, "XF86AudioRaiseVolume", function ()
+        awful.util.spawn("amixer -D pulse sset Master 5%+")
+    end),
+    awful.key({ }, "XF86AudioLowerVolume", function ()
+        awful.util.spawn("amixer -D pulse sset Master 5%-")
+    end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
+    awful.key({ modkey }, "XF86Eject", function () awful.util.spawn("scrot -s -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
+    awful.key({ modkey, "Shift" }, "XF86Eject", function () awful.util.spawn("scrot -s -e 'imgur $f && mv $f ~/screenshots/ 2>/dev/null'" ) end),
+    awful.key({ modkey, }, "F1", keydoc.display),
 
-	awful.key({ }, "XF86Eject", function () awful.util.spawn("~/dotfiles/home/.config/awesome/scripts/imgur-screenshot/imgur-screenshot.sh") end),
+    keydoc.group("Run or Raise"),
+    awful.key({ modkey, 'Ctrl', 'Alt' }, 'm', function ()
+        local matcher = function (c)
+            return awful.rules.match(c, { class = 'mail:mutt' })
+        end
+        awful.client.run_or_raise(terminal .. ' -e mutt', matcher)
+    end, "mutt - Email client"),
 
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+    awful.key({ modkey, 'Ctrl', 'Alt' }, 'g', function ()
+        local matcher = function (c)
+            return awful.rules.match(c, { name = 'misc:gtypist' })
+        end
+        awful.client.run_or_raise(terminal .. ' -e gtypist', matcher)
+    end, "gtypist - Typing tutor"),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ modkey, 'Ctrl', 'Alt' }, 'c', function ()
+        local matcher = function (c)
+            return awful.rules.match(c, { class = 'misc:cmus' })
+        end
+        awful.client.run_or_raise('cmus', matcher)
+    end, "cmus - Music player"),
+
+    awful.key({ modkey, 'Ctrl', 'Alt' }, 'n', function ()
+        local matcher = function (c)
+            return awful.rules.match(c, { class = 'misc:newsbeuter' })
+        end
+        awful.client.run_or_raise(terminal .. ' -e newsbeuter', matcher)
+    end, "newsbeuter - RSS reader"),
+
+    awful.key({ modkey, 'Ctrl', 'Alt' }, 'q', function ()
+        local matcher = function (c)
+            return awful.rules.match(c, { class = 'work:qutebrowser' })
+        end
+        awful.client.run_or_raise(terminal .. ' -e qutebrowser', matcher)
+    end, "luakit - Browser"),
+
+    awful.key({ modkey, 'Ctrl', 'Alt' }, 'v', function ()
+        local matcher = function (c)
+            return awful.rules.match(c, { class = 'misc:vit' })
+        end
+        awful.client.run_or_raise(terminal .. ' -e vit', matcher)
+    end, "VIT - TaskWarior frontend"),
+
+    keydoc.group("Tags"),
+    awful.key({ modkey, }, "Left",   awful.tag.viewprev, "Go to previous tag" ),
+    awful.key({ modkey, }, "Right",  awful.tag.viewnext, "Go to next tag"),
+    awful.key({ modkey, }, "Escape", awful.tag.history.restore),
+
+    awful.key({ modkey, }, "j",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
-        end),
+        end
+    ),
     awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
-        end),
-    awful.key({ modkey,           }, "w", function () appsmenu:show() end),
+        end
+    ),
 
-    -- Layout manipulation
+    keydoc.group("Layout manipulation"),
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
@@ -36,34 +86,203 @@ globalkeys = awful.util.table.join(
             if client.focus then
                 client.focus:raise()
             end
-        end),
+        end
+    ),
 
-    -- Standarid program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
+    keydoc.group("Misc"),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end, "Spawn Terminal"),
+    awful.key({ modkey, "Control" }, "r", awesome.restart, "Restart Awesome"),
+    awful.key({ modkey, "Shift"   }, "q", awesome.quit, "Quit Awesome"),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-
+    awful.key({ modkey, "Shift"   }, "h",     function ()
+        awful.tag.incnmaster( 1)
+        naughty.notify({ title = 'Master', text = tostring(awful.tag.getnmaster()), timeout = 1 })
+    end),
+    awful.key({ modkey, "Shift"   }, "l", function ()
+        awful.tag.incnmaster(-1)
+        naughty.notify({ title = 'Master', text = tostring(awful.tag.getnmaster()), timeout = 1 })
+    end),
+    awful.key({ modkey, "Control" }, "h", function ()
+        awful.tag.incncol( 1)
+        naughty.notify({ title = 'Columns', text = tostring(awful.tag.getncol()), timeout = 1 })
+    end),
+    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)
+        naughty.notify({ title = 'Columns', text = tostring(awful.tag.getncol()), timeout = 1 })
+    end),
+    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1)
+    end, "Next Layout"),
+    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1)
+    end, "Previous Layout"),
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
-    -- Prompt
+    keydoc.group("Prompts"),
     awful.key({ modkey },            "r",     function () promptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
-      function ()
-          awful.prompt.run({ prompt = "Run Lua code: " },
-          mypromptbox[mouse.screen].widget,
-          awful.util.eval, nil,
-          awful.util.getdir("cache") .. "/history_eval")
-      end
+        function ()
+            awful.prompt.run({ prompt = "Run Lua code: " },
+            promptbox[mouse.screen].widget,
+            awful.util.eval, nil,
+            awful.util.getdir("cache") .. "/history_eval")
+        end,
+        "Run Lua code"
+    ),
+
+    awful.key({ modkey }, "a",
+        function ()
+            awful.prompt.run(
+                { prompt = "Add task: " },
+                promptbox[mouse.screen].widget,
+                function (task)
+                    awful.util.spawn("task add "..task, false)
+                end
+            )
+        end,
+        "Add TaskWarrior task"
+    ),
+
+    awful.key({ modkey }, "s",
+        function ()
+            commands = {
+                gis = "Google Image Search",
+            }
+            markup = ""
+            num = 0
+            for k,v in pairs(commands) do
+                num = num + 1
+                br = ""
+                if #commands == num then
+                else
+                    br = "\n"
+                end
+                markup = markup .. k .. '  <span color="' .. theme.grey .. '">' .. v .. '</span>' .. br
+            end
+            markup = '<span weight="bold" color="' .. beautiful.blue .. '">Commands</span>\n' .. markup
+
+            search_id = naughty.notify({
+                text = markup,
+                replaces_id = search_id,
+                timeout = 30
+            }).id
+
+            awful.prompt.run(
+                { prompt = "Search yubnub: " },
+                promptbox[mouse.screen].widget,
+                function (command)
+                    awful.util.spawn("luakit 'http://yubnub.org/parser/parse?command="..command.."'", false)
+                end
+            )
+        end,
+        "Web search using yubnub"
+    ),
+
+    awful.key({ modkey }, "F2",
+        function ()
+            num = 0
+            markup = '<span weight="bold" color="' .. beautiful.yellow .. '">Earnings</span>\n\n'
+            markup = markup .. 'Today: $0.00\n'
+            markup = markup .. 'Last 7 days: $0.00\n'
+            data_id = naughty.notify({
+                text = markup,
+                replaces_id = shows_id,
+                timeout = 30
+            }).id
+
+        end,
+        "Watch TV shows"
+    ),
+
+    awful.key({ modkey }, "w",
+        function ()
+            shows = {
+                as = "Adult Swim",
+                fg = "Family Guy",
+                s = "The Simpsons",
+                at = "Adventure Time",
+                amerro = "American Dad",
+                future = "Futurama",
+                rs = "Regular Show",
+                rm = "Rick and Morty",
+                sp = "South Park",
+                workers = "Workaholics"
+            }
+            markup = ""
+            num = 0
+            for k,v in pairs(shows) do
+                num = num + 1
+                br = ""
+                if #shows == num then
+                else
+                    br = "\n"
+                end
+                markup = markup .. k .. '  <span color="' .. theme.gray .. '">' .. v .. '</span>' .. br
+            end
+            markup = '<span weight="bold" color="' .. beautiful.blue .. '">Shows</span>\n' .. markup
+
+            shows_id = naughty.notify({
+                text = markup,
+                replaces_id = shows_id,
+                timeout = 30
+            }).id
+
+            awful.prompt.run(
+                { prompt = "Watch: " },
+                promptbox[mouse.screen].widget,
+                function (show)
+                    awful.util.spawn("mpv https://www.arconai.tv/"..show.."/ --fullscreen --autofit=1024x768 --screen=0 --fs-screen=0 --ytdl-format=best", false)
+                end
+            )
+        end,
+        "Watch TV shows"
+    ),
+
+    -- Time management solution as a prompt
+    -- TaskWarrior prompt
+
+    awful.key({ modkey,           }, "c",
+        function ()
+            awful.prompt.run({ prompt = "SSH: " }, promptbox[mouse.screen].widget,
+                function(h) awful.util.spawn(terminal .. " -e ssh " .. h) end,
+                function(cmd, cur_pos, ncomp)
+                    -- get hosts and hostnames
+                    local hosts = {}
+                    f = io.popen("sed 's/#.*//;/[ \\t]*Host\\(Name\\)\\?[ \\t]\\+/!d;s///;/[*?]/d' " .. os.getenv("HOME") .. "/.ssh/config | sort")
+                    for host in f:lines() do
+                        table.insert(hosts, host)
+                    end
+                    f:close()
+
+                    -- abort completion under certain circumstances
+                    if cur_pos ~= #cmd + 1 and cmd:sub(cur_pos, cur_pos) ~= " " then
+                        return cmd, cur_pos
+                    end
+
+                    -- match
+                    local matches = {}
+                    table.foreach(hosts, function(x)
+                        if hosts[x]:find("^" .. cmd:sub(1, cur_pos):gsub('[-]', '[-]')) then
+                            table.insert(matches, hosts[x])
+                        end
+                    end)
+
+                    -- if there are no matches
+                    if #matches == 0 then
+                        return cmd, cur_pos
+                    end
+
+                    -- cycle
+                    while ncomp > #matches do
+                        ncomp = ncomp - #matches
+                    end
+
+                    -- return match and position
+                    return matches[ncomp], #matches[ncomp] + 1
+                end,
+                awful.util.getdir("cache") .. "/ssh_history")
+        end,
+        "SSH to somewhere"
     )
 )
 
@@ -75,6 +294,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
+    awful.key({ modkey, "Shift"   }, "x",      function (c) xprop(c) end),
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be

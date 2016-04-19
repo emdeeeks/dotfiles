@@ -8,7 +8,6 @@ client.connect_signal("manage", function (c, startup)
             client.focus = c
         end
     end)
-  
 
     if not startup then
         -- Set the windows at the slave,
@@ -21,6 +20,12 @@ client.connect_signal("manage", function (c, startup)
             awful.placement.no_offscreen(c)
         end
     end
+
+    c:connect_signal("property::urgent", function(c)
+        if c.urgent then
+            c.border_color = beautiful.border_urgent
+        end
+    end)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)

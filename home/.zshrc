@@ -7,6 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="terminalparty"
 
+set -g visual-bell off
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -101,32 +103,9 @@ if [ "$TERM" = "linux" ]; then
     clear # Fills terminal with base color
 fi
 
-countdown() {
-   date1=$((`date +%s` + $1)); 
-   while [ "$date1" -ge `date +%s` ]; do 
-     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
-     sleep 0.1
-   done
-}
 
-cd() {
-  if [ -n "$1" ]; then
-    builtin cd "$@" && ls --group-directories-first -lah
-  else
-    builtin cd ~ && ls --group-directories-first -lah
-  fi
-}
+#dir=$(pwd)
+#cd ~/gcalcli >/dev/null && ./gcalcli --calendar gareth agenda && cd $dir >/dev/null
 
-down4me() { curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g';}
-
-alias cdh="cd ~"
-alias cds="cd ~/Sites"
-alias family="mpv https://www.arconai.tv/fg/"
-alias adad="mpv https://www.arconai.tv/amerro/"
-alias movie="mpv https://www.arconai.tv/moovaye/"
-alias simpsons="mpv https://www.arconai.tv/s/"
-alias curb="mpv https://www.arconai.tv/cye/"
-alias regular="mpv https://www.arconai.tv/rs/"
-alias rick="mpv https://www.arconai.tv/rm/"
-alias south="mpv https://www.arconai.tv/sp/"
-alias workers="mpv https://www.arconai.tv/workers/"
+source ~/.zsh/functions
+source ~/.zsh/aliases

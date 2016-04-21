@@ -1,0 +1,29 @@
+countdown() {
+   date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+}
+
+cd() {
+  if [ -n "$1" ]; then
+    builtin cd "$@" && ls --group-directories-first -lah
+  else
+    builtin cd ~ && ls --group-directories-first -lah
+  fi
+}
+
+down4me() {
+    curl -s "http://www.downforeveryoneorjustme.com/$1" | sed '/just you/!d;s/<[^>]*>//g';
+}
+
+imgur() {
+    for i in "$@"; do
+        #echo $res | grep -qo '"status":200' && link=$(echo $res | sed -e 's/.*"link":"\([^"]*\).*/\1/' -e 's/\\//g')
+        http -f POST https://api.imgur.com/3/upload Authorization:Client-ID\ 2516d7f45aec64b image@$1 2>/dev/null |\
+        sed -e 's/^.*"link":"\([^"]*\)".*$/\1/' |\
+        sed -e "s/<.*//" |\
+        xclip -selection clipboard
+    done
+}

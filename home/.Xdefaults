@@ -1,6 +1,6 @@
 ! special
 *.foreground:   #999999
-*.background:   #000000
+*.background:   #222222
 *.cursorColor:  #d0d0d0
 
 ! black
@@ -38,9 +38,9 @@
 URxvt.depth: 32
 URxvt.scrollBar: false
 
-URxvt*.transparent: true
+! URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*.shading: 10
+! URxvt*.shading: 10
 
  *.font:xft:Terminus:size=10:encoding=ibm862
  *.boldFont:xft:Terminus:size=10

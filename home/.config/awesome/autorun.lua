@@ -1,5 +1,5 @@
 function run_once(prg,arg_string,pname, screen)
-    screen = screen or 1 
+    screen = screen or 1
 
     if not prg then
         do return nil end
@@ -9,7 +9,7 @@ function run_once(prg,arg_string,pname, screen)
        pname = prg
     end
 
-    if not arg_string then 
+    if not arg_string then
         awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
     else
         awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. " ".. arg_string .."' || (" .. prg .. " " .. arg_string .. ")",screen)
@@ -26,5 +26,4 @@ run_once(terminal .. " -e cds", nil, "work")
 run_once(terminal .. " -e mutt", nil, "mail")
 run_once(terminal .. " -e newsbeuter", nil, "misc")
 run_once(terminal .. " -e vit", nil, "misc")
-run_once(terminal .. " -e gtypist", nil, "misc")
 run_once(terminal .. " -e gtypist", nil, "misc")

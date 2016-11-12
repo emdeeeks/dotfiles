@@ -16,8 +16,7 @@ function run_once(prg,arg_string,pname, screen)
     end
 end
 
-run_once('connect-heidis-internet')
-run_once('xrandr-setup')
+--run_once('xrandr-setup')
 run_once('redshift')
 run_once('rescuetime')
 run_once('qutebrowser', nil, "work")
@@ -27,3 +26,4 @@ run_once(terminal .. " -e mutt", nil, "mail")
 run_once(terminal .. " -e newsbeuter", nil, "misc")
 run_once(terminal .. " -e vit", nil, "misc")
 run_once(terminal .. " -e gtypist", nil, "misc")
+run_once('dropdbox start')

@@ -1,0 +1,14 @@
+@define-color color_red #CC6666;
+@define-color color_yellow #F0C674;
+@define-color color_gray #999999;
+@define-color color_green #B5Bd68;
+@define-color color_black #222222;
+@define-color color_light_black #262626;
+@define-color color_lighter_black #333333;
+@define-color color_white #EEEEEE;
+@define-color color_magenta #B294BB;
+@define-color color_blue #81A2BE;
+@define-color color_cyan #8ABEB7;
+
+/* An example of how a CSS file is imported */
+@import url("gtk-widgets.css");

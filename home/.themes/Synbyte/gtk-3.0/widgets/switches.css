@@ -1,0 +1,7 @@
+GtkSwitch.trough {
+    color: @color_red;
+}
+
+GtkSwitch.trough:active {
+    color: @color_green;
+}

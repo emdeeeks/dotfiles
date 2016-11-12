@@ -1,0 +1,45 @@
+*:link, .button:link, .header-bar .button.titlebutton:link,
+.titlebar .button.titlebutton:link, .button:visited, .header-bar .button.titlebutton:visited,
+.titlebar .button.titlebutton:visited {
+  color: @color_blue;
+}
+
+*:link:visited,
+.button:visited,
+.header-bar .button.titlebutton:visited,
+.titlebar .button.titlebutton:visited {
+    color: @color_blue;
+}
+
+*:selected *:link:visited,
+*:selected .button:visited {
+    color: @color_magenta;
+}
+
+*:link:hover,
+.button:hover:link,
+.button:hover:visited {
+    color: @color_cyan;
+}
+
+*:selected *:link:hover,
+*:selected .button:hover:link,
+*:selected .button:hover:visited {
+    color: @color_yellow;
+}
+
+*:link:active,
+.button:active:link,
+.button:active:visited {
+    color: @color_red;
+}
+
+*:selected *:link:active, *:selected .button:active:link, *:selected .button:active:visited {
+    color: @color_white;
+}
+
+
+*:link:selected, .button:selected:link, .button:selected:visited, .titlebar.selection-mode .subtitle:link,
+.header-bar.selection-mode .subtitle:link, *:selected *:link, *:selected .button:link, *:selected .button:visited {
+    color: @color_green;
+}

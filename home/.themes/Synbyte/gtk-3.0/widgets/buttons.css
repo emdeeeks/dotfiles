@@ -1,0 +1,38 @@
+.button,
+.button.text-button,
+.button.image-button {
+    padding: 7px 9px;
+    color: @color_gray;
+    background-color:@color_lighter_black;
+}
+
+.button:insensitive,
+.button.default:insensitive,
+.button.text-button:insensitive,
+.button.image-button:insensitive {
+    background-color: @color_light_black;
+    color: @color_red;
+}
+
+.button:active,
+.button.default:active
+.button.text-button:active,
+.button.image-button:active {
+    background-color: @color_light_black;
+    color: @color_green;
+}
+
+/* Labels */
+.button GtkLabel {
+    color: @color_gray;
+    background-color: inherit;
+}
+
+.button:active GtkLabel,
+.button:focus GtkLabel {
+    color: @color_green;
+}
+
+.text-button GtkLabel {
+    color: @color_gray;
+}

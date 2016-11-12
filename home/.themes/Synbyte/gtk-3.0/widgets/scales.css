@@ -1,0 +1,72 @@
+.scale {
+    -GtkScale-slider-length: 16px;
+    -GtkRange-slider-width: 16px;
+    -GtkRange-trough-border: 0px;
+    border-radius: 0;
+}
+
+/* Positive fill colors */
+.scale.highlight.left,
+.scale.vertical.highlight.bottom,
+.menubar .menuitem .scale.highlight.left,
+.menubar .menuitem .scale.highlight.bottom {
+    border: 1px solid @color_red;
+    background-color: @color_green;
+}
+
+/* Insensitive fill colors */
+.scale.highlight.left:insensitive,
+.scale.highlight.bottom:insensitive,
+.menubar .menuitem .scale.highlight.left:insensitive,
+.menubar .menuitem .scale.highlight.bottom:insensitive {
+    border: 1px solid @color_red;
+    background-color: @color_red;
+}
+
+.scale.trough {
+    border-width: 1px;
+    margin: 7px 0;
+}
+
+.scale.trough.vertical {
+    border-width: 1px;
+    margin: 0 7px;
+}
+
+/* Trough colors */
+.scale.trough,
+.scale.trough.vertical {
+    border: 1px solid @color_cyan;
+    background-color: @color_cyan;
+}
+
+/* Hover trough colors */
+.scale.trough:hover,
+.scale.trough.vertical:hover {
+    border: 1px solid @color_magenta;
+    background-color: @border;
+}
+
+/* Insensitive trough colors */
+.scale.trough:insensitive,
+.scale.trough.vertical:insensitive {
+    border: 1px solid @color_red;
+    background-color: @color_red;
+}
+
+
+/****************
+ * Progress Bar *
+ ****************/
+.scale.progressbar
+.scale.progressbar.vertical {
+    background-color: @color_gray;
+    border: 1px solid @color_gray;
+}
+
+.scale.progressbar:insensitive,
+.scale.progressbar.vertical:insensitive {
+    background-color: @color_red;
+    border: 1px solid @color_red;
+}
+

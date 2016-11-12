@@ -1,0 +1,63 @@
+GtkCheckButton:hover,
+GtkCheckButton:active:hover,
+GtkCheckButton:selected,
+GtkCheckButton:selected:focus {
+    color: @color_white;
+}
+
+.check,
+.check row:selected,
+.check row:selected:focus {
+    color: @color_white;
+}
+
+.check:insensitive,
+.check row:selected:insensitive,
+.check row:selected:focus:insensitive {
+    color: @color_red;
+}
+
+.radio:insensitive {
+    color: @color_red;
+}
+
+.radio:active {
+    color: @color_green;
+}
+
+.radio:selected {
+    color: @color_green;
+}
+
+.menu .menuitem.radio {
+  -gtk-icon-source: -gtk-icontheme("radio-symbolic");
+  color: @color_gray;
+  icon-shadow: none;
+}
+
+.menu .menuitem.radio:active, .menu .menuitem.radio:checked {
+    -gtk-icon-source: -gtk-icontheme("radio-checked-symbolic");
+}
+
+.menu .menuitem.radio:inconsistent {
+    -gtk-icon-source: -gtk-icontheme("radio-mixed-symbolic");
+}
+.menu .menuitem.radio:hover {
+    color: @color_cyan;
+}
+.menu .menuitem.radio:insensitive {
+    color: @color_red;
+}
+
+
+/* Menuitem Checks & Radios */
+
+.menuitem.check,
+.menuitem.radio {
+    background: none;
+    background-image: none;
+    background: none;
+    box-shadow: none;
+}
+
+

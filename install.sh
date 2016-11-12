@@ -4,7 +4,7 @@ function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
 function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; exit; }
 function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 
-apps_to_install=(
+desktop_apps_to_install=(
     nginx
     weechat
     vim
@@ -12,8 +12,20 @@ apps_to_install=(
     httpie
     glances
     lnav
-    luakit
     tmux
+    zsh
+)
+
+server_apps_to_install=(
+)
+
+global_apps_to_install=(
+    weechat
+    vim
+    lnav
+    tmux
+    nginx
+    zsh
 )
 
 setup () {
@@ -51,10 +63,23 @@ create_symlinks() {
 }
 
 install_applications() {
-    for app in ${apps_to_install[@]}; do
+    if [ $DISPLAY ]; then
+        for app in ${desktop_apps_to_install[@]}; do
+            e_arrow "Installing $app"
+            which $app 2>&1 >/dev/null || sudo apt-get install -y $app
+        done
+    else
+        for app in ${server_apps_to_install[@]}; do
+            e_arrow "Installing $app"
+            which $app 2>&1 >/dev/null || sudo apt-get install -y $app
+        done
+    fi
+
+    for app in ${global_apps_to_install[@]}; do
         e_arrow "Installing $app"
         which $app 2>&1 >/dev/null || sudo apt-get install -y $app
     done
+
 }
 
 wrap_up() {

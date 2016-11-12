@@ -28,8 +28,8 @@
 ###############################################################################
 
 color=on
-color.header=yellow
-color.footnote=color8
+color.header=white
+color.footnote=white
 color.error=red
 color.debug=blue
 
@@ -60,20 +60,20 @@ color.calendar.holiday=yellow
 color.calendar.weeknumber=color8
 
 color.recurring=magenta
-color.due.today=red 
+color.due.today=red
 color.overdue=red
 color.due=magenta
-color.active=green 
+color.active=green
 color.pri.none=
-color.pri.H=yellow
-color.pri.M=white
-color.pri.L=color8
+color.pri.H=red
+color.pri.M=yellow
+color.pri.L=gray
 color.tagged=blue
-color.blocked=on color8
-color.blocking=on black
+color.blocked=red
+color.blocking=yellow
 color.project.blue=
 color.tag.none=
 color.alternate=
 
-color.vit.header=yellow on black
-color.vit.selection=white on black
+color.vit.header=yellow
+color.vit.selection=white

@@ -2,25 +2,29 @@
 
 SESSION=CakePHP2
 
-gulp > /dev/null 2>&1 &
+##gulp > /dev/null 2>&1 &
+##//mailcatcher &
 
 if [ `tmux ls 2>/dev/null |grep "$SESSION: "|wc -l` -eq 1 ];then
     tmux attach -t $SESSION
 else
     tmux new-session -d -s $SESSION
 
-
     tmux send-keys "vim" Enter
 
-    tmux split-window -h -p 36
-#    tmux send-keys "./Console/cake test app AllTests" Enter
+    tmux split-window -h -p 35
 
-#    tmux split-window -v -p 50
-    tmux send-keys "lnav tmp/logs/error.log" Enter
+    tmux send-keys "tail -f tmp/logs/error.log" Enter
+
+    tmux split-window -p 40
+
+    tmux send-keys "gulp" Enter
+
+    tmux split-window -p 50
+
+    tmux send-keys "mailcatcher" Enter
 
     tmux select-pane -t 1
-
-    #tmux bind-key C-T select-pane -t 2 \; send-keys "./Console/cake test app AllTests" Enter \; if-shell 'test #{window_panes} -gt 1' 'last-pane' 'last-window'
 
     tmux attach -t $SESSION
 fi

@@ -1,14 +1,3 @@
--- Make a function to loop through widgets later, changing color for each one.
--- Too lazy to do this now.
-widget_colors = {
-	theme.yellow,
-	theme.blue,
-	theme.green,
-	theme.red,
-	theme.cyan,
-	theme.magenta
-}
-
 -- From: http://awesome.naquadah.org/wiki/Awesome_3_configuration
 function execute_command(command)
    local fh = io.popen(command)
@@ -73,8 +62,10 @@ vicious.register(thermalwidget, vicious.widgets.thermal, '<span color="' .. them
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, 'Memory: <span color="' .. theme.blue .. '">$1%</span>', 6)
 
+--[[
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, 'Network: <span color="' .. theme.green .. '">${eth0 down_kb} down</span> <span color="' .. theme.red .. '">${eth0 up_kb} up</span>', 3)
+]]--
 
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, 'Processor: <span color="' .. theme.yellow .. '">$1%</span>')
@@ -85,7 +76,10 @@ cpuwidget:buttons(awful.util.table.join(
 cputempwidget = wibox.widget.textbox()
 vicious.register(cputempwidget, vicious.widgets.thermal, '<span color="' .. theme.yellow .. '">$1°C</span>', 19, "thermal_zone0")
 
-textclock = awful.widget.textclock(markup("#CC0000", '<span color="' .. theme.magenta .. '">%A %B %d, %R</span>'))
+textclock = awful.widget.textclock(markup(theme.fg_normal, '<span color="' .. theme.magenta .. '">%A %B %d, %R</span>'))
+textclock:buttons(awful.util.table.join(
+    awful.button({ }, 1, function() schedule:display()  end)
+))
 
 moc = wibox.widget.textbox()
 moc:buttons(awful.util.table.join(
@@ -101,14 +95,32 @@ hddwidget:buttons(awful.util.table.join(
 batwidget = lain.widgets.bat({
 	settings = function()
 		widget:set_markup(
-			'Battery: <span color="' .. theme.cyan .. '">' .. bat_now.perc .. '%</span>')
+            'Battery: <span color="' .. theme.blue .. '">' .. bat_now.perc .. '%</span>'
+        )
 	end
 })
 
-yawn = lain.widgets.yawn(556053, {
-	settings = function()
-		widget:set_markup(
-			'Weather: <span color="' .. theme.blue .. '">' .. forecast .. ' @ ' .. units .. '°C</span>'
-		)
-	end
-})
+-- Initialize widget
+netwidget = wibox.widget.textbox()
+-- Register widget
+vicious.register(netwidget, vicious.widgets.net,
+function (widget, args)
+
+local ethdown = args["{eth0 down_kb}"]
+local ethup = args["{eth0 up_kb}"]
+local ethactive = (tonumber(args["{eth0 carrier}"]) == 1)
+local wifidown = args["{wlan0 down_kb}"]
+local wifiup = args["{wlan0 up_kb}"]
+local wifiactive = (tonumber(args["{wlan0 carrier}"]) == 1)
+local ssid = ''
+local down = ethdown
+local up = ethup
+local ifname = "Wired"
+if (not ethactive and wifiactive) then
+    down = wifidown
+    up = wifiup
+    ifname = "Wifi"
+    local ssid = awful.util.pread("/sbin/iwgetid -r")
+    end
+return string.format('%s: <span color="'..theme.yellow..'">%s</span><span color="' .. theme.green .. '">%d down</span> <span color="' .. theme.red .. '">%d up</span>', tostring(ifname), tostring(ssid), tonumber(down), tonumber(up))
+end, 3)

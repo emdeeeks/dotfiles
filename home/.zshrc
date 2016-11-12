@@ -50,7 +50,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git battery taskwarrior systemadmin emoji-clock colorize colored-man git-flow composer)
+plugins=(k git battery taskwarrior systemadmin emoji-clock colorize colored-man git-flow composer emoji ubuntu)
 
 source $ZSH/oh-my-zsh.sh
 

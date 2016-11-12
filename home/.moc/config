@@ -1,6 +1,6 @@
 MusicDir = "/home/gareth/Music"
 StartInMusicDir = yes
-onSongChange = "/home/gareth/dotfiles/home/.scripts/moc-notification.sh white "%a" "%t" "%f"
+onSongChange = "/home/gareth/dotfiles/home/.scripts/awesome-notification.sh 'df' 'fdg'"
 theme = "default"
 ASCIILines = no
 Layout1 = directory(0,0,100%,100%):playlist(0,0,100%,100%)

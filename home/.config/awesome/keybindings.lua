@@ -9,9 +9,14 @@ globalkeys = awful.util.table.join(
         awful.util.spawn("amixer -D pulse sset Master 5%-")
     end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
-    awful.key({ modkey }, "XF86Eject", function () awful.util.spawn("scrot -s -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
-    awful.key({ modkey, "Shift" }, "XF86Eject", function () awful.util.spawn("scrot -s -e 'imgur $f && mv $f ~/screenshots/ 2>/dev/null'" ) end),
-    awful.key({ modkey, }, "F1", keydoc.display),
+    awful.key({ modkey }, "XF86Eject", function () awful.util.spawn("save-screenshot") end),
+    awful.key({ modkey, 'Ctrl' }, "XF86Eject", function () awful.util.spawn("imgur-screenshot") end),
+
+    awful.key({ modkey, 'Shift'}, "F1", keydoc.display),
+
+    keydoc.group("Screen Focussing"),
+    awful.key({modkey,            }, "F1",     function () awful.screen.focus(2) end, 'Focus first screen'),
+    awful.key({modkey,            }, "F2",     function () awful.screen.focus(1) end, 'Focus second screen'),
 
     keydoc.group("Run or Raise"),
     awful.key({ modkey, 'Ctrl', 'Alt' }, 'm', function ()
@@ -145,53 +150,9 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey }, "s",
         function ()
-            commands = {
-                gis = "Google Image Search",
-            }
-            markup = ""
-            num = 0
-            for k,v in pairs(commands) do
-                num = num + 1
-                br = ""
-                if #commands == num then
-                else
-                    br = "\n"
-                end
-                markup = markup .. k .. '  <span color="' .. theme.grey .. '">' .. v .. '</span>' .. br
-            end
-            markup = '<span weight="bold" color="' .. beautiful.blue .. '">Commands</span>\n' .. markup
-
-            search_id = naughty.notify({
-                text = markup,
-                replaces_id = search_id,
-                timeout = 30
-            }).id
-
-            awful.prompt.run(
-                { prompt = "Search yubnub: " },
-                promptbox[mouse.screen].widget,
-                function (command)
-                    awful.util.spawn("luakit 'http://yubnub.org/parser/parse?command="..command.."'", false)
-                end
-            )
+            schedule:display()
         end,
-        "Web search using yubnub"
-    ),
-
-    awful.key({ modkey }, "F2",
-        function ()
-            num = 0
-            markup = '<span weight="bold" color="' .. beautiful.yellow .. '">Earnings</span>\n\n'
-            markup = markup .. 'Today: $0.00\n'
-            markup = markup .. 'Last 7 days: $0.00\n'
-            data_id = naughty.notify({
-                text = markup,
-                replaces_id = shows_id,
-                timeout = 30
-            }).id
-
-        end,
-        "Watch TV shows"
+        "Show schedule"
     ),
 
     awful.key({ modkey }, "w",
@@ -236,54 +197,11 @@ globalkeys = awful.util.table.join(
             )
         end,
         "Watch TV shows"
-    ),
+    )
 
     -- Time management solution as a prompt
     -- TaskWarrior prompt
 
-    awful.key({ modkey,           }, "c",
-        function ()
-            awful.prompt.run({ prompt = "SSH: " }, promptbox[mouse.screen].widget,
-                function(h) awful.util.spawn(terminal .. " -e ssh " .. h) end,
-                function(cmd, cur_pos, ncomp)
-                    -- get hosts and hostnames
-                    local hosts = {}
-                    f = io.popen("sed 's/#.*//;/[ \\t]*Host\\(Name\\)\\?[ \\t]\\+/!d;s///;/[*?]/d' " .. os.getenv("HOME") .. "/.ssh/config | sort")
-                    for host in f:lines() do
-                        table.insert(hosts, host)
-                    end
-                    f:close()
-
-                    -- abort completion under certain circumstances
-                    if cur_pos ~= #cmd + 1 and cmd:sub(cur_pos, cur_pos) ~= " " then
-                        return cmd, cur_pos
-                    end
-
-                    -- match
-                    local matches = {}
-                    table.foreach(hosts, function(x)
-                        if hosts[x]:find("^" .. cmd:sub(1, cur_pos):gsub('[-]', '[-]')) then
-                            table.insert(matches, hosts[x])
-                        end
-                    end)
-
-                    -- if there are no matches
-                    if #matches == 0 then
-                        return cmd, cur_pos
-                    end
-
-                    -- cycle
-                    while ncomp > #matches do
-                        ncomp = ncomp - #matches
-                    end
-
-                    -- return match and position
-                    return matches[ncomp], #matches[ncomp] + 1
-                end,
-                awful.util.getdir("cache") .. "/ssh_history")
-        end,
-        "SSH to somewhere"
-    )
 )
 
 clientkeys = awful.util.table.join(
@@ -295,20 +213,12 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey, "Shift"   }, "x",      function (c) xprop(c) end),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end)
 )
-
-
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.

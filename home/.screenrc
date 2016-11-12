@@ -20,3 +20,7 @@ bind c screen 1
 bind ^c screen 1
 bind 0 select 10
 screen 1
+
+caption string "%{= dd} "
+rendition so "="
+

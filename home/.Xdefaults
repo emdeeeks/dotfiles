@@ -38,18 +38,14 @@
 URxvt.depth: 32
 URxvt.scrollBar: false
 
-! URxvt*.transparent: true
-! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-! URxvt*.shading: 10
-
- *.font:xft:Terminus:size=10:encoding=ibm862
- *.boldFont:xft:Terminus:size=10
+*.font: xft:Terminus:size=10:encoding=ibm862, xft:Symbola
+*.boldFont:xft:Terminus:size=10
 
 Xft.rgba: none
 Xft.hintstyle: hintfull
 
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/local/bin/handle-urxvt-link-click
+URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 URxvt.colorUL: #81A2BE
 URxvt.internalBorder:  8

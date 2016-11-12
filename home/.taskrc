@@ -19,23 +19,18 @@ editor=vim
 
 weekstart=Monday
 
-#defaultwidth=160
- 
+report.long.columns=id,project,priority,entry,start,due,recur,age,tags,description
+report.long.labels=ID,Project,Pri,Added,Started,Due,Recur,Age,Tags,Description
+
+report.ls.columns=id,tags,project,priority,description
+report.ls.labels=ID,Tags,Project,Pri,Description
+
 report.work_report.description=now
-report.work_report.columns=priority,project,description,end,entry,entry.age
-report.work_report.labels=priority,project,description,completed,entered on,age
+report.work_report.columns=priority,project,tags,description,end,entry,entry.age
+report.work_report.labels=priority,project,tags,description,completed,entered on,age
 report.work_report.sort=project+,end-
 report.work_report.filter=status:completed
 
-# Color theme (uncomment one to use)
-#include /usr/share/task/light-16.theme
-#include /usr/share/task/light-256.theme
-#include /usr/share/task/dark-16.theme
-#include /usr/share/task/dark-256.theme
-#include /usr/share/task/dark-red-256.theme
-#include /usr/share/task/dark-green-256.theme
-#include /usr/share/task/dark-blue-256.theme
-#include /usr/share/task/dark-violets-256.theme
-#include /usr/share/task/dark-yellow-green.theme
-#include /usr/share/task/dark-gray-256.theme
 include ~/dotfiles/home/.task/custom.theme
+
+report.all.columns=id,project,priority,tags,due,active,age,description

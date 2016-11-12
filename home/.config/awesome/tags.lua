@@ -1,62 +1,50 @@
+tyrannical.settings.default_layout =  awful.layout.suit.tile.left
 tyrannical.tags = {
     {
-        name        = "1:web",
+        name        = "1:work",
         init        = true,
-        exclusive   = false,
+        exclusive   = true,
         screen      = {1,2},
-        layout      = awful.layout.suit.tile,
-        instance    = {"web"},
-        intrusive   = true,
-        class       = {
-            "luakit", "chromium"
-        }
+        class       = { "work" }
     },
     {
         name        = "2:mail",
         init        = true,
         exclusive   = true,
-        --screen    = screen.count()>1 and 2 or 1,-- Setup on screen 2 if there is more than 1 screen, else on screen 1
         screen      = {1,2},
-        layout      = awful.layout.suit.tile,
         intrusive   = true,
-        class = {
-            "evolution"
-        }
+        class       = { "mail" }
     },
     {
         name        = "3:skype",
         init        = true,
         exclusive   = true,
         screen      = {1,2},
-        layout      = awful.layout.suit.tile,
-        intrusive   = true,
-        class  = {
-            "skype"
-        }
+        class       = { "skype" }
     },
     {
-        name        = "4:git",
+        name        = "4:sys",
         init        = true,
         exclusive   = false,
         screen      = {1,2},
-        layout      = awful.layout.suit.tile,
         intrusive   = true,
+        class       = { "sys" }
     },
     {
-        name        = "5:weechat",
+        name        = "5:ssh",
         init        = true,
         exclusive   = true,
         screen      = {1,2},
         intrusive   = true,
-        layout      = awful.layout.suit.tile,
+        class       = { "ssh" }
     },
     {
-        name        = "6",
+        name        = "6:misc",
         init        = true,
         exclusive   = false,
         screen      = {1,2},
         intrusive   = true,
-        layout      = awful.layout.suit.tile,
+        class       = { "misc" }
     },
     {
         name        = "7",
@@ -64,7 +52,6 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {1,2},
         intrusive   = true,
-        layout      = awful.layout.suit.tile,
     },
     {
         name        = "8",
@@ -72,26 +59,24 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {1,2},
         intrusive   = true,
-        layout      = awful.layout.suit.tile,
     },
     {
         name        = "9",
         init        = true,
-        exclusive   = false, 
+        exclusive   = false,
         screen      = {1,2},
         intrusive   = true,
-        layout      = awful.layout.suit.tile,
     },
 }
 
--- Ignore the tag "exclusive" property for the following clients (matched by classes)
 tyrannical.properties.intrusive = {
     "Xephyr",
 }
 
 tyrannical.properties.floating = {
-    "file-roller", "skype"
+    "file-roller", "skype", "gimp"
 }
 
 tyrannical.settings.block_children_focus_stealing = true --Block popups ()
-tyrannical.settings.group_children = false
+tyrannical.settings.group_children = true
+tyrannical.settings.client.no_focus_stealing_in = true

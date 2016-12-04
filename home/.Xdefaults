@@ -45,7 +45,7 @@ Xft.rgba: none
 Xft.hintstyle: hintfull
 
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: xdg-open
+URxvt.url-launcher: x-www-browser
 URxvt.matcher.button: 1
 URxvt.colorUL: #81A2BE
 URxvt.internalBorder:  8

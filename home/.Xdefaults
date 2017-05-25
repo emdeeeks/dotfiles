@@ -1,5 +1,5 @@
 ! special
-*.foreground:   #999999
+*.foreground:   #AAAAAA
 *.background:   #222222
 *.cursorColor:  #d0d0d0
 
@@ -48,7 +48,7 @@ URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: x-www-browser
 URxvt.matcher.button: 1
 URxvt.colorUL: #81A2BE
-URxvt.internalBorder:  8
+URxvt.internalBorder:  15
 
 URxvt*visualBell: true
 XTerm*bellIsUrgent: true

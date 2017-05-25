@@ -33,7 +33,7 @@ tyrannical.tags = {
     {
         name        = "5:ssh",
         init        = true,
-        exclusive   = true,
+        exclusive   = false,
         screen      = {1,2},
         intrusive   = true,
         class       = { "ssh" }

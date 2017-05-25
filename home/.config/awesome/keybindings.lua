@@ -1,12 +1,12 @@
 globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocp --toggle-pause") end),
     awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mocp --next") end),
-    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --prev") end),
+    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --previous") end),
     awful.key({ }, "XF86AudioRaiseVolume", function ()
-        awful.util.spawn("amixer -D pulse sset Master 5%+")
+        awful.util.spawn("amixer -D pulse sset Master 5%+ -c 1")
     end),
     awful.key({ }, "XF86AudioLowerVolume", function ()
-        awful.util.spawn("amixer -D pulse sset Master 5%-")
+        awful.util.spawn("amixer -D pulse sset Master 5%- -c 1")
     end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
     awful.key({ modkey }, "XF86Eject", function () awful.util.spawn("save-screenshot") end),
@@ -52,7 +52,7 @@ globalkeys = awful.util.table.join(
             return awful.rules.match(c, { class = 'work:qutebrowser' })
         end
         awful.client.run_or_raise(terminal .. ' -e qutebrowser', matcher)
-    end, "luakit - Browser"),
+    end, "qutebrowser - Browser"),
 
     awful.key({ modkey, 'Ctrl', 'Alt' }, 'v', function ()
         local matcher = function (c)

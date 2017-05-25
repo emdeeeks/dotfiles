@@ -1,0 +1,103 @@
+gtk-color-scheme = "color_red: #CC6666\ncolor_yellow: #F0C674\ncolor_gray: #999999\ncolor_green: #B5BD68\ncolor_black: #222222\ncolor_white: #FFFFFF\ncolor_magenta: #B294BB\ncolor_blue: #81A2BE\ncolor_cyan: #8ABEB7"
+
+style "default-style"
+{
+GtkOptionMenu::indicator_spacing = { 3, 2, 1, 1 }
+  GtkEntry::progress-border = { 1, 1, 1, 1 }
+  GtkRange::slider_width = 11
+  GtkRange::stepper_size = 11
+  GtkScrollbar::min_slider_length = 14
+  GtkCheckButton::indicator_size = 10
+  GtkCheckMenuItem::indicator_size = 10
+  GtkButton::default_border = { 0, 0, 0, 0 }
+
+
+
+        font = "Terminus 10"
+
+        # modify the x/ythickness, used for spacing all over the place
+        xthickness = 0
+        ythickness = 0 
+
+        # one can set so called "style properties"
+        GtkRange::slider-width = 15
+        GtkButton::default-border = { 10, 10, 10, 10 }
+        GtkMenu::horizontal-padding = 0
+        GtkMenu::vertical-padding = 10
+        GtkMenuBar::internal-padding = { 5, 5, 5, 5 }
+        GtkNotebook::arrow-spacing          = 0
+        GtkNotebook::tab-curvature          = 2.0
+        GtkNotebook::tab-overlap            = 1
+
+        fg[NORMAL] = @color_gray
+        fg[ACTIVE] = @color_green
+        fg[PRELIGHT] = @color_white
+        fg[SELECTED] = @color_green
+        fg[INSENSITIVE] = @color_green
+
+        bg[NORMAL] = @color_black
+        bg[ACTIVE] = @color_black
+        bg[PRELIGHT] = @color_black
+        bg[SELECTED] = @color_black
+        bg[INSENSITIVE] = @color_black
+
+        text[NORMAL]      = @color_gray
+        text[PRELIGHT]    = @color_white
+        text[SELECTED]    = @color_white
+        text[INSENSITIVE] = @color_gray
+        text[ACTIVE]      = @color_green
+
+        base[NORMAL]      = @color_black
+        base[ACTIVE]      = @color_black
+        base[PRELIGHT]    = @color_black
+        base[SELECTED]    = @color_black
+        base[INSENSITIVE] = @color_black
+}
+
+style "button" {
+    fg[NORMAL] = @color_white
+    fg[ACTIVE] = @color_gray
+    fg[PRELIGHT] = @color_gray
+    fg[INSENSITIVE] = @color_gray
+}
+
+style "notebook" {
+    fg[ACTIVE] = @color_gray
+    fg[NORMAL] = @color_green
+}
+
+style "event_box" {
+    #fg[NORMAL] = "#999999"
+    ##fg[ACTIVE] = "#FF0000"
+    #fg[PRELIGHT] = "#FF0000"
+    #fg[INSENSITIVE] = "#FF0000"
+
+    ##fg[NORMAL] = "#FF0000"
+    ##fg[ACTIVE] = "#FF0000"
+    ##fg[PRELIGHT] = "#FF0000"
+    ##fg[INSENSITIVE] = "#FF0000"
+
+}
+
+style "progressbar" {
+    xthickness = 5
+    ythickness = 5
+
+    fg[NORMAL]      = @color_green
+    fg[ACTIVE]      = @color_green
+    fg[PRELIGHT]      = @color_green
+
+    bg[NORMAL]      = @color_yellow
+    bg[ACTIVE]      = @color_cyan
+    bg[PRELIGHT]      = @color_blue
+
+}
+
+#class "GtkButton" style "button"
+#widget_class "*GtkButton*" style "button"
+#class "GtkEntry" style "entry"
+widget_class "*GtkNotebook*" style "notebook"
+widget_class "*GtkEventBox*" style "event_box"
+class "GtkWidget" style "default-style"
+widget_class "*<GtkNotebook>*<GtkEntry>"                    style "notebook"
+

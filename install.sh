@@ -26,6 +26,7 @@ global_apps_to_install=(
     tmux
     nginx
     zsh
+    xfonts-terminus
 )
 
 setup () {

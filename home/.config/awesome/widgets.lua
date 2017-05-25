@@ -103,37 +103,22 @@ batwidget = lain.widgets.bat({
 -- Initialize widget
 netwidget = wibox.widget.textbox()
 -- Register widget
-vicious.register(
-    netwidget,
-    vicious.widgets.net,
-    function (widget, args)
-        local ethdown = args["{eth0 down_kb}"]
-        local ethup = args["{eth0 up_kb}"]
-        local ethactive = (tonumber(args["{eth0 carrier}"]) == 1)
-        local wifidown = args["{wlan0 down_kb}"]
-        local wifiup = args["{wlan0 up_kb}"]
-        local wifiactive = (tonumber(args["{wlan0 carrier}"]) == 1)
-        local ssid = ''
-        local down = ethdown
-        local up = ethup
-        local ifname = "Wired"
-        if (not ethactive and wifiactive) then
-            down = wifidown
-            up = wifiup
-            ifname = "Wifi"
-            --local ssid = awful.util.pread("/sbin/iwgetid -r")
-            f = assert(io.popen("iwgetid -r"))
-            ssid = f:read()
-            return string.format('%s: <span color="'..theme.yellow..'">%s</span> <span color="' .. theme.green .. '">%d down</span> <span color="' .. theme.red .. '">%d up</span>', tostring(ifname), tostring(ssid), tonumber(down), tonumber(up))
-
+vicious.register(netwidget, vicious.widgets.net, function (widget, args)
+    local ethdown = args["{eth0 down_kb}"]
+    local ethup = args["{eth0 up_kb}"]
+    local ethactive = (tonumber(args["{eth0 carrier}"]) == 1)
+    local wifidown = args["{wlp11s0 down_kb}"]
+    local wifiup = args["{wlp11s0 up_kb}"]
+    local wifiactive = (tonumber(args["{wlp11s0 carrier}"]) == 1)
+    local ssid = ''
+    local down = ethdown
+    local up = ethup
+    local ifname = "Wired"
+    if (not ethactive and wifiactive) then
+        down = wifidown
+        up = wifiup
+        ifname = "Wifi"
+        local ssid = awful.util.pread("/sbin/iwgetid -r")
         end
-        if (not wifiactive and ethactive) then
-            down = wifidown
-            up = wifiup
-            ifname = "Wired"
-            return string.format('%s: <span color="' .. theme.green .. '">%d down</span> <span color="' .. theme.red .. '">%d up</span>', tostring(ifname), tostring(ssid), tonumber(down), tonumber(up))
-        end
-
-        return string.format('Network Offline')
-
+    return string.format('%s: <span color="'..theme.yellow..'">%s</span><span color="' .. theme.green .. '">%d down</span> <span color="' .. theme.red .. '">%d up</span>', tostring(ifname), tostring(ssid), tonumber(down), tonumber(up))
 end, 3)

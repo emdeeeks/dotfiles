@@ -4,9 +4,6 @@
 [submodule "home/.config/awesome/awesome-revelation"]
 	path = home/.config/awesome/awesome-revelation
 	url = https://bioe007@github.com/bioe007/awesome-revelation.git
-[submodule "home/.config/awesome/lain"]
-	path = home/.config/awesome/lain
-	url = https://github.com/copycat-killer/lain.git
 [submodule "home/.config/awesome/scripts/imgur-screenshot"]
 	path = home/.config/awesome/scripts/imgur-screenshot
 	url = https://github.com/jomo/imgur-screenshot.git
@@ -30,7 +27,7 @@
 	url = https://github.com/tobyS/skeletons.vim.git
 [submodule "home/.vim/bundle/ultisnips"]
 	path = home/.vim/bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
+	url = https://github.com/SirVer/ultisnips
 [submodule "home/.vim/bundle/AnsiEsc"]
 	path = home/.vim/bundle/AnsiEsc
 	url = https://github.com/vim-scripts/AnsiEsc.vim
@@ -40,3 +37,18 @@
 [submodule "home/.tmux/plugins/tpm"]
 	path = home/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "home/.vim/bundle/pdv"]
+	path = home/.vim/bundle/pdv
+	url = https://github.com/tobyS/pdv
+[submodule "home/.vim/bundle/vmustache"]
+	path = home/.vim/bundle/vmustache
+	url = https://github.com/tobyS/vmustache
+[submodule "home/.config/base16-shell"]
+	path = home/.config/base16-shell
+	url = https://github.com/chriskempson/base16-shell.git
+[submodule "home/.config/awesome/-f"]
+	path = home/.config/awesome/-f
+	url = https://github.com/lcpz/lain.git
+[submodule "home/.config/awesome/notlain"]
+	path = home/.config/awesome/notlain
+	url = https://github.com/lcpz/lain.git

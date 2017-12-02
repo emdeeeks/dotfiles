@@ -1,25 +1,18 @@
-vicious = require("vicious")
-awful = require("awful")
-awful.rules = require("awful.rules")
-awful.focus = require("awful.autofocus")
-lain = require("lain")
-markup = lain.util.markup
-wibox = require("wibox")
-beautiful = require("beautiful")
-naughty = require("naughty")
-menubar = require("menubar")
-tyrannical = require("tyrannical")
-keydoc = require("keydoc")
---schedule = require("schedule")
---just_now = require("just_now")
+--local awful = require("awful")
+--require("awful.autofocus")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
+local home = os.getenv("HOME")
+local lain = require("lain")
+local gears = require("gears")
 
-modkey = "Mod4"
+local theme_dir = string.format("%s/.config/awesome/themes/default/", home)
+local theme_path = theme_dir .. "theme.lua"
 
-home   = os.getenv("HOME")
 terminal = "x-terminal-emulator"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
-beautiful.init(home .. "/.config/awesome/themes/default/theme.lua")
+modkey = "Mod4"
 
 if awesome.startup_errors then
     naughty.notify({
@@ -34,23 +27,34 @@ do
     awesome.connect_signal("debug::error", function (err)
         if in_error then return end
         in_error = true
+
         naughty.notify({
             preset = naughty.config.presets.critical,
             title = "Oops, an error happened!",
-            text = err
+            text = tostring(err)
         })
         in_error = false
     end)
 end
 
-require("pomodoro")
-require("functions")
-require("layouts")
-require("tags")
-require("awesomemenu")
-require("widgets")
-require("wiboxes")
-require("keybindings")
-require("awfulrules")
-require("autorun")
-require("signals")
+beautiful.init(theme_path)
+
+function set_wallpaper(s)
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
+end
+screen.connect_signal("property::geometry", set_wallpaper)
+
+require("themes/default/layouts")
+require("themes/default/tags")
+require("themes/default/keybindings")
+require("themes/default/mousebindings")
+require("themes/default/wiboxes")
+require("themes/default/signals")
+require("themes/default/awfulrules")
+require("themes/default/autorun")

@@ -8,8 +8,7 @@ local screen = screen
 
 local theme_assets = dofile("/usr/share/awesome/themes/xresources/assets.lua")
 
-
-theme.img_dir =  os.getenv("HOME") .. "/.config/awesome/themes/testing/img"
+theme.img_dir =  os.getenv("HOME") .. "/.config/awesome/themes/default/img"
 
 theme.font          = "Terminus normal 10"
 

@@ -12,7 +12,4 @@ end
 
 run_once('redshift')
 run_once('rescuetime')
-run_once('qutebrowser')
-run_once(terminal .. " -e ssh synbyte.com")
-run_once(terminal .. " -e mutt")
 run_once('dropbox start')

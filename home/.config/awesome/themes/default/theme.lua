@@ -5,6 +5,7 @@ local cairo = require("lgi").cairo
 local gears = require("gears")
 local recolor_image = gears.color.recolor_image
 local screen = screen
+local awful = require("awful")
 
 local theme_assets = dofile("/usr/share/awesome/themes/xresources/assets.lua")
 
@@ -58,10 +59,18 @@ theme.layout_spiral     = theme.img_dir .. "/layouts/spiral.png"
 theme.layout_dwindle    = theme.img_dir .. "/layouts/dwindle.png"
 theme.layout_work       = theme.img_dir .. "/layouts/work.png"
 
+naughty.config.defaults.fg              = theme.bg_normal
+naughty.config.defaults.bg              = theme.fg_normal
+naughty.config.defaults.margin = 10
+
 naughty.config.presets.critical.fg      = theme.fg_urgent
 naughty.config.presets.critical.bg      = theme.black
 naughty.config.presets.critical.timeout = 15
 naughty.config.presets.critical.border_color = theme.fg_urgent
+
+naughty.config.spacing = 10
+naughty.config.padding = 10
+
 
 
 --[[
@@ -82,7 +91,7 @@ naughty.config.defaults.border_width    = 2
 naughty.config.presets.low.fg           = theme.fg_minimize
 naughty.config.presets.low.bg           = theme.black
 naughty.config.presets.critical.fg      = theme.fg_urgent
-naughty.config.presets.critical.bg      = theme.black
+naughty.config.presets.critical.bg      = theme.bg_urgent
 naughty.config.presets.critical.timeout = 15
 naughty.config.presets.critical.border_color = theme.fg_urgent
 ]]--
@@ -118,20 +127,28 @@ theme.menu_width  = 100
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
-function wallpaper_set(bg, s)
+theme.wallpaper = function(s)
     s = s or screen.primary
     local height = s.workarea.height
     local width = s.workarea.width
     local img = cairo.RecordingSurface(cairo.Content.COLOR,
         cairo.Rectangle { x = 0, y = 0, width = width, height = height })
     local cr = cairo.Context(img)
-    cr:set_source(gears.color(bg))
+    cr:set_source(gears.color(theme.divider))
     cr:paint()
     return img
 end
 
-theme.wallpaper = function(s)
-    return wallpaper_set(theme.divider, s)
+function set_wallpaper(s)
+    if theme.wallpaper then
+        local wallpaper = theme.wallpaper
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
 end
+
+awful.screen.connect_for_each_screen(set_wallpaper)
 
 return theme

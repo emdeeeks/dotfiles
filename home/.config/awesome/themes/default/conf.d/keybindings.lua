@@ -4,9 +4,9 @@ local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 globalkeys = awful.util.table.join(
-    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("mocp --toggle-pause") end),
-    awful.key({ }, "XF86AudioNext", function () awful.util.spawn("mocp --next") end),
-    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("mocp --previous") end),
+    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("cmus-remote --pause") end),
+    awful.key({ }, "XF86AudioNext", function () awful.util.spawn("cmus-remote --next") end),
+    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("cmus-remote --prev") end),
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 5%+") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 5%-") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
@@ -14,7 +14,7 @@ globalkeys = awful.util.table.join(
     --Screenshot
     awful.key({ }, "XF86Eject", function () awful.spawn("scrot") end,
               {description = "take screenshot", group = "client"}),
-    awful.key({ }, "XF86Eject", function () awful.spawn("sleep 1") awful.spawn("scrot --select") end,
+    awful.key({  }, "XF86Eject", function () awful.spawn("sleep 1") awful.spawn("scrot --select") end,
               {description = "take screenshot of selection", group = "client"}),
 
 

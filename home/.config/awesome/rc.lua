@@ -1,5 +1,5 @@
---local awful = require("awful")
---require("awful.autofocus")
+local awful = require("awful")
+require("awful.autofocus")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local home = os.getenv("HOME")
@@ -39,22 +39,26 @@ end
 
 beautiful.init(theme_path)
 
-function set_wallpaper(s)
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
+local lfs = require('lfs')
+local confs = {}
+local confd = theme_dir .. 'conf.d/'
+for s in lfs.dir(confd) do
+    local f = lfs.attributes(confd .. s)
+    if s:sub(-4) == ".lua" and f.mode == "file" then
+        table.insert(confs, confd .. s)
     end
 end
-screen.connect_signal("property::geometry", set_wallpaper)
 
-require("themes/default/layouts")
-require("themes/default/tags")
-require("themes/default/keybindings")
-require("themes/default/mousebindings")
-require("themes/default/wiboxes")
-require("themes/default/signals")
-require("themes/default/awfulrules")
-require("themes/default/autorun")
+table.sort(confs)
+for i,conf in pairs(confs) do
+    local config = awful.util.checkfile(conf)
+    if type(config) == 'function' then
+        config()
+    else
+        naughty.notify({
+            preset = naughty.config.presets.critical,
+            title = "Oops, an error happened!",
+            text = string.format('Skipping %s due to error: %s', conf, config)
+        })
+    end
+end

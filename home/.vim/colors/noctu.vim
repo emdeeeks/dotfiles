@@ -3,6 +3,7 @@
 " Author:   Noah Frederick (http://noahfrederick.com/)
 " Version:  1.8.0
 " --------------------------------------------------------------
+" Modified by:   Gareth Griffiths (https://github.com/synbyte)
 
 " Scheme setup {{{
 set background=dark
@@ -18,7 +19,7 @@ let g:colors_name = "noctu"
 " Vim UI {{{
 hi Normal              ctermfg=8
 hi Cursor              ctermfg=7     ctermbg=1
-hi CursorLine          ctermbg=NONE     cterm=NONE
+hi CursorLine          ctermbg=NONE  cterm=NONE
 hi MatchParen          ctermfg=7     ctermbg=NONE  cterm=underline
 hi Pmenu               ctermfg=15    ctermbg=0
 hi PmenuThumb          ctermbg=7
@@ -30,6 +31,7 @@ hi SpellCap            ctermfg=10    ctermbg=NONE  cterm=underline
 hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
 hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
 hi NonText             ctermfg=8
+hi EndOfBuffer         ctermfg=7
 hi LineNr              ctermfg=8     ctermbg=NONE
 hi CursorLineNr        ctermfg=10    ctermbg=NONE
 hi Visual              ctermfg=0     ctermbg=12

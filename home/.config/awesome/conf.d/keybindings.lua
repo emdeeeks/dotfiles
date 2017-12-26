@@ -2,22 +2,23 @@ local awful = require("awful")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+local pomodoro = require("awmodoro")
+local misc = require("misc")
 
 globalkeys = awful.util.table.join(
-    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("cmus-remote --pause") end),
-    awful.key({ }, "XF86AudioNext", function () awful.util.spawn("cmus-remote --next") end),
-    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("cmus-remote --prev") end),
-    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 5%+") end),
-    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 5%-") end),
-    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse sset Master toggle") end),
+    awful.key({ }, "XF86AudioPlay", function () awful.spawn("cmus-remote --pause") end),
+    awful.key({ }, "XF86AudioNext", function () awful.spawn("cmus-remote --next") end),
+    awful.key({ }, "XF86AudioPrev", function () awful.spawn("cmus-remote --prev") end),
+    awful.key({ }, "XF86AudioRaiseVolume", function () misc.audio.set_volume(5) end),
+    awful.key({ }, "XF86AudioLowerVolume", function () misc.audio.set_volume(-5) end),
+    awful.key({ }, "XF86AudioMute", function () misc.audio.toggle_mute() end),
 
-    --Screenshot
-    awful.key({ }, "XF86Eject", function () awful.spawn("scrot") end,
-              {description = "take screenshot", group = "client"}),
-    awful.key({  }, "XF86Eject", function () awful.spawn("sleep 1") awful.spawn("scrot --select") end,
-              {description = "take screenshot of selection", group = "client"}),
-
-
+    awful.key({ }, "XF86Eject", function () awful.spawn("scrot") end, {
+        description = "take screenshot", group = "client"
+    }),
+    awful.key({ modkey }, "XF86Eject", function () awful.spawn("sleep 1") awful.spawn("scrot --select") end, {
+        description = "take screenshot of selection", group = "client"
+    }),
     awful.key({ modkey }, "s", hotkeys_popup.show_help, {
         description = "show help", group = "awesome"
     }),
@@ -37,7 +38,9 @@ globalkeys = awful.util.table.join(
         description = "focus previous by index", group = "client"
     }),
 
-    -- Layout manipulation
+    awful.key({ modkey          }, "p", function () pomodoro:toggle() end),
+    awful.key({ modkey, "Shift" }, "p", function () pomodoro:finish() end),
+
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
@@ -62,9 +65,6 @@ globalkeys = awful.util.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
-
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
@@ -85,7 +85,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
     awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end),
 
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",

@@ -46,37 +46,10 @@ awful.rules.rules = {
             size_hints_honor = false
         }
     }, {
-        rule_any = {
-            instance = {
-              "DTA",  -- Firefox addon DownThemAll.
-              "copyq",  -- Includes session name in class.
-            },
-            class = {
-              "Arandr",
-              "Gpick",
-              "Kruler",
-              "MessageWin",  -- kalarm.
-              "Sxiv",
-              "Wpa_gui",
-              "pinentry",
-              "veromix",
-              "xtightvncviewer"
-            },
-            name = {
-              "Event Tester",  -- xev.
-            },
-            role = {
-              "AlarmWindow",  -- Thunderbird's calendar.
-              "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-            }
-        }, properties = { floating = true }
-    },
-
-    --{ rule_any = {type = { "normal", "dialog" }
-    --  }, properties = { titlebars_enabled = false }
-    --},
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+        rule_any = { type = { 'dialog' }, role = { 'pop-up' } },
+        properties = {
+            floating = true,
+            placement = awful.placement.centered
+        }
+    }
 }

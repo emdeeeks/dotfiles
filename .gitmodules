@@ -52,3 +52,6 @@
 [submodule "home/.config/awesome/notlain"]
 	path = home/.config/awesome/notlain
 	url = https://github.com/lcpz/lain.git
+[submodule "home/.config/awesome/lain"]
+	path = home/.config/awesome/lain
+	url = https://github.com/lcpz/lain.git

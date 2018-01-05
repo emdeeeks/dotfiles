@@ -1,10 +1,10 @@
 #!/bin/bash
 
-IN="LVDS"
-EXT="VGA-0"
+IN="LVDS-1"
+EXT="VGA-1"
 
 if (xrandr | grep "$EXT disconnected"); then
     xrandr --output $IN --auto --output $EXT --off 
 else
-    xrandr --output $IN --auto --primary --output $EXT --auto --left-of $IN --mode 1024x768
+    xrandr --output $IN --auto --primary --output $EXT --auto --left-of $IN
 fi

@@ -1,0 +1,57 @@
+# set default
+color normal color8 default
+
+color status color0 default
+color indicator green default
+color tree blue default
+color error red default
+color message color8 default
+color tilde blue default
+
+color index_number color8 default
+color index_author cyan default "[.]"
+color index_label yellow default
+
+# new messages themselves
+color index white default "~N"
+
+# deleted
+color index red default "~D"
+
+# message bodies
+color attachment white default
+color search yellow default
+color signature white default
+
+# urls
+color body blue default "(^|<| )mailto:[^ ]+@[^ ]( |>|$)"
+color body blue default "(^|<| )(http|https|ftp|file|telnet|news|finger)://[^ ]+( |>|$)"
+
+# *bold*, _underline_, and /italic/
+color body white default "(^| )\\*[^*]+\\*( |$)"
+color body yellow default "(^| )_[^_]+_( |$)"
+color body magenta default "(^| )/[^/]+/( |$)"
+
+# quote blocks
+color quoted magenta default
+color quoted1 cyan default
+color quoted2 green default
+color quoted3 magenta default
+color quoted4 cyan default
+color quoted5 green default
+color quoted6 magenta default
+color quoted7 cyan default
+
+color hdrdefault color8 default
+
+set header_color_partial
+color header color8 default '^[^[:blank:]:]*:'
+color header magenta default '^(From)*:'
+color header red default '^(To)*:'
+color header green default '^(Date)*:'
+color hdrdefault blue default
+
+color index_tag green default "Payment"
+color index_tag yellow default "Followup"
+color index_tag red default "Urgent"
+color index_tags magenta default

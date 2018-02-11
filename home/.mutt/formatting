@@ -1,0 +1,7 @@
+set index_format='%2C %-20.20L %?GU?%GU ?%?GP?%GP ?%?GY?%GY ?%?GF?%GF ?%s'
+
+unset status_format
+unset pager_format
+unset compose_format
+#unset folder_format
+set attach_format = '%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s]'

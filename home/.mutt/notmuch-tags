@@ -1,0 +1,6 @@
+set nm_hidden_tags = "all,test,INBOX,unread,draft,flagged,passed,replied,attachment,signed,encrypted"
+
+tag-formats "Urgent"    "GU" \
+            "Followup" "GF" \
+            "Payment" "GY" \
+            "Passwords" "GP"

@@ -1,0 +1,4 @@
+ignore *
+unignore from: to: cc: date:
+unhdr_order *
+hdr_order from: to: cc: date: subject:

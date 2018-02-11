@@ -1,8 +1,8 @@
-home/.config/chromium
-home/.config/Popcorn-Time
-home/.config/evolution
-home/.vim/bundle
-home/.config/Min
+*~
 home/.config/libreoffice
-home/.config/skypeforlinux
-*.un~
+home/.config/chromium
+home/.config/weechat/logs
+home/.weechat/logs
+home/.vim/undo
+home/.netrc
+home/.vim/plugged

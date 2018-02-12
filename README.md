@@ -1,6 +1,4 @@
 # dotfiles
 Just my dotfiles. Do with them what you will. 
 
-I'll create an install script soon, should you *really*, really want to use the entire lot.
-
-![screenshot](http://i.imgur.com/kgh6itL.jpg)
+![screenshot](https://github.com/synbyte/dotfiles/raw/master/screenshot.png)

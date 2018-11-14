@@ -17,7 +17,7 @@ let g:colors_name = "noctu"
 
 "}}}
 " Vim UI {{{
-hi Normal              ctermfg=8
+hi Normal              ctermfg=gray
 hi Cursor              ctermfg=7     ctermbg=1
 hi CursorLine          ctermbg=NONE  cterm=NONE
 hi MatchParen          ctermfg=7     ctermbg=NONE  cterm=underline
@@ -32,7 +32,7 @@ hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
 hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
 hi NonText             ctermfg=8
 hi EndOfBuffer         ctermfg=7
-hi LineNr              ctermfg=8     ctermbg=NONE
+hi LineNr              ctermfg=darkgray     ctermbg=NONE
 hi CursorLineNr        ctermfg=10    ctermbg=NONE
 hi Visual              ctermfg=0     ctermbg=12
 hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
@@ -74,7 +74,7 @@ hi! link SpecialKey    NonText
 "}}}
 " Generic syntax {{{
 hi Delimiter       ctermfg=7
-hi Comment         ctermfg=8
+hi Comment         ctermfg=darkgray
 hi Underlined      ctermfg=4   cterm=underline
 hi Type            ctermfg=4
 hi String          ctermfg=11
@@ -252,3 +252,8 @@ hi! link bladeParen      phpParent
 hi! link bladeEchoDelim  PreProc
 
 "}}}
+
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red

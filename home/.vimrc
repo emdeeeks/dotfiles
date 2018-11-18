@@ -5,24 +5,30 @@ Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
-Plug 'jooize/vim-colemak'
 call plug#end()
 
+" Needed for a few things"
 syntax on
 
 " colorscheme
 colorscheme noctu
 
 " So much better than \.
-"let mapleader = ","
+let mapleader = ","
 
+"Change cursor for different modes
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
+" Hide command
 set noshowcmd
+
+" Hide mode
 set noshowmode
-set laststatus=1
+
+" Hide ruler
+set noruler
 
 " Basics.
 set undofile
@@ -52,15 +58,11 @@ noremap! <right> <nop>
 noremap! <up>    <nop>
 noremap! <down>  <nop>
 
-nmap <F8> :TagbarToggle<CR>
-
 " Keep search matches in the middle of the window.
 nnoremap * *zzzv
 nnoremap # #zzzv
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
-map <tab> %
 
 " Necessary for multiple encodings
 set encoding=utf-8
@@ -69,19 +71,20 @@ set encoding=utf-8
 au BufReadPre *.md set spell spelllang=en_us
 au BufReadPre *.ctp set spell spelllang=en_us
 
+" Set x clipboard if available
 set clipboard=unnamed
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
+" Disable annoying as fuck visual bell
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
+" Reload .Xresources if it was edited
 augroup Xresources
     autocmd!
     au BufWritePost ~/.Xresources silent !xrdb -merge ~/.Xresources
 augroup END
-
-set viminfo='20,<1000

@@ -4,6 +4,8 @@ local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local pomodoro = require("awmodoro")
 local misc = require("misc")
+local config = require("config")
+local modkey = config.get('modkey')
 
 globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioPlay", function () awful.spawn("cmus-remote --pause") end),
@@ -60,8 +62,17 @@ globalkeys = awful.util.table.join(
         end,
         {description = "go back", group = "client"}),
 
+    -- Rename tag
+    awful.key({ modkey, "Shift",  }, "r",    function ()
+            awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, },
+            awful.screen.focused().mypromptbox.widget,
+            function (s)
+                awful.tag.selected().name = s
+            end)
+    end),
+
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn(config.get('terminal')) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),

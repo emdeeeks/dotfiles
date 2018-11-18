@@ -1,18 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
---[[
-client.connect_signal("unmanage", function() focus_on_last_in_history(mouse.screen) end)
-
-function focus_on_last_in_history( screen )
-  local c = awful.client.focus.history.get(screen, 0)
-  if not (c == nil) then
-    client.focus = c
-    c:raise()
-  end
-end
-]]--
-
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
@@ -31,7 +19,5 @@ client.connect_signal("focus",
         end
     end
 )
-
---tag.connect_signal("property::selected", function() focus_on_last_in_history(mouse.screen) end)
 
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

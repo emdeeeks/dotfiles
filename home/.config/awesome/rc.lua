@@ -1,18 +1,124 @@
 local awful = require("awful")
-require("awful.autofocus")
+local autofocus = require("awful.autofocus")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local home = os.getenv("HOME")
 local lain = require("lain")
+local config = require('config')
 local gears = require("gears")
+local lfs = require('lfs')
+local main_dir = string.format("%s/.config/awesome/", home)
+local theme_path = main_dir .. "theme.lua"
+local confs = {}
+local confd = main_dir .. 'conf.d/'
 
-local theme_dir = string.format("%s/.config/awesome/themes/default/", home)
-local theme_path = theme_dir .. "theme.lua"
+--package.path = main_dir .. "/lib/?.lua;" .. main_dir .. "/lib/?/init.lua;" .. package.path
 
-terminal = "x-terminal-emulator"
-editor = "vim"
-editor_cmd = terminal .. " -e " .. editor
-modkey = "Mod4"
+function print_table(node)
+    -- to make output beautiful
+    local function tab(amt)
+        local str = ""
+        for i=1,amt do
+            str = str .. "\t"
+        end
+        return str
+    end
+
+    local cache, stack, output = {},{},{}
+    local depth = 1
+    local output_str = "{\n"
+
+    while true do
+        local size = 0
+        for k,v in pairs(node) do
+            size = size + 1
+        end
+
+        local cur_index = 1
+        for k,v in pairs(node) do
+            if (cache[node] == nil) or (cur_index >= cache[node]) then
+
+                if (string.find(output_str,"}",output_str:len())) then
+                    output_str = output_str .. ",\n"
+                elseif not (string.find(output_str,"\n",output_str:len())) then
+                    output_str = output_str .. "\n"
+                end
+
+                -- This is necessary for working with HUGE tables otherwise we run out of memory using concat on huge strings
+                table.insert(output,output_str)
+                output_str = ""
+
+                local key
+                if (type(k) == "number" or type(k) == "boolean") then
+                    key = "["..tostring(k).."]"
+                else
+                    key = "['"..tostring(k).."']"
+                end
+
+                if (type(v) == "number" or type(v) == "boolean") then
+                    output_str = output_str .. tab(depth) .. key .. " = "..tostring(v)
+                elseif (type(v) == "table") then
+                    output_str = output_str .. tab(depth) .. key .. " = {\n"
+                    table.insert(stack,node)
+                    table.insert(stack,v)
+                    cache[node] = cur_index+1
+                    break
+                else
+                    output_str = output_str .. tab(depth) .. key .. " = '"..tostring(v).."'"
+                end
+
+                if (cur_index == size) then
+                    output_str = output_str .. "\n" .. tab(depth-1) .. "}"
+                else
+                    output_str = output_str .. ","
+                end
+            else
+                -- close the table
+                if (cur_index == size) then
+                    output_str = output_str .. "\n" .. tab(depth-1) .. "}"
+                end
+            end
+
+            cur_index = cur_index + 1
+        end
+
+        if (size == 0) then
+            output_str = output_str .. "\n" .. tab(depth-1) .. "}"
+        end
+
+        if (#stack > 0) then
+            node = stack[#stack]
+            stack[#stack] = nil
+            depth = cache[node] == nil and depth + 1 or depth - 1
+        else
+            break
+        end
+    end
+
+    -- This is necessary for working with HUGE tables otherwise we run out of memory using concat on huge strings
+    table.insert(output,output_str)
+    output_str = table.concat(output)
+
+    print(output_str)
+end
+
+
+function dbg(string)
+    naughty.notify({
+        timeout = 10,
+        text = tostring(string)
+    })
+end
+
+function run_once(app)
+   local fpid = io.popen("pgrep " .. app)
+   local pid = fpid:read("*n")
+   fpid:close()
+
+   if pid == nil then
+      awful.spawn.with_shell(app)
+   end
+end
 
 if awesome.startup_errors then
     naughty.notify({
@@ -39,9 +145,6 @@ end
 
 beautiful.init(theme_path)
 
-local lfs = require('lfs')
-local confs = {}
-local confd = theme_dir .. 'conf.d/'
 for s in lfs.dir(confd) do
     local f = lfs.attributes(confd .. s)
     if s:sub(-4) == ".lua" and f.mode == "file" then
@@ -61,4 +164,20 @@ for i,conf in pairs(confs) do
             text = string.format('Skipping %s due to error: %s', conf, config)
         })
     end
+end
+
+function explode(div,str) -- credit: http://richard.warburton.it
+  if (div=='') then return false end
+  local pos,arr = 0,{}
+  -- for each divider found
+  for st,sp in function() return string.find(str,div,pos,true) end do
+    table.insert(arr,string.sub(str,pos,st-1)) -- Attach chars left of current divider
+    pos = sp + 1 -- Jump past current divider
+  end
+  table.insert(arr,string.sub(str,pos)) -- Attach chars right of last divider
+  return arr
+end
+
+function implode(data)
+    return table.concat(data,",")
 end

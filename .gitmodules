@@ -46,12 +46,6 @@
 [submodule "home/.config/base16-shell"]
 	path = home/.config/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
-[submodule "home/.config/awesome/-f"]
-	path = home/.config/awesome/-f
-	url = https://github.com/lcpz/lain.git
-[submodule "home/.config/awesome/notlain"]
-	path = home/.config/awesome/notlain
-	url = https://github.com/lcpz/lain.git
 [submodule "home/.config/awesome/lain"]
 	path = home/.config/awesome/lain
 	url = https://github.com/lcpz/lain.git

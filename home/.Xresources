@@ -35,7 +35,6 @@
 *.color7:       #EEEEEE
 *.color15:      #999999
 
-URxvt.depth: 32
 URxvt.scrollBar: false
 
 *.font: xft:Terminus:size=10:encoding=ibm862, xft:Symbola
@@ -50,6 +49,5 @@ URxvt.matcher.button: 1
 URxvt.colorUL: #81A2BE
 URxvt.internalBorder:  10
 
-URxvt*visualBell: true
 XTerm*bellIsUrgent: true
 URxvt.urgentOnBell: true

@@ -2,6 +2,8 @@
 home/.config/libreoffice
 home/.config/chromium
 home/.config/weechat/logs
+home/.config/discord
+home/.config/pulse
 home/.weechat/logs
 home/.vim/undo
 home/.netrc
@@ -9,3 +11,4 @@ home/.vim/plugged
 home/.mutt/temp
 home/.mutt/attachments
 home/.mutt/cache
+home/.config/Sqlectron

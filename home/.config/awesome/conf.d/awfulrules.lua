@@ -4,6 +4,8 @@ local config = require("config")
 local modkey = config.get('modkey')
 
 clientkeys = awful.util.table.join(
+    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+              {description = "close", group = "client"}),
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen

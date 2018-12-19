@@ -2,7 +2,6 @@ local awful = require("awful")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-local pomodoro = require("awmodoro")
 local misc = require("misc")
 local config = require("config")
 local modkey = config.get('modkey')
@@ -96,19 +95,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
     awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end),
 
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
+    awful.key({ modkey }, "r", function () awful.spawn("rofi -show run") end,
+              {description = "run prompt", group = "launcher"})
 )
 
 for i = 1, 9 do

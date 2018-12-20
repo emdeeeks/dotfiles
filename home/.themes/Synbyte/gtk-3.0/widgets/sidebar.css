@@ -1,0 +1,11 @@
+.sidebar {
+    padding: 10px;
+}
+
+.sidebar .highlight {
+    color: @color_green;
+}
+
+.sidebar label {
+    padding: 5px 10px;
+}

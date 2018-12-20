@@ -1,0 +1,18 @@
+menuitem
+{
+    padding: 10px;
+}
+
+menu {
+    border: 2px solid @color_gray;
+    padding: 2px;
+}
+
+menu > separator {
+    min-height: 2px;
+    background-color: @color_fg;
+}
+
+menuitem:hover > * {
+    color: white;
+}

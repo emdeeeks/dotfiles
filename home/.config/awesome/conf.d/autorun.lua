@@ -4,7 +4,7 @@ local apps = {
     "dropbox",
     "xrandr-setup",
     "setxkbmap -config ~/.keyboard",
-    "unclutter -root"
+    "unclutter -idle 1 -root"
 }
 
 function run_once(prg, times)

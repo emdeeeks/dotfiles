@@ -12,6 +12,7 @@ local theme_path = main_dir .. "theme.lua"
 local confs = {}
 local confd = main_dir .. 'conf.d/'
 
+
 --package.path = main_dir .. "/lib/?.lua;" .. main_dir .. "/lib/?/init.lua;" .. package.path
 
 function print_table(node)
@@ -108,16 +109,6 @@ function dbg(string)
         timeout = 10,
         text = tostring(string)
     })
-end
-
-function run_once(app)
-   local fpid = io.popen("pgrep " .. app)
-   local pid = fpid:read("*n")
-   fpid:close()
-
-   if pid == nil then
-      awful.spawn.with_shell(app)
-   end
 end
 
 if awesome.startup_errors then

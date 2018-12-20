@@ -10,10 +10,6 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local xrdb = xresources.get_current_theme()
 
-local theme_assets = dofile("/usr/share/awesome/themes/xresources/assets.lua")
-
-theme.wallpaper_dir =  os.getenv("HOME") .. "/.config/awesome/assets/wallpapers"
-
 theme.font          = "Terminus normal 10"
 
 theme.foreground    = xrdb.foreground

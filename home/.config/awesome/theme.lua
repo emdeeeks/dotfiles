@@ -65,6 +65,7 @@ theme.taglist_fg_occupied = theme.white
 theme.taglist_fg_volatile = theme.yellow
 
 
+
 --[[
 naughty.config.defaults.timeout         = 10
 naughty.config.defaults.screen          = math.min(screen.count(), 2)
@@ -124,8 +125,6 @@ theme.wallpaper = function(s)
     cr:paint()
     return img
 end
-
-theme.wallpaper = theme.wallpaper_dir .. '/wallpaper.jpg'
 
 function set_wallpaper(s)
     if theme.wallpaper then

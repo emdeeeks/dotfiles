@@ -1,0 +1,8 @@
+frame > * {
+    padding: 10px 0;
+    color: @color_white;
+}
+
+.frame > * {
+    color: @color_yellow;
+}

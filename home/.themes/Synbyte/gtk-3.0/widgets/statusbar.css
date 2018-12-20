@@ -1,0 +1,8 @@
+statusbar, .statusbar {
+    background-color: red;
+}
+
+GtkStatusbar {
+    padding: 5;
+    color: red;
+}

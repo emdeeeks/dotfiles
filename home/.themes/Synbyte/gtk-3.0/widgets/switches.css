@@ -1,7 +1,16 @@
-GtkSwitch.trough {
-    color: @color_red;
+switch {
+    border: 0;
 }
 
-GtkSwitch.trough:active {
-    color: @color_green;
+switch:checked {
+  color: @color_green;
 }
+
+slider  {
+    color: green;
+    min-width: 5px;
+    min-height: 5px;
+    background-color: @color_fg;
+}
+
+

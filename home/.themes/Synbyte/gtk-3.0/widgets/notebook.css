@@ -1,26 +1,44 @@
-.notebook tab.top {
-    padding: 6px 8px 8px 8px;
+notebook > header > tabs > tab {
+    padding: 0px;
 }
 
-.notebook tab.bottom {
-    padding: 8px 8px 6px 8px;
+notebook > header > tabs > tab:hover > * {
+    color: @color_white;
 }
 
-.notebook tab.left {
-    padding: 8px;
-}
-
-.notebook tab.right {
-    padding: 8px;
-}
-
-.notebook tab GtkLabel {
-    background: none;
-    color: @color_gray;
-}
-
-.notebook tab:active GtkLabel,
-.notebook .active-page,
-.notebook tab .active-page GtkLabel {
+notebook > header > tabs > tab:checked > * {
     color: @color_green;
 }
+
+notebook > header.left > tabs > tab {
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+notebook > header.left > tabs > tab:last-child {
+    padding-bottom: 0px;
+}
+
+notebook > header.right > tabs > tab {
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+notebook > header.right > tabs > tab:last-child {
+    padding-bottom: 0px;
+}
+
+notebook > header.top > tabs > tab {
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+notebook > header.top > tabs > tab:last-child {
+    padding-right: 0px;
+}
+
+notebook > header.bottom > tabs > tab {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+notebook > header.bottom > tabs > tab:first-child {
+    padding-left: 0px;
+}
+

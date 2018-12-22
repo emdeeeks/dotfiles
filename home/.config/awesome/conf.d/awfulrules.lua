@@ -8,8 +8,10 @@ clientkeys = awful.util.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey,           }, "f",
         function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
+            c.fullscreen = false
+            c.maximized_vertical = false
+            c.maximized_horizontal = false
+            c.maximized = not c.maximized
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"})

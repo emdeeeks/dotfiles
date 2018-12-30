@@ -34,7 +34,7 @@ theme.fg_normal     = theme.foreground
 theme.fg_focus      = theme.green
 theme.fg_urgent     = theme.red
 
-theme.useless_gap   = 6
+theme.useless_gap   = 0
 theme.border_width  = 3
 theme.border_normal = theme.background
 theme.border_urgent = theme.red

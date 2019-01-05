@@ -1,7 +1,7 @@
 #define fg          #888888
 #define bg          #222222
 
-#define black       #444444
+#define black       #4A4A4A
 #define red         #CC6666
 #define green       #B5BD68
 #define yellow      #F0C674
@@ -36,6 +36,7 @@
 ! yellow
 *.color3:       yellow
 *.color11:      yellow
+
 ! blue
 *.color4:       blue
 *.color12:      blue
@@ -69,3 +70,4 @@ rofi.color-window: bg, fg, bg
 rofi.color-normal: bg, fg, bg, bg, white
 rofi.color-active: bg, green, bg, bg, green
 rofi.color-urgent: bg, red, bg, bg, red
+rofi.modi: window,drun,ssh

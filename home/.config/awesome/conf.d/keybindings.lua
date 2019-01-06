@@ -94,12 +94,16 @@ globalkeys = awful.util.table.join(
     -- Screen
     awful.key(
         { modkey, }, '[',
-        function () awful.screen.focus_relative(1) end,
+        function () 
+            awful.screen.focus_relative(1)
+        end,
         { description = "focus the next screen", group = "screen" }
     ),
     awful.key(
         { modkey, }, ']',
-        function () awful.screen.focus_relative(-1) end,
+        function ()
+            awful.screen.focus_relative(-1)
+        end,
         { description = "focus the previous screen", group = "screen"}
     ),
 
@@ -144,17 +148,6 @@ for i = 1, 9 do
                 end
             end, {
                 description = "view tag #"..i, group = "tag"
-            }
-        ),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-            function ()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
-                if tag then
-                    awful.tag.viewtoggle(tag)
-                end
-            end, {
-                description = "toggle tag #" .. i, group = "tag"
             }
         ),
         awful.key({ modkey, "Shift" }, "#" .. i + 9,

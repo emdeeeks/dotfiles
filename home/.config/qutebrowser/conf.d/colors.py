@@ -51,7 +51,7 @@ colors = {
     'downloads.error.fg': red,
     'downloads.error.bg': background,
 
-    'hints.fg': foreground,
+    'hints.fg': white,
     'hints.bg': background,
     'hints.match.fg': yellow,
 
@@ -145,4 +145,3 @@ mainfont= 'Terminus'
 
 for setting in settinglist:
     setfont(setting, mainfont, size=10)
-

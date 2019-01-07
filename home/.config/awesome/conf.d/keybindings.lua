@@ -5,22 +5,16 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local misc = require("misc")
 local config = require("config")
 local modkey = config.get('modkey')
+local alt_modkey = config.get('alt_modkey')
 local terminal = config.get('terminal')
+local keys = require("main_keys")
 
 require("awful.hotkeys_popup.keys")
 
-KEY_UP = 'k'
-KEY_DOWN = 'j'
-KEY_LEFT = 'h'
-KEY_RIGHT = 'l'
 KEY_OTHER_SCREEN = 'o'
 
 local keyboard_variant = io.popen("setxkbmap -query|grep 'variant'|awk '{print $2}'")
 if keyboard_variant:read() == 'colemak' then
-    KEY_UP = 'e'
-    KEY_DOWN = 'n'
-    KEY_LEFT = 'h'
-    KEY_RIGHT = 'o'
     KEY_OTHER_SCREEN = 'y'
 end
 
@@ -48,22 +42,24 @@ globalkeys = awful.util.table.join(
 
     -- Client
     awful.key(
-        { modkey, }, KEY_DOWN,
+        { modkey, }, keys.KEY_DOWN,
         function () awful.client.focus.byidx( 1) end,
         { description = "focus next by index", group = "client" }
     ),
     awful.key(
-        { modkey, }, KEY_UP,
+        { modkey, }, keys.KEY_UP,
         function () awful.client.focus.byidx(-1) end,
         { description = "focus previous by index", group = "client" }
     ),
+    -- TODO: Move this to something better
     awful.key(
-        { modkey, "Shift" }, KEY_DOWN,
+        { modkey, "Shift" }, keys.KEY_DOWN,
         function () awful.client.swap.byidx(1) end,
         { description = "swap with next client by index", group = "client" }
     ),
+    -- TODO: Move this to something better
     awful.key(
-        { modkey, "Shift" }, KEY_UP,
+        { modkey, "Shift" }, keys.KEY_UP,
         function () awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }
     ),
@@ -75,15 +71,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "u",
         awful.client.urgent.jumpto,
         { description = "jump to urgent client", group = "client"}
-    ),
-    awful.key({ modkey, }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        { description = "go back", group = "client"}
     ),
     awful.key(
         { modkey, }, "w",
@@ -109,12 +96,12 @@ globalkeys = awful.util.table.join(
 
     -- Layout
     awful.key(
-        { modkey, }, KEY_RIGHT,
+        { modkey, }, keys.KEY_RIGHT,
         function () awful.tag.incmwfact(0.05) end,
         { description = "increase master width factor", group = "layout"}
     ),
     awful.key(
-        { modkey, }, KEY_LEFT,
+        { modkey, }, keysRKEY_LEFT,
         function () awful.tag.incmwfact(-0.05) end,
         {description = "decrease master width factor", group = "layout"}
     ),
@@ -137,9 +124,9 @@ globalkeys = awful.util.table.join(
     )
 )
 
-for i = 1, 9 do
+for i = 1, #keys.home_row[1] do
     globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ modkey }, "#" .. i + 9,
+        awful.key({ alt_modkey }, keys.home_row[1][i],
             function ()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
@@ -150,7 +137,7 @@ for i = 1, 9 do
                 description = "view tag #"..i, group = "tag"
             }
         ),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ alt_modkey, "Shift" }, keys.home_row[1][i],
             function ()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]

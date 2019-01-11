@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" == "qwerty" ]; then
+    setxkbmap gb; xset -r 66
+elif [ "$1" == "colemak" ]; then
+    setxkbmap gb -variant colemak
+else
+    echo 'What are you trying to do?'
+fi

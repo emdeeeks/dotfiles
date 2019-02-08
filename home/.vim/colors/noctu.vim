@@ -17,9 +17,9 @@ let g:colors_name = "noctu"
 
 "}}}
 " Vim UI {{{
-hi Normal              ctermfg=gray
+hi Normal              ctermfg=darkgrey
 hi Cursor              ctermfg=7     ctermbg=1
-hi CursorLine          ctermbg=NONE  cterm=NONE
+hi CursorLine          ctermbg=darkgrey  ctermfg=7
 hi MatchParen          ctermfg=7     ctermbg=NONE  cterm=underline
 hi Pmenu               ctermfg=15    ctermbg=0
 hi PmenuThumb          ctermbg=7
@@ -74,7 +74,7 @@ hi! link SpecialKey    NonText
 "}}}
 " Generic syntax {{{
 hi Delimiter       ctermfg=7
-hi Comment         ctermfg=darkgray
+hi Comment         ctermfg=8
 hi Underlined      ctermfg=4   cterm=underline
 hi Type            ctermfg=4
 hi String          ctermfg=11
@@ -257,3 +257,6 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+hi SpecialKey ctermfg=Red
+hi! EndOfBuffer ctermfg=black ctermbg=NONE

@@ -4,6 +4,8 @@ if [ "$1" == "qwerty" ]; then
     setxkbmap gb; xset -r 66
 elif [ "$1" == "colemak" ]; then
     setxkbmap gb -variant colemak
+elif [ "$1" == "workman" ]; then
+    setxkbmap gb -variant workman
 else
     echo 'What are you trying to do?'
 fi

@@ -1,25 +1,18 @@
 local awful = require("awful")
+local config = require("config")
 
-local apps = {
-    "dropbox",
-    "xrandr-setup",
-    "setxkbmap -config ~/.keyboard",
-    "unclutter -idle 1 -root"
-}
-
-function run_once(prg, times)
+function run_once(prg, options)
     if not prg then
         do return nil end
     end
-    times = times or 1
+    options = options or nil
     count_prog = tonumber(io.popen('ps aux | grep "' .. string.gsub(prg, ":", " ") .. '" | grep -v grep | wc -l')) or 0
-    if times > count_prog then
-        for l = count_prog, times-1 do
-            awful.spawn.with_shell(prg)
-        end
+    if count_prog == 0 then
+        print (options)
+        awful.spawn.with_shell(prg, options)
     end
 end
 
-for k,app in pairs(apps) do
+for k,app in pairs(config.autorun_apps) do
     run_once(app)
 end

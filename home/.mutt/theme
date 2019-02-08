@@ -1,5 +1,5 @@
 # set default
-color normal color8 default
+color normal default default
 
 color status color0 default
 color indicator green default

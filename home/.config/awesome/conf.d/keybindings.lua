@@ -1,22 +1,15 @@
+local keys = require("main_keys")
 local awful = require("awful")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local misc = require("misc")
 local config = require("config")
-local modkey = config.get('modkey')
-local alt_modkey = config.get('alt_modkey')
-local terminal = config.get('terminal')
-local keys = require("main_keys")
+local modkey = config.modkey
+local terminal = config.terminal
+local functions = require("functions")
 
 require("awful.hotkeys_popup.keys")
-
-KEY_OTHER_SCREEN = 'o'
-
-local keyboard_variant = io.popen("setxkbmap -query|grep 'variant'|awk '{print $2}'")
-if keyboard_variant:read() == 'colemak' then
-    KEY_OTHER_SCREEN = 'y'
-end
 
 globalkeys = awful.util.table.join(
 
@@ -31,102 +24,98 @@ globalkeys = awful.util.table.join(
 
     -- Help
     awful.key(
-        { modkey, }, "s",
+        { modkey, }, keys.help,
         hotkeys_popup.show_help,
         { description = "show this help screen", group = "awesome" }
     ),
     awful.key(
-        { modkey, "Shift" }, "r", awesome.restart,
+        { modkey, }, keys.restart_awesome, awesome.restart,
         { description = "restart", group = "awesome"}
     ),
 
     -- Client
     awful.key(
-        { modkey, }, keys.KEY_DOWN,
+        { modkey, }, keys.focus_prev_client,
+        function () awful.client.focus.byidx(-1) end,
+        { description = "focus previous by index", group = "client" }
+    ),
+    awful.key(
+        { modkey, }, keys.focus_next_client,
         function () awful.client.focus.byidx( 1) end,
         { description = "focus next by index", group = "client" }
     ),
     awful.key(
-        { modkey, }, keys.KEY_UP,
-        function () awful.client.focus.byidx(-1) end,
-        { description = "focus previous by index", group = "client" }
-    ),
-    -- TODO: Move this to something better
-    awful.key(
-        { modkey, "Shift" }, keys.KEY_DOWN,
-        function () awful.client.swap.byidx(1) end,
-        { description = "swap with next client by index", group = "client" }
-    ),
-    -- TODO: Move this to something better
-    awful.key(
-        { modkey, "Shift" }, keys.KEY_UP,
+        { modkey, }, keys.swap_with_prev_client,
         function () awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }
     ),
     awful.key(
-        { modkey, }, KEY_OTHER_SCREEN, 
-        awful.client.movetoscreen,
-        { description = "move client to other screen", group = "client" }
-    ),
-    awful.key({ modkey, }, "u",
-        awful.client.urgent.jumpto,
-        { description = "jump to urgent client", group = "client"}
+        { modkey, }, keys.swap_with_next_client,
+        function () awful.client.swap.byidx(1) end,
+        { description = "swap with next client by index", group = "client" }
     ),
     awful.key(
-        { modkey, }, "w",
+        { modkey, }, keys.rofi_window,
         function () awful.spawn("rofi -show window") end,
         { description = "jump between clients", group = "client" }
     ),
 
     -- Screen
     awful.key(
-        { modkey, }, '[',
-        function () 
-            awful.screen.focus_relative(1)
-        end,
-        { description = "focus the next screen", group = "screen" }
-    ),
-    awful.key(
-        { modkey, }, ']',
+        { modkey, }, keys.focus_prev_screen,
         function ()
+            awful.screen.connect_for_each_screen(function(s)
+                beautiful.set_wallpaper(s)
+            end)
             awful.screen.focus_relative(-1)
         end,
-        { description = "focus the previous screen", group = "screen"}
+        { description = "focus the prev screen", group = "screen" }
+    ),
+    awful.key(
+        { modkey, }, keys.focus_next_screen,
+        function ()
+            awful.screen.connect_for_each_screen(function(s)
+                beautiful.set_wallpaper(s)
+            end)
+            awful.screen.focus_relative(1)
+        end,
+        { description = "focus the next screen", group = "screen"}
     ),
 
     -- Layout
     awful.key(
-        { modkey, }, keys.KEY_RIGHT,
+        { modkey, }, keys.decrease_width,
+        function () awful.tag.incmwfact(-0.05) end,
+        {description = "decrease master width factor", group = "layout"}
+    ),
+
+    awful.key(
+        { modkey, }, keys.increase_width,
         function () awful.tag.incmwfact(0.05) end,
         { description = "increase master width factor", group = "layout"}
     ),
     awful.key(
-        { modkey, }, keysRKEY_LEFT,
-        function () awful.tag.incmwfact(-0.05) end,
-        {description = "decrease master width factor", group = "layout"}
-    ),
-    awful.key(
-        { modkey, }, "space",
+        { modkey, }, keys.next_layout,
         function () awful.layout.inc(1) end,
         { description = "select next", group = "layout"}
     ),
 
     -- Launcher
     awful.key(
-        { modkey, }, "r",
+        { modkey, }, keys.rofi_run,
         function () awful.spawn("rofi -show drun") end,
         { description = "run prompt", group = "launcher"}
     ),
     awful.key(
-        { modkey, }, "Return",
-        function () awful.spawn(config.get('terminal')) end,
+        { modkey, }, keys.open_terminal,
+        function () awful.spawn(config.terminal) end,
         { description = "open a terminal", group = "launcher"}
     )
 )
 
-for i = 1, #keys.home_row[1] do
+for i = 1, #keys.tags do
     globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ alt_modkey }, keys.home_row[1][i],
+        awful.key({ modkey }, keys.tags[i],
             function ()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
@@ -137,7 +126,7 @@ for i = 1, #keys.home_row[1] do
                 description = "view tag #"..i, group = "tag"
             }
         ),
-        awful.key({ alt_modkey, "Shift" }, keys.home_row[1][i],
+        awful.key({ modkey, }, keys.above_tags[i],
             function ()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]

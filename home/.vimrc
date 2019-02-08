@@ -1,10 +1,20 @@
 call plug#begin()
-Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
+Plug 'sgur/vim-editorconfig'
+Plug 'kana/vim-fakeclip'
+"Plug 'jooize/vim-colemak'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'wakatime/vim-wakatime'
+"Plug 'vim-hardtime'
+
+" PHP Plugins
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 " Needed for a few things"
@@ -31,8 +41,6 @@ set noshowmode
 set noruler
 
 " Basics.
-set undofile
-set undodir=~/.vim/undo
 set number
 set list listchars=tab:▸\ ,eol:¬,trail:·
 set hlsearch
@@ -40,7 +48,6 @@ set backspace=indent,eol,start
 
 " Handle tabs.
 set tabstop=4
-set softtabstop=4
 set shiftwidth=4
 set expandtab
 
@@ -88,3 +95,42 @@ augroup Xresources
     autocmd!
     au BufWritePost ~/.Xresources silent !xrdb -merge ~/.Xresources
 augroup END
+
+" I love undoing things"
+set undofile
+set undodir=~/.vim/undo
+
+" Jump to the same line I was on before
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+autocmd FileType c,cpp,java,scala let b:comment_leader = '//'
+autocmd FileType sh,ruby,python   let b:comment_leader = '#'
+autocmd FileType conf,fstab       let b:comment_leader = '#'
+autocmd FileType tex              let b:comment_leader = '%'
+autocmd FileType mail             let b:comment_leader = '>'
+autocmd FileType vim              let b:comment_leader = '"'
+autocmd FileType lua              let b:comment_leader = '--'
+function! CommentToggle()
+    execute ':silent! s/\([^ ]\)/' . b:comment_leader . ' \1/'
+    execute ':silent! s/^\( *\)' . b:comment_leader . ' \?' . b:comment_leader . ' \?/\1/'
+endfunction
+map <F7> :call CommentToggle()<CR>
+
+" Source .vimrc (or related file) when saving
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+" Allow indenting muliple times and keeping selection
+vnoremap < <gv
+vnoremap > >gv
+
+vmap <C-c> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
+map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
+
+let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>

@@ -2,6 +2,7 @@ local theme = {}
 local naughty = require("naughty")
 
 local cairo = require("lgi").cairo
+local functions = require("functions")
 local gears = require("gears")
 local recolor_image = gears.color.recolor_image
 local screen = screen
@@ -34,8 +35,8 @@ theme.fg_normal     = theme.foreground
 theme.fg_focus      = theme.green
 theme.fg_urgent     = theme.red
 
-theme.useless_gap   = 0
 theme.border_width  = 3
+theme.useless_gap   = 0
 theme.border_normal = theme.background
 theme.border_urgent = theme.red
 theme.border_focus  = theme.foreground
@@ -43,6 +44,9 @@ theme.border_marked = theme.yellow
 
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
+
+theme.hotkeys_font = theme.font
+theme.hotkeys_description_font = theme.font
 
 naughty.config.spacing = 10
 naughty.config.padding = 10
@@ -64,54 +68,8 @@ naughty.config.presets.critical = {
 theme.taglist_fg_occupied = theme.white
 theme.taglist_fg_volatile = theme.yellow
 
-
-
---[[
-naughty.config.defaults.timeout         = 10
-naughty.config.defaults.screen          = math.min(screen.count(), 2)
-naughty.config.defaults.position        = "top_right"
-naughty.config.defaults.margin          = 30
-naughty.config.defaults.width           = 400
-naughty.config.defaults.gap             = 30
-naughty.config.defaults.ontop           = true
-naughty.config.defaults.font            = theme.font
-naughty.config.defaults.icon            = nil
-naughty.config.defaults.icon_size       = 16
-naughty.config.defaults.fg              = theme.fg_normal
-naughty.config.defaults.bg              = theme.black
-naughty.config.defaults.border_color    = theme.divider
-naughty.config.defaults.border_width    = 0
-naughty.config.presets.low.fg           = theme.fg_minimize
-naughty.config.presets.low.bg           = theme.black
-naughty.config.presets.critical.fg      = theme.fg_urgent
-naughty.config.presets.critical.bg      = theme.bg_urgent
-naughty.config.presets.critical.timeout = 15
-naughty.config.presets.critical.border_color = theme.fg_urgent
-]]--
-
-
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
-
 theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
-
-
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
 theme.wallpaper = function(s)
@@ -121,12 +79,16 @@ theme.wallpaper = function(s)
     local img = cairo.RecordingSurface(cairo.Content.COLOR,
         cairo.Rectangle { x = 0, y = 0, width = width, height = height })
     local cr = cairo.Context(img)
-    cr:set_source(gears.color(theme.background))
+    bg_color = theme.black
+    if s.index == awful.screen.focused().index then
+        bg_color = theme.background
+    end
+    cr:set_source(gears.color(bg_color))
     cr:paint()
     return img
 end
 
-function set_wallpaper(s)
+function theme.set_wallpaper(s)
     if theme.wallpaper then
         local wallpaper = theme.wallpaper
         if type(wallpaper) == "function" then
@@ -136,6 +98,17 @@ function set_wallpaper(s)
     end
 end
 
-awful.screen.connect_for_each_screen(set_wallpaper)
+awful.screen.connect_for_each_screen(theme.set_wallpaper)
 
 return theme
+
+-- if awesome.composite_manager_running then
+  -- theme.titlebar_bg_normal = theme.titlebar_bg_normal .."66"
+  -- theme.border_normal       = theme.border_normal .."66"
+  -- theme.border_focus        = theme.border_focus .."66"
+  -- theme.titlebar_bg_normal  = theme.titlebar_bg_normal.."dd"
+  -- theme.actionless_titlebar_bg_normal = theme.titlebar_bg_normal.."dd"
+  -- theme.actionless_titlebar_bg_normal = theme.titlebar_bg_normal.."66"
+  -- theme.titlebar_bg_focus   = theme.titlebar_bg_focus.."dd"
+  -- theme.actionless_titlebar_bg_focus  = theme.titlebar_bg_focus.."dd"
+-- end

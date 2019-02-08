@@ -1,20 +1,29 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local config = require("config")
-local modkey = config.get('modkey')
+local modkey = config.modkey
+local keys = require("main_keys")
 
+-- TODO: Move this to keybindings
 clientkeys = awful.util.table.join(
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
-              {description = "close", group = "client"}),
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = false
-            c.maximized_vertical = false
-            c.maximized_horizontal = false
-            c.maximized = not c.maximized
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"})
+    -- TODO: Move this to something else that doesn't make my left hand move from the home row.
+    awful.key({
+        modkey, "Shift"   }, "c",
+        function (c) c:kill() end,
+        { description = "close", group = "client" }
+    ),
+    --[[ CHECK API FOR MOVE_TO_SCREEN()
+    awful.key(
+        { modkey, }, keys.move_client_to_prev_screen,
+        function (c) c:move_to_screen(-1) end,
+        { description = "move client to previous screen", group = "client" }
+    ),
+    ]]--
+    awful.key(
+        { modkey, }, keys.move_client_to_next_screen,
+        function (c) c:move_to_screen() end,
+        { description = "move client to next screen", group = "client" }
+    )
 )
 
 awful.rules.rules = {
@@ -37,6 +46,17 @@ awful.rules.rules = {
         properties = {
             floating = true,
             placement = awful.placement.centered
+        }
+    }, {
+        rule = { class = "DDLC" },
+        properties = {
+            floating = true,
+            sticky = true,
+            below = true,
+            focusable = false,
+            placement = function(c)
+                c:geometry(screen[1].geometry)
+            end
         }
     }
 }

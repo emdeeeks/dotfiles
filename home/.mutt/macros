@@ -1,6 +1,6 @@
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 macro index O "<shell-escape>offlineimap<enter>" "run offlineimap to sync all mail"
-macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+macro index o "<shell-escape>offlineimap -qf inbox<enter>" "run offlineimap to sync inbox"
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index D \
@@ -14,3 +14,10 @@ macro index S \
 macro index,pager d "<save-message>=trash<enter><enter>" "Trash"
 
 macro index c "<change-vfolder>?" "Change to vfolder overview"
+
+macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/accounts/gareth@synbyte.com<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/accounts/gg@sportcompass.dk<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><refresh><enter-command>source ~/.mutt/accounts/dev@sportcompass.dk<enter><change-folder>!<enter>'
+
+macro index <f8> "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search\
+      <enter><change-dir>../.cache/<enter><search>mutt_results<enter><enter>" "search mail (using notmuch)"

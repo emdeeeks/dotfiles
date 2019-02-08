@@ -63,6 +63,6 @@ auto_view text/html
 set virtual_spoolfile = yes
 set vfolder_format = "%6n(%6N) %m %f" 
 set nm_default_uri = "notmuch:///home/gareth/.mail"
-virtual-mailboxes "My INBOX" "notmuch://?query=tag:INBOX"
+virtual-mailboxes "My INBOX" "notmuch://?query=tag:inbox"
 virtual-mailboxes "Unread" "notmuch://?query=tag:unread"
 virtual-mailboxes "Passwords" "notmuch://?query=tag:Passwords"

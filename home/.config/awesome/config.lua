@@ -1,21 +1,43 @@
-local yaml = require('misc/tinyyaml')
-local home = os.getenv("HOME")
-local gears = require("gears")
-
-local main_dir = string.format("%s/.config/awesome/", home)
+local keys = require("main_keys")
+local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local config = {}
 local settings = {}
 
-local configFile = io.open(main_dir ..'config.yml', 'r')
+config.modkey = "Mod4"
 
-if configFile then
-    local configYaml = configFile:read('*all')
-    configFile:close()
-    settings = yaml.parse(configYaml)
-end
+config.terminal = "x-terminal-emulator"
 
-function config.get(key)
-    return settings[key] or nil
-end
+config.autorun_apps = {
+    'xrdb -merge ~/.Xresources',
+    'setxkbmap -config ~/.keyboard',
+    'unclutter -idle 1 -root',
+    'xrandr-setup'
+}
+
+config.inet_interface = "wlo1"
+
+config.clock_format = "%A %B %d, %I:%M%"
+
+config.wibars = {
+}
+
+config.keys = {
+    ["global"] = {
+        {
+            { config.modkey }, keys.help,
+            hotkeys_popup.show_help,
+            {
+                description = "Show this help screen",
+                group = "Awesome"
+            }
+       },
+       {
+       }
+    },
+    ["client"] = {
+        -- Close client
+        -- Move to next screen
+    },
+}
 return config

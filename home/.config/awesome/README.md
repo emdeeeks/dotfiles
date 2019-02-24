@@ -1,6 +1,6 @@
 # AwesomeWM config
 
-My config for Awesome has been tweaked and tweaked and tweaked, to the point where I don't know of any other AwesomeWM setup like mine.
+My config for Awesome has been tweaked and tweaked and tweaked, to the point where I don't know of any other AwesomeWM setup like it.
 
 My setup isn't complicated, but I've always had a few goals in mind;
 
@@ -14,7 +14,7 @@ With that being said, here's some things you should know;
 
 ## Tags
 
-I like to have only 4 tags per screen. This means I can easily access them using the 4 fingers of my right hand resting on the right-side of the home row (see keybindings below). If I ever need more than 5 tags, I probably have too many windows open.
+I like to have only 4 tags per screen. This means I can easily access them using the 4 fingers of my right hand resting on the right-side of the home row (see keybindings below). If I ever need more than 4 tags, I probably have too many windows open.
 
 ## Keybindings
 
@@ -24,8 +24,8 @@ All keybindings are MOD+key. My MOD key is set to the SUPER key ("windows key").
 
 To be honest, the following keybindings took me a little getting used to, but it was worth it.
 
-Key qwerty | Key colemak | Action
------------- | -------------
+qwerty | colemak | action
+------------ | -------------|----------
 <kbd>q</kbd> | <kbd>q</kbd> | Restart AwesomeWM
 <kbd>e</kbd> | <kbd>f</kbd> | Focus previous client
 <kbd>r</kbd> | <kbd>p</kbd> | Focus next client
@@ -49,14 +49,13 @@ Key qwerty | Key colemak | Action
 <kbd>.</kbd> | <kbd>.</kbd> | Help screen
 <kbd>/</kbd> | <kbd>/</kbd> | Open terminal
 <kbd>z</kbd> | <kbd>z</kbd> | Close 
-
 <kbd>space</kbd> | <kbd>space</kbd> | Switch layout
 
 ## Autoloading files
 
 The files in `conf.d/` are loaded automatically. Be sure to test anything with `xephyr` (see below) before restarting Awesome.
 
-# Testing with `Xephyr`
+# Testing with Xephyr
 
 There's a shell script at `scripts/debug.sh` that will run `xephyr` so that a live version of the config can be tested.
 

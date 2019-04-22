@@ -11,7 +11,9 @@ local functions = require("functions")
 
 require("awful.hotkeys_popup.keys")
 
-globalkeys = awful.util.table.join(
+keybindings = {}
+
+keybindings.global = awful.util.table.join(
 
     --[[ Should probably hook these up to something meaningful later
     awful.key({ }, "XF86AudioPlay", function () awful.spawn("cmus-remote --pause") end),
@@ -114,7 +116,7 @@ globalkeys = awful.util.table.join(
 )
 
 for i = 1, #keys.tags do
-    globalkeys = awful.util.table.join(globalkeys,
+    keybindings.global = awful.util.table.join(keybindings.global,
         awful.key({ modkey }, keys.tags[i],
             function ()
                 local screen = awful.screen.focused()
@@ -141,4 +143,19 @@ for i = 1, #keys.tags do
     )
 end
 
-root.keys(globalkeys)
+keybindings.client = awful.util.table.join(
+    awful.key(
+        { modkey }, keys.close_client,
+        function (c) c:kill() end,
+        { description = "close", group = "client" }
+    ),
+    awful.key(
+        { modkey, }, keys.move_client_to_next_screen,
+        function (c) c:move_to_screen() end,
+        { description = "move client to next screen", group = "client" }
+    )
+)
+
+root.keys(keybindings.global)
+
+return keybindings

@@ -13,6 +13,8 @@ local xrdb = xresources.get_current_theme()
 
 theme.font          = "Terminus normal 10"
 
+theme.padding       = 10
+
 theme.foreground    = xrdb.foreground
 theme.background    = xrdb.background
 
@@ -48,11 +50,11 @@ theme.tasklist_disable_icon                     = true
 theme.hotkeys_font = theme.font
 theme.hotkeys_description_font = theme.font
 
-naughty.config.spacing = 10
-naughty.config.padding = 10
+naughty.config.spacing = theme.padding
+naughty.config.padding = theme.padding
 naughty.config.defaults.fg              = theme.fg_normal
 naughty.config.defaults.bg              = theme.bg_normal
-naughty.config.defaults.margin          = 10
+naughty.config.defaults.margin          = theme.padding
 
 naughty.config.presets.success = {
     bg = theme.background,

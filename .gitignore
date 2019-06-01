@@ -39,3 +39,9 @@ home/.config/ibus
 home/.config/pavucontrol.ini
 home/.config/evolution
 home/.config/gtk-2.0/gtkfilechooser.ini
+home/.local/lib
+home/.local/share
+home/.config/Signal
+home/.config/vlc
+home/.config/rclone
+home/.weechat/*.log

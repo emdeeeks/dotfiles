@@ -302,3 +302,5 @@ set git-colors = \
     dtatus.updated=stat-staged \
     dtatus.changed=stat-unstaged \
     dtatus.untracked=stat-untracked
+
+bind status D !@?rm %(file)

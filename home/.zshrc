@@ -112,6 +112,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/home/gareth/.rbenv/shims:${PATH}"
 export RBENV_SHELL=zsh
+
 source '/usr/lib/rbenv/libexec/../completions/rbenv.zsh'
 command rbenv rehash 2>/dev/null
 rbenv() {
@@ -135,3 +136,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
+
+source $HOME/.aliases
+source $HOME/.functions

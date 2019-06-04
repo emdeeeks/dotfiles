@@ -1,14 +1,41 @@
-alias cdh="cd ~"
+# Home sweet home
+alias ~="cd $HOME"
+
+# Or the sites folder for that matter
 alias cds="cd ~/Sites"
+
+# So mutt downloads attachments to the correct folder
 #alias mutt='cd ~/.mutt/attachments && ~/src/mutt-kz/mutt'
-alias cp='cp -i'
+
+# Basics
+alias cp='cp -ir'
 alias mv='mv -i'
 alias rm='rm -i'
 alias ln='ln -i'
 alias df='df -H'
 alias du='du -c -h'
 alias mkdir='mkdir -p -v'
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# What's my IP?
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# What's all the IPs of my interfaces?
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
+# Pure laziness.
+alias ..='cd ..'
+alias ...='cd ../..'
+alias -- -="cd -"
+
+# YoutubeDL aliases. Why doesn't the `cd -` part work though?
+alias yt='cd $HOME/Downloads/Videos; youtube-dl; cd -'
+alias yt3='cd $HOME/Downloads/Music; youtube-dl --extract-audio --audio-format mp3; cd -'
+
+# What folders are taking up the most space?
+alias dux='du -x --max-depth=1 | sort -n'
+
+# Run last command as sudo
+alias ffs='sudo `fc -n -l -1`'
+
+# Kill an process
+alias fuck='pkill -9'

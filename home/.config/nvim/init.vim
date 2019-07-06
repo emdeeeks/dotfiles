@@ -96,9 +96,19 @@ augroup Xresources
     au BufWritePost ~/.Xresources silent !xrdb -merge ~/.Xresources
 augroup END
 
+" Restart nginx 
+augroup Nginx
+    autocmd!
+    au BufWritePost /etc/nginx/site-enabled/vitae-srw silent !sudo service nginx restart
+augroup END
+
+
+
 " I love undoing things"
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.config/nvim/undo
+set directory=~/.config/nvim/undo
+
 
 " Jump to the same line I was on before
 if has("autocmd")

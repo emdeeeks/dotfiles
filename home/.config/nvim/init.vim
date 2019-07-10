@@ -99,10 +99,8 @@ augroup END
 " Restart nginx 
 augroup Nginx
     autocmd!
-    au BufWritePost /etc/nginx/site-enabled/vitae-srw silent !sudo service nginx restart
+    au BufWritePost /etc/nginx/site-enabled/* silent !sudo service nginx restart
 augroup END
-
-
 
 " I love undoing things"
 set undofile
@@ -142,5 +140,7 @@ vnoremap > >gv
 vmap <C-c> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
 map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 
-let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+let g:pdv_template_dir = $HOME ."/.config/nvim/plugged/pdv/templates_snip"
 nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
+
+au BufRead,BufNewFile /etc/nginx/*,/etc/nginx/conf.d/*,/usr/local/etc/nginx/* if &ft == '' | setfiletype nginx | endif

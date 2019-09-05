@@ -83,24 +83,13 @@ widgets.net = lain.widget.net({
     end
 })
 
---[[
-widgets.bat = lain.widget.bat({
-    -- Get charging status.
-    -- If charging, show green.
-    -- If off power, not charging, show red
-    -- otherwise, show default.  
-    settings = function()
-        widget:set_markup("Bat " .. markup(beautiful.cyan, bat_now.perc .. "%"))
-    end
-})
-]]--
-
 widgets.bat = lain.widget.bat({
     settings = function()
+        color = beautiful.cyan
         if bat_now.status == 'Charging' then
             color = beautiful.green
         end
-        widget:set_markup("Bat " .. markup(beautiful.cyan, bat_now.perc .. "%"))
+        widget:set_markup("Bat " .. markup(color, bat_now.perc .. "%"))
     end
 })
 

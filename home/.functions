@@ -18,6 +18,12 @@ function mkdircd()
 # Find in files
 # Must supply 1 arg (string).
 # Second arg is path (defaults to current dir)
-function rgrep (){
+function rgrep ()
+{
     grep -rwn "${1:?please enter one or two args}" -r "${2:-./}"
+}
+
+# youtube-dl for music
+function yt3 () {
+    (cd ~/Downloads/Music && exec youtube-dl --extract-audio --audio-format mp3 "$@")
 }

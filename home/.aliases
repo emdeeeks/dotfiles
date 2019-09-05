@@ -27,15 +27,14 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -="cd -"
 
-# YoutubeDL aliases. Why doesn't the `cd -` part work though?
-alias yt='cd $HOME/Downloads/Videos; youtube-dl; cd -'
-alias yt3='cd $HOME/Downloads/Music; youtube-dl --extract-audio --audio-format mp3; cd -'
-
 # What folders are taking up the most space?
 alias dux='du -x --max-depth=1 | sort -n'
 
 # Run last command as sudo
 alias ffs='sudo `fc -n -l -1`'
 
-# Kill an process
+# Kill a process
 alias fuck='pkill -9'
+
+# FOCUS! 
+alias focus='mpv https://youtu.be/F5Tt3LoygCQ --no-video'

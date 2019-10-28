@@ -1,32 +1,46 @@
 #!/usr/bin/env bash
 
+# TODO:
+# Install ruby / rvm here
+# pass off to ruby for rest of install, mabye using <<< RUBY
+
 function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
 function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; exit; }
 function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 
 desktop_apps_to_install=(
     nginx
-    weechat
-    vim
     redshift
     httpie
     glances
-    lnav
-    tmux
-    zsh
+    qutebrowser 
+    rofi
+    nginx
+    mysql-server
+    mysql-client
+    neomutt
+    xfonts-terminus
+    mpv
+    wicd
+    wicd-curses
+    ruby-railties
 )
 
 server_apps_to_install=(
 )
 
 global_apps_to_install=(
-    weechat
-    vim
     lnav
     tmux
-    nginx
     zsh
-    xfonts-terminus
+    rxvt-unicode
+    neovim
+    python-pip
+    npm
+    net-tools
+    tig
+    nodejs
+    cargo
 )
 
 setup () {
@@ -35,6 +49,7 @@ setup () {
         mkdir $HOME/dotfiles
         git clone https://github.com/synbyte/dotfiles.git $HOME/dotfiles
     else
+	# check .git exists first. Exit otherwise
         cd $HOME/dotfiles
         e_arrow "Already installed. Updating"
         git pull origin master
@@ -83,15 +98,48 @@ install_applications() {
 
 }
 
-wrap_up() {
-    chmod 700 $HOME/.moc/config
-    mv $HOME/dotfiles.old/.config/chromium $HOME/.config/ -u
-    mv $HOME/dotfiles.old/.config/evolution $HOME/.config/ -u
-}
-
 setup
-create_symlinks
 install_applications
-wrap_up
+create_symlinks
 
 e_success 'All done!'
+
+#setup default apps
+#remove all display managers and use .xinitrc
+# make grub text only
+#dpkg-reconfigure xserver-xorg-legacy add 'anyone' to users to startx
+
+#setup terminal
+# install urxvt and then `sudo update-alternatives --config x-terminal-emulator
+
+# Peerflix
+#npm install -g peerflix
+
+# Oh my ZSH
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Youtube-dl
+#curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+
+# defaults
+sudo update-alternatives --config x-terminal-emulator
+sudo update-alternatives --config x-www-browser
+sudo update-alternatives --config x-window-manager
+sudo update-alternatives --config editor
+
+# RVM
+#gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+#curl -sSL https://get.rvm.io | bash -s stable --ruby
+#source ~/.rvm/scripts/rvm
+#rvm install ruby-2.5.3
+
+
+# Bash-it
+#git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+#~/.bash_it/install.sh --silent
+
+
+#gem install bundler after railties
+
+
+#cargo install exa

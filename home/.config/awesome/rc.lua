@@ -7,11 +7,12 @@ local lain = require("lain")
 local config = require('config')
 local gears = require("gears")
 local lfs = require('lfs')
-local main_dir = string.format("%s/.config/awesome/", home)
+local main_dir = string.format("%s/.config/awesome/", os.getenv("HOME"))
 local theme_path = main_dir .. "theme.lua"
 local confd = main_dir .. 'conf.d/'
 local hotkeysd = main_dir .. 'hotkeys/'
 local functions = require("functions")
+require("misc/print_r")
 local confs = {}
 local hotkeys = {}
 

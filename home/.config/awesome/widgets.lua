@@ -7,8 +7,26 @@ local beautiful = require("beautiful")
 local lain = require("lain")
 local markup     = lain.util.markup
 local functions = require("functions")
+local main_dir = string.format("%s/.config/awesome/", os.getenv("HOME"))
+local confd = main_dir .. 'widgets/'
 
 local widgets = {}
+
+--[[
+-- SHOULD BE ABLE TO DO SOMETHING LIKE THIS
+for i,conf in pairs(confs) do
+    local config = awful.util.checkfile(conf)
+    if type(config) == 'function' then
+        config()
+    else
+        naughty.notify({
+            preset = naughty.config.presets.critical,
+            title = "Oops, an error happened!",
+            text = string.format('Skipping %s due to error: %s', conf, config)
+        })
+    end
+end
+]]--
 
 widgets.clock = wibox.container.margin(
     wibox.widget.textclock(config.clock_format), 10, 10, 10, 10
@@ -37,7 +55,7 @@ widgets.btc = awful.widget.watch(
         if btc then
             local value = (total * tonumber(btc[1]["price_usd"]))
             local value = "$" .. string.format("%.2f", value)
-            widget:set_markup('N/A')
+            widget:set_markup('BTC ?')
             if(not err and btc[1]) then
                 local percent_change = btc[1]["percent_change_24h"]
                 if(string.sub(percent_change, 1, 1) == "-") then
@@ -93,6 +111,13 @@ widgets.bat = lain.widget.bat({
     end
 })
 
+function widgets.taglist(screen)
+    return wibox.container.margin(
+        awful.widget.taglist(screen, awful.widget.taglist.filter.all),
+        10, 10, 10,10
+    )
+end
+
 -- shows used (percentage) and remaining space in home partition
 --[[
 widgets.fs = lain.widget.fs({
@@ -133,6 +158,7 @@ spacer = ' '
 
 function widgets.get(widget_list, spacer)
     for k,widget in ipairs(widget_list) do
+
         local color = get_next_color()
         print(color)
         -- if it's not the last,
@@ -162,5 +188,7 @@ function get_next_color(id)
     end
     return label_colors["color"..tostring(colors_counter[id], 15)]
 end
+
+functions.print_table(debug.traceback(widgets))
 
 return widgets

@@ -1,4 +1,3 @@
-import yaml
 import glob
 import os
 

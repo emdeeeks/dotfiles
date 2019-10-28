@@ -1,6 +1,11 @@
 local awful = require("awful")
 local config = require("config")
 
+--[[
+TODO:
+* Fix run_once. Seems to spawn more than one.
+]]--
+
 function run_once(prg, options)
     if not prg then
         do return nil end
@@ -8,7 +13,6 @@ function run_once(prg, options)
     options = options or nil
     count_prog = tonumber(io.popen('ps aux | grep "' .. string.gsub(prg, ":", " ") .. '" | grep -v grep | wc -l')) or 0
     if count_prog == 0 then
-        print (options)
         awful.spawn.with_shell(prg, options)
     end
 end

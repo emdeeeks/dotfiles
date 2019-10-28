@@ -40,7 +40,7 @@ set noshowmode
 " Hide ruler
 set noruler
 
-" Hide status line
+" Hide status
 set laststatus=0
 
 " Basics.
@@ -122,12 +122,6 @@ function! CommentToggle()
     execute ':silent! s/^\( *\)' . b:comment_leader . ' \?' . b:comment_leader . ' \?/\1/'
 endfunction
 map <F7> :call CommentToggle()<CR>
-
-" Source .vimrc (or related file) when saving
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
 
 " Allow indenting muliple times and keeping selection
 vnoremap < <gv

@@ -5,7 +5,8 @@ home/.config/weechat/logs
 home/.config/discord
 home/.config/pulse
 home/.weechat/logs
-home/.vim/undo
+home/.config/nvim/undo
+home/.config/nvim/plugged
 home/.netrc
 home/.vim/plugged
 home/.mutt/temp
@@ -45,5 +46,3 @@ home/.config/Signal
 home/.config/vlc
 home/.config/rclone
 home/.weechat/*.log
-home/.config/nvim/undo
-home/.config/nvim/plugged

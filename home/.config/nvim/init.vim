@@ -40,6 +40,9 @@ set noshowmode
 " Hide ruler
 set noruler
 
+" Hide status line
+set laststatus=0
+
 " Basics.
 set number
 set list listchars=tab:▸\ ,eol:¬,trail:·
@@ -96,17 +99,10 @@ augroup Xresources
     au BufWritePost ~/.Xresources silent !xrdb -merge ~/.Xresources
 augroup END
 
-" Restart nginx 
-augroup Nginx
-    autocmd!
-    au BufWritePost /etc/nginx/site-enabled/* silent !sudo service nginx restart
-augroup END
-
 " I love undoing things"
 set undofile
 set undodir=~/.config/nvim/undo
 set directory=~/.config/nvim/undo
-
 
 " Jump to the same line I was on before
 if has("autocmd")
@@ -142,5 +138,3 @@ map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 
 let g:pdv_template_dir = $HOME ."/.config/nvim/plugged/pdv/templates_snip"
 nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
-
-au BufRead,BufNewFile /etc/nginx/*,/etc/nginx/conf.d/*,/usr/local/etc/nginx/* if &ft == '' | setfiletype nginx | endif

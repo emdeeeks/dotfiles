@@ -1,0 +1,41 @@
+[user]
+    name = Gareth Griffiths
+[push]
+    default = current
+[pull]
+    default = current
+[alias]
+    la = "!git config -l | grep alias | cut -c 7-"
+    sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+    sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep ^[a-z]
+    untrack = !"f() { if [ -z \"${1}\" ]; then echo git untrack: You must specify a file.; exit 0; fi; if [ $(find . -path \"*${1}\" | wc -l) == 0 ]; then echo git untrack: ${1}: No such file.; exit 1; fi; if [ $(find . -path \"*${1}\" | wc -l) != 1 ]; then echo git untrack: Try to untrack the file from the root repo dir: $(pwd); exit 1; fi; file=$(find . -path "*$1" | head -1); echo Removing $file from repo but keeping local file... && git rm --cached $file && echo Adding $file to $(pwd)/.gitignore && echo $file >> .gitignore; }; f"
+    simpleuntrack = rm --cached
+    undo = reset --soft HEAD^
+    undo-hard = reset --hard HEAD~1
+[core]
+    excludesfile = ~/.gitignore
+    hooksPath = ~/.git/hooks
+[branch]
+    autosetuprebase = always
+[merge]
+    tool = vimdiff
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = true
+[color "branch"]
+    current = green
+    local = blue
+    remote = yellow
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[include]
+    path = ~/.gitconfig-local
+[status]
+    showUntrackedFiles = all

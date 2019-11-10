@@ -1,3 +1,5 @@
+local awful = require("awful")
+
 local keys = {}
 
 keys.rows = {
@@ -6,7 +8,7 @@ keys.rows = {
     { 'z','x','c','v','b','n','m',',','.','/' }
 }
 
-if io.popen("setxkbmap -query|grep 'variant'|awk '{print $2}'"):read() == 'colemak' then
+if awful.spawn.easy_async("setxkbmap -query|grep 'variant'|awk '{print $2}'") == 'colemak' then
     keys.rows = {
         { 'q','w','f','p','g','j','l','u','y',';' },
         { 'a','r','s','t','d','h','n','e','i','o' },

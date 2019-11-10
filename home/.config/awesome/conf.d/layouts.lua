@@ -1,8 +1,4 @@
 local awful = require("awful")
+local config = require("config")
 
-awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-}
+awful.layout.layouts = config.layouts

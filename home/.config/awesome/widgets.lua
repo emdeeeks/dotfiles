@@ -1,3 +1,7 @@
+--[[
+--TODO: Sort this out. Move it somewhere better and autoload the widgets.
+]]--
+
 local wibox = require("wibox")
 local main_dir = string.format("%s/.config/awesome/", os.getenv("HOME"))
 local confd = main_dir .. 'widgets/'
@@ -12,6 +16,7 @@ widgets.bat = dofile(confd .. 'bat.lua')
 widgets.btc = dofile(confd .. 'btc.lua')
 widgets.net = dofile(confd .. 'net.lua')
 widgets.taglist = dofile(confd .. 'taglist.lua')
+widgets.volume = dofile(confd .. 'volume.lua')
 
 --[[
 --TO BE USED LATER

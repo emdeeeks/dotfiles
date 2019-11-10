@@ -1,6 +1,5 @@
 local awful = require("awful")
-local keys = require("main_keys")
-local functions = require("functions")
+local keys = require("misc.keys")
 
 awful.screen.connect_for_each_screen(function(s)
     awful.tag(

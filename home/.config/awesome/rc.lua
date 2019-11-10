@@ -1,22 +1,16 @@
 local awful = require("awful")
 local autofocus = require("awful.autofocus")
 local beautiful = require("beautiful")
+local cur_path = debug.getinfo(1).source:match("@?(.*/)")
+local theme = require("theme")
 local naughty = require("naughty")
 local home = os.getenv("HOME")
-local lain = require("lain")
 local config = require('config')
-local gears = require("gears")
-local lfs = require('lfs')
 local main_dir = string.format("%s/.config/awesome/", os.getenv("HOME"))
-local theme_path = main_dir .. "theme.lua"
+local lfs = require('lfs')
 local confd = main_dir .. 'conf.d/'
 local hotkeysd = main_dir .. 'hotkeys/'
-local functions = require("functions")
-require("misc/print_r")
 local confs = {}
-local hotkeys = {}
-
-beautiful.init(theme_path)
 
 if awesome.startup_errors then
     naughty.notify({

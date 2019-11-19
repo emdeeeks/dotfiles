@@ -20,10 +20,46 @@ function mkdircd()
 # Second arg is path (defaults to current dir)
 function rgrep ()
 {
-    grep -rwn "${1:?please enter one or two args}" -r "${2:-./}"
+    grep -rin "${1:?please enter one or two args}" -r "${2:-./}"
+}
+
+# Count grep? Yeah, bad choice. :(
+function cgrep ()
+{
+    grep -RIci "${1:?Please enter one or two args}" "${2:-./}" | awk -v FS=":" -v OFS="\t" '$2>0 { print $2, $1 }' | sort -hr
 }
 
 # youtube-dl for music
 function yt3 () {
     (cd ~/Downloads/Music && exec youtube-dl --extract-audio --audio-format mp3 "$@")
+}
+
+# Grep processes
+function psgrep() {
+    if [ ! -z $1 ] ; then
+        ps aux | grep $1
+    else
+        echo "Need name to grep for"
+    fi
+}
+
+# Easy archive extraction
+function extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar         xjf   $1;;
+            *.tar.gz)   tar         xzf   $1;;
+            *.bz2)      bunzip2           $1;;
+            *.rar)      rar         x     $1;;
+            *.gz)       gunzip            $1;;
+            *.tar)      tar         xf    $1;;
+            *.tbz2)     tar         xjf   $1;;
+            *.tgz)      tar         xzf   $1;;
+            *.zip)      unzip             $1;;
+            *.Z)        uncompress        $1;;
+            *)          echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }

@@ -1,20 +1,16 @@
 local awful = require("awful")
-
 local keys = {}
 
 keys.rows = {
-    { 'q','w','e','r','t','y','u','i','o','p' },
-    { 'a','s','d','f','g','h','j','k','l',';' },
-    { 'z','x','c','v','b','n','m',',','.','/' }
-}
+    --  q      w      e      r      t      y      u      i      o      p
+    { '#24', '#25', '#26', '#27', '#28', '#29', '#30', '#31', '#32', '#33' },
 
-if awful.spawn.easy_async("setxkbmap -query|grep 'variant'|awk '{print $2}'") == 'colemak' then
-    keys.rows = {
-        { 'q','w','f','p','g','j','l','u','y',';' },
-        { 'a','r','s','t','d','h','n','e','i','o' },
-        { 'z','x','c','v','b','k','m',',','.','/' }
-    }
-end
+    --  a      s      d      f      g      h      j      k      l      ;
+    { '#38', '#39', '#40', '#41', '#42', '#43', '#44', '#45', '#46', '#47' },
+
+    --  z      x      c      v      b      n      m      ,      .      /
+    { '#52', '#53', '#54', '#55', '#56', '#57', '#58', '#59', '#60', '#61' }
+}
 
 keys.restart_awesome =              keys.rows[1][1]
 keys.focus_prev_client =            keys.rows[1][3]

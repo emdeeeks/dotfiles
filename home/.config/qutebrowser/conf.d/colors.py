@@ -121,7 +121,6 @@ for item, color in colors.items():
 c.content.host_blocking.whitelist = ["www.googleadservices.com", "googleadservices.com", "piwik.org", "maxbounty.com", "www.maxbounty.com", "trackcmp.net", "analytics.google.com"]
 
 settinglist = [
-    'monospace',
     'completion.entry',
     'completion.category',
     'debug_console',

@@ -46,3 +46,9 @@ home/.config/Signal
 home/.config/vlc
 home/.config/rclone
 home/.weechat/*.log
+home/.config/pritunl
+home/.config/composer
+home/.config/mps-youtube
+home/.config/nvim/.netrwhist
+home/.local/bin/scapy
+home/.config/Slack

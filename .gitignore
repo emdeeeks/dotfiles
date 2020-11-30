@@ -52,3 +52,8 @@ home/.config/mps-youtube
 home/.config/nvim/.netrwhist
 home/.local/bin/scapy
 home/.config/Slack
+home/.config/Trolltech*
+home/.config/transmission
+home/.config/wireshark
+home/.config/dolphin*
+home/.config/GIMP

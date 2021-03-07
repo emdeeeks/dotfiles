@@ -1,0 +1,62 @@
+# Home sweet home
+alias ~="cd $HOME"
+
+# Or the sites folder for that matter
+alias cds="cd ~/Sites"
+
+# So mutt downloads attachments to the correct folder
+#alias mutt='cd ~/.mutt/attachments && ~/src/mutt-kz/mutt'
+
+# Basics
+alias cp='cp -ir'
+alias mv='mv -i'
+alias rm='rm -i'
+alias ln='ln -i'
+alias df='df -H'
+alias du='du -c -h'
+alias mkdir='mkdir -p -v'
+alias ls='exa -lah'
+alias grep="grep --color=auto"
+
+# What's my IP?
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# What's all the IPs of my interfaces?
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
+# Pure laziness.
+alias ..='cd ..'
+alias ...='cd ../..'
+alias -- -="cd -"
+
+# What folders are taking up the most space?
+alias dux='du -x --max-depth=1 | sort -n'
+
+# Run last command as sudo
+alias ffs='sudo `fc -n -l -1`'
+
+# Kill a process
+alias fuck='pkill -9'
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'wlo1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i wlo1 -n -s 0 -w - | grep -a -o -E \"Host\\: .*|GET \\/.*\""
+
+alias pubsshkey="more ~/.ssh/id_rsa.pub | xclip -selection clipboard | echo '=> Public ssh key copied to pasteboard.'"
+alias pubgpgkey="gpg --export -a 'Gareth Griffiths' > ~/.gpg.pub | xclip -selection clipboard | echo '=> Public gpg key copied to pasteboard.'"
+
+alias journal='nvim $(date -v-1d "+%d-%m-%Y").md'
+
+alias ts='tig status'
+alias tb='tig blame'
+
+alias gp='git push'
+alias gb='git blame'
+alias gc='git commit -m'
+alias gcf='git config --list'
+
+alias pomodoro='while true; do mpv https://youtu.be/F5Tt3LoygCQ --no-video --length=1500 && sleep 300; done'
+
+alias vim='nvim'
+
+alias man='vim -c "SuperMan $1"'

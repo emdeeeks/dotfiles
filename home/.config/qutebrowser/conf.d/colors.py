@@ -131,8 +131,7 @@ settinglist = [
     'messages.info',
     'messages.warning',
     'prompts',
-    'statusbar',
-    'tabs',
+    'statusbar'
 ]
 
 def setfont(item, font, size=10):

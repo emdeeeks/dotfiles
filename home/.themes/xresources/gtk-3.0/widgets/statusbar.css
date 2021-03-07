@@ -3,6 +3,6 @@ statusbar, .statusbar {
 }
 
 GtkStatusbar {
-    padding: 5;
+    padding: 5px;
     color: red;
 }

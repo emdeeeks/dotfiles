@@ -1,3 +1,6 @@
-[submodule "home/.config/awesome/lain"]
-	path = home/.config/awesome/lain
+[submodule "home/.config/awesome/lib/lain"]
+	path = home/.config/awesome/lib/lain
 	url = https://github.com/lcpz/lain.git
+[submodule "home/.oh-my-zsh/plugins/zsh-autosuggestions"]
+	path = home/.oh-my-zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git

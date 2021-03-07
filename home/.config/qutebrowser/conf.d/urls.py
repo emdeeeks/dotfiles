@@ -1,1 +1,1 @@
-c.url.default_page = "https://duckduckgo.com"
+c.url.default_page = "https://google.com"

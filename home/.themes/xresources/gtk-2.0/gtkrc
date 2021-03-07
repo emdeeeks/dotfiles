@@ -1,4 +1,4 @@
-gtk-color-scheme = "color_red: #CC6666\ncolor_yellow: #F0C674\ncolor_gray: #999999\ncolor_green: #B5BD68\ncolor_black: #222222\ncolor_white: #FFFFFF\ncolor_magenta: #B294BB\ncolor_blue: #81A2BE\ncolor_cyan: #8ABEB7"
+include "colors"
 
 style "default-style"
 {
@@ -17,7 +17,7 @@ GtkOptionMenu::indicator_spacing = { 3, 2, 1, 1 }
 
         # modify the x/ythickness, used for spacing all over the place
         xthickness = 0
-        ythickness = 0 
+        ythickness = 0
 
         # one can set so called "style properties"
         GtkRange::slider-width = 15

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd ~/.mutt/attachments && /usr/bin/mutt
+cd ~/.mutt/attachments && /usr/bin/neomutt

@@ -1,40 +1,57 @@
-local hotkeys_popup = require("awful.hotkeys_popup").widget
+local puppetmaster = require("puppetmaster")
+require("awful.hotkeys_popup.keys")
+
 local beautiful = require("beautiful")
 local awful = require("awful")
 local wibox = require("wibox")
-local misc = require("misc")
 local keys = require("misc.keys")
+local pomodoro = require("misc.pomodoro")
+local xrandr = require("lib.xrandr")
+local audio = require("misc.audio")
+--local widgets = require("widgets")
 
 local config = {}
+
+pomodoro.start()
 
 config.modkey = "Mod4"
 
 config.layouts = {
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.right,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top
 }
 
+--[[
+-- Default terminal
+]]--
 config.terminal = "x-terminal-emulator"
 
-config.autorun_apps = {
+--[[
+-- Autorun apps
+--
+-- Hmm
+]]--
+config.autorun_commands = {
     'unclutter -keystroke',
-    { 'setxkbmap -config ~/.keyboard', {}, { shell = true }},
-    'xrandr-setup',
-    'dropbox start',
-    'qutebrowser',
-    { 'htop', { }, { terminal = true }}
+    --{ 'feh ~/colemak_dh.jpg', {}, { shell = true }},
+    { 'qutebrowser', {}, { once = true }},
+    { 'redshift', {}, { once = true }},
+    { 'google-drive-ocamlfuse ~/GoogleDrive', {}, { shell = true, once = true }},
 }
+
+--[[
+TODO: Switch screens with 1, 2, 3
+--]]
 
 config.keys = {
     ['global'] = awful.util.table.join(
 
+		awful.key({ config.modkey,           }, "space", function () awful.layout.inc(config.layouts,  1) end),
+
         -- Help
         awful.key(
             { config.modkey, }, keys.help,
-            hotkeys_popup.show_help,
+            --puppetmaster:show_popup
             { description = "show this help screen", group = "awesome" }
         ),
         awful.key(
@@ -46,27 +63,27 @@ config.keys = {
         awful.key(
             { config.modkey, }, keys.focus_prev_client,
             function () awful.client.focus.byidx(-1) end,
-            { description = "focus previous by index", group = "client" }
+            { description = "focus previous by index", group = "awesome:client" }
         ),
         awful.key(
             { config.modkey, }, keys.focus_next_client,
             function () awful.client.focus.byidx( 1) end,
-            { description = "focus next by index", group = "client" }
+            { description = "focus next by index", group = "awesome:client" }
         ),
         awful.key(
             { config.modkey, }, keys.swap_with_prev_client,
             function () awful.client.swap.byidx(-1) end,
-            { description = "swap with previous client by index", group = "client" }
+            { description = "swap with previous client by index", group = "awesome:client" }
         ),
         awful.key(
             { config.modkey, }, keys.swap_with_next_client,
             function () awful.client.swap.byidx(1) end,
-            { description = "swap with next client by index", group = "client" }
+            { description = "swap with next client by index", group = "awesome:client" }
         ),
         awful.key(
             { config.modkey, }, keys.rofi_window,
             function () awful.spawn("rofi -show window") end,
-            { description = "jump between clients", group = "client" }
+            { description = "jump between clients", group = "awesome:client" }
         ),
 
         -- Screen
@@ -78,7 +95,7 @@ config.keys = {
                 end)
                 awful.screen.focus_relative(-1)
             end,
-            { description = "focus the prev screen", group = "screen" }
+            { description = "focus the prev screen", group = "awesome:screen" }
         ),
         awful.key(
             { config.modkey, }, keys.focus_next_screen,
@@ -88,25 +105,31 @@ config.keys = {
                 end)
                 awful.screen.focus_relative(1)
             end,
-            { description = "focus the next screen", group = "screen"}
+            { description = "focus the next screen", group = "awesome:screen"}
         ),
 
-        -- Layout
+        -- Client resize
         awful.key(
-            { config.modkey, }, keys.decrease_width,
+            { config.modkey, "Shift" }, keys.decrease_width,
             function () awful.tag.incmwfact(-0.05) end,
-            {description = "decrease master width factor", group = "layout"}
+            {description = "decrease master width factor", group = "awesome:client:resize"}
         ),
 
         awful.key(
-            { config.modkey, }, keys.increase_width,
+            { config.modkey, "Shift" }, keys.increase_width,
             function () awful.tag.incmwfact(0.05) end,
-            { description = "increase master width factor", group = "layout"}
+            { description = "increase master width factor", group = "awesome:client:resize"}
         ),
         awful.key(
-            { config.modkey, }, keys.next_layout,
-            function () awful.layout.inc(1) end,
-            { description = "select next", group = "layout"}
+            { config.modkey, "Shift" }, keys.decrease_height,
+            function () awful.client.incwfact(-0.05) end,
+            {description = "decrease master height factor", group = "awesome:client:resize"}
+        ),
+
+        awful.key(
+            { config.modkey, "Shift" }, keys.increase_height,
+            function () awful.client.incwfact(0.05) end,
+            { description = "increase master height factor", group = "awesome:client:resize"}
         ),
 
         -- Launcher
@@ -124,18 +147,28 @@ config.keys = {
         -- Volume
         awful.key(
             { config.modkey, }, '-',
-            function () misc.audio.set_volume(-5) end,
+            function () audio.set_volume(-5) end,
             { description = "decrease volume", group = "volume"}
         ),
         awful.key(
             { config.modkey, }, '=',
-            function () misc.audio.set_volume(5) end,
+            function () audio.set_volume(5) end,
             { description = "increase volume", group = "volume"}
         ),
         awful.key(
             { config.modkey, }, '0',
-            function () misc.audio.toggle_mute() end,
+            function () audio.toggle_mute() end,
             { description = "toggle volume", group = "volume"}
+        ),
+        awful.key(
+            { config.modkey, }, '9',
+            function () end,
+            { description = "toggle on-screen keyboard", group = "misc"}
+        ),
+        awful.key(
+            { config.modkey }, '1',
+            function() xrandr.xrandr() end,
+            { description = "Show xrandr options", group = "misc"}
         )
     ),
     ['client'] = awful.util.table.join(
@@ -149,14 +182,28 @@ config.keys = {
             function (c) c:move_to_screen() end,
             { description = "move client to next screen", group = "client" }
         )
-    )
-}
+    ),
 
--- TODO: Is it possible to detect what interface is being used for internet?
-config.network_interface = "wlo1"
+}
 
 -- TODO: move wibar stuff to here.
 config.wibars = {
+    {
+        settings = {
+            position = 'top'
+        },
+        setup = {
+            layout = wibox.layout.align.horizontal
+            {
+            },
+            {
+                layout = wibox.layout.fixed.horizontal,
+            },
+            {
+
+            }
+        }
+    }
 }
 
 config.awfulrules = {

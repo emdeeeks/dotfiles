@@ -1,0 +1,47 @@
+[user]
+    name = mdx
+    email = 3227764+emdeeeks@users.noreply.github.com
+[push]
+    default = current
+[pull]
+    default = current
+[alias]
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 echo"
+    current = !git branch -r --merged | grep -q $1 && echo Incorporates $1 || echo Out of date from $1 && :
+    la = "!git config -l | grep alias | cut -c 7-"
+    sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+    sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep ^[a-z]
+    untrack = !"f() { if [ -z \"${1}\" ]; then echo git untrack: You must specify a file.; exit 0; fi; if [ $(find . -path \"*${1}\" | wc -l) == 0 ]; then echo git untrack: ${1}: No such file.; exit 1; fi; if [ $(find . -path \"*${1}\" | wc -l) != 1 ]; then echo git untrack: Try to untrack the file from the root repo dir: $(pwd); exit 1; fi; file=$(find . -path "*$1" | head -1); echo Removing $file from repo but keeping local file... && git rm --cached $file && echo Adding $file to $(pwd)/.gitignore && echo $file >> .gitignore; }; f"
+    simpleuntrack = rm --cached
+    undo = reset --soft HEAD^
+    undo-hard = reset --hard HEAD~1
+	find-file = "!for branch in $(git for-each-ref --format=\"%(refname)\" refs/heads); do if git ls-tree -r --name-only $branch | grep \"$1\" > /dev/null; then  echo \"${branch}:\"; git ls-tree -r --name-only $branch | nl -bn -w3 | grep \"$1\"; fi; done; :"
+[core]
+    excludesfile = ~/.config/git/ignore
+    hooksPath = ~/.config/git/hooks
+[branch]
+    autosetuprebase = always
+[merge]
+    tool = vimdiff
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = true
+[color "branch"]
+    current = green
+    local = blue
+    remote = yellow
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[include]
+    path = ~/.gitconfig-local
+[status]
+    showUntrackedFiles = all
+[url "git@github.com:"]
+    insteadOf = https://github.com/

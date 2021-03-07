@@ -1,4 +1,4 @@
-local print_r = require("misc/print_r")
+local awesome = awesome
 local naughty = require("naughty")
 local cairo = require("lgi").cairo
 local gears = require("gears")
@@ -9,14 +9,17 @@ local xrdb = require("beautiful.xresources").get_current_theme()
 
 local theme = {}
 
-theme.font          = "Terminus normal 10"
+theme.font          = "Verdana normal 10"
 
+gears.debug.dump(xrdb)
+
+-- TODO: theme.padding = awesome.xrdb_get_value("", key)
 theme.padding       = 10
 
 theme.foreground    = xrdb.foreground
 theme.background    = xrdb.background
 
-theme.black         = xrdb.color0
+theme.black         = xrdb.background
 theme.red           = xrdb.color1
 theme.green         = xrdb.color2
 theme.yellow        = xrdb.color3
@@ -39,6 +42,8 @@ theme.border_normal = theme.background
 theme.border_urgent = theme.red
 theme.border_focus  = theme.foreground
 theme.border_marked = theme.yellow
+
+theme.padding_with_border = theme.padding + theme.border_width
 
 theme.hotkeys_font = theme.font
 theme.hotkeys_description_font = theme.font

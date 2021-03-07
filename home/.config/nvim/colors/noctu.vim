@@ -1,11 +1,3 @@
-" noctu.vim - Vim color scheme for 16-color terminals
-" --------------------------------------------------------------
-" Author:   Noah Frederick (http://noahfrederick.com/)
-" Version:  1.8.0
-" --------------------------------------------------------------
-" Modified by:   Gareth Griffiths (https://github.com/synbyte)
-
-" Scheme setup {{{
 set background=dark
 hi! clear
 
@@ -17,11 +9,11 @@ let g:colors_name = "noctu"
 
 "}}}
 " Vim UI {{{
-hi Normal              ctermfg=darkgrey
-hi Cursor              ctermfg=7     ctermbg=1
-hi CursorLine          ctermbg=darkgrey  ctermfg=7
+hi Normal              ctermfg=14
+hi Cursor              ctermfg=6     ctermbg=5
+hi CursorLine          ctermbg=4  ctermfg=7
 hi MatchParen          ctermfg=7     ctermbg=NONE  cterm=underline
-hi Pmenu               ctermfg=15    ctermbg=0
+hi Pmenu               ctermfg=14    ctermbg=9
 hi PmenuThumb          ctermbg=7
 hi PmenuSBar           ctermbg=8
 hi PmenuSel            ctermfg=0     ctermbg=4
@@ -30,13 +22,13 @@ hi SpellBad            ctermfg=1     ctermbg=NONE  cterm=underline
 hi SpellCap            ctermfg=10    ctermbg=NONE  cterm=underline
 hi SpellRare           ctermfg=11    ctermbg=NONE  cterm=underline
 hi SpellLocal          ctermfg=13    ctermbg=NONE  cterm=underline
-hi NonText             ctermfg=8
-hi EndOfBuffer         ctermfg=7
-hi LineNr              ctermfg=darkgray     ctermbg=NONE
-hi CursorLineNr        ctermfg=10    ctermbg=NONE
+hi NonText             ctermfg=10
+hi EndOfBuffer         ctermfg=9
+hi LineNr              ctermfg=14     ctermbg=NONE
+hi CursorLineNr        ctermfg=15    ctermbg=NONE
 hi Visual              ctermfg=0     ctermbg=12
-hi IncSearch           ctermfg=0     ctermbg=13    cterm=NONE
-hi Search              ctermfg=0     ctermbg=10
+hi IncSearch           ctermfg=12     ctermbg=9    cterm=NONE
+hi Search              ctermfg=15     ctermbg=10
 hi StatusLine          ctermfg=7     ctermbg=0     cterm=bold
 hi StatusLineNC        ctermfg=8     ctermbg=0     cterm=bold
 hi VertSplit           ctermfg=0     ctermbg=0     cterm=NONE
@@ -74,21 +66,21 @@ hi! link SpecialKey    NonText
 "}}}
 " Generic syntax {{{
 hi Delimiter       ctermfg=7
-hi Comment         ctermfg=8
+hi Comment         ctermfg=11
 hi Underlined      ctermfg=4   cterm=underline
 hi Type            ctermfg=4
-hi String          ctermfg=11
-hi Keyword         ctermfg=2
-hi Todo            ctermfg=15  ctermbg=NONE     cterm=bold,underline
-hi Function        ctermfg=4
-hi Identifier      ctermfg=7   cterm=NONE
-hi Statement       ctermfg=2   cterm=bold
-hi Constant        ctermfg=13
+hi String          ctermfg=3
+hi Keyword         ctermfg=6
+hi Todo            ctermfg=1  ctermbg=NONE     cterm=bold,underline
+hi Function        ctermfg=7
+hi Identifier      ctermfg=2
+hi Statement       ctermfg=5
+hi Constant        ctermfg=2
 hi Number          ctermfg=12
 hi Boolean         ctermfg=4
-hi Special         ctermfg=13
-hi Ignore          ctermfg=0
-hi PreProc         ctermfg=8   cterm=bold
+hi Special         ctermfg=6
+hi Ignore          ctermfg=2
+hi PreProc         ctermfg=1
 hi! link Operator  Delimiter
 hi! link Error     ErrorMsg
 

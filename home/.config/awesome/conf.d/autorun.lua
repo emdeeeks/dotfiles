@@ -1,18 +1,13 @@
---[[
---TODO: Well, this STILL doesn't work :(
-]]--
-
 local awful = require("awful")
 local config = require("config")
 
-for k,app in pairs(config.autorun_apps) do
+for _,command in pairs(config.autorun_commands) do
     local options = {}
     local properties = {}
 
-    if type(app) == 'table' then
-        command, properties, options = app[1], app[2], app[3]
+    if type(command) == 'table' then
+        command, properties, options = command[1], command[2], command[3]
     end
-    app = nil
 
     if options["terminal"] then
         command = config.terminal .. ' -e ' .. command
@@ -21,6 +16,6 @@ for k,app in pairs(config.autorun_apps) do
     if options["shell"] then
         awful.spawn.with_shell(command)
     else
-        awful.spawn(command, properties)
+        awful.spawn.spawn(command, properties)
     end
 end

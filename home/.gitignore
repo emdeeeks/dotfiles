@@ -2,4 +2,4 @@
 *.swp
 .files
 .byebug_history
-tags
+tags*

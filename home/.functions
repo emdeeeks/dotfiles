@@ -20,7 +20,7 @@ function mkdircd()
 # Second arg is path (defaults to current dir)
 function rgrep ()
 {
-    grep -rin "${1:?please enter one or two args}" -r "${2:-./}"
+    grep -rn "${1:?please enter one or two args}" -r "${2:-./}"
 }
 
 # Count grep? Yeah, bad choice. :(
@@ -31,7 +31,7 @@ function cgrep ()
 
 # youtube-dl for music
 function yt3 () {
-    (cd ~/Downloads/Music && exec youtube-dl --extract-audio --audio-format mp3 "$@")
+    (cd ~/GoogleDrive2/Music && exec youtube-dl --extract-audio --audio-format mp3 "$@")
 }
 
 # Grep processes

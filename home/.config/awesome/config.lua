@@ -2,7 +2,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local beautiful = require("beautiful")
 local awful = require("awful")
 local wibox = require("wibox")
-local misc = require("misc")
+--local misc = require("misc")
 local keys = require("misc.keys")
 
 local config = {}

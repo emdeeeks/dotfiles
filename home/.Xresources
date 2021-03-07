@@ -1,78 +1,96 @@
-#define fg          #888888
-#define bg          #222222
+#define accent0 #DF8C8C
+#define accent1 #F2C38F
+#define accent2 #DADA93
+#define accent3 #A8CE93
+#define accent4 #7FC1CA
+#define accent5 #83AFE5
+#define accent6 #9A93E1
+#define accent7 #D18EC2
 
-#define black       #4A4A4A
-#define red         #CC6666
-#define green       #B5BD68
-#define yellow      #F0C674
-#define blue        #81A2BE
-#define magenta     #B294BB
-#define cyan        #8ABEB7
-#define white       #EEEEEE
+! [error, vcs deletion]
+#define red     accent0
+
+! [syntax] orange - Hack to get another color
+#define black   accent1
+
+! [warning, vcs modification]
+#define yellow  accent2
+
+! [success, vcs addition]
+#define green   accent3
+
+! [syntax]
+#define cyan    accent4
+
+! [syntax]
+#define blue    accent5
+
+! [syntax, caret/cursor]
+#define magenta accent6
+
+! pink - Hack to get another color
+#define white   accent7
 
 #define padding     10
 #define borderwidth 3
 
-*.font: xft:Terminus:size=10:encoding=ibm862, xft:Symbola
-*.boldFont: xft:Terminus:size=10:encoding=ibm862, xft:Symbola
+#define shade0  #222222
+#define shade1  #333333
+#define shade2  #555555
+#define shade3  #777777
+#define shade4  #999999
+#define shade5  #AAAAAA
+#define shade6  #CCCCCC
+#define shade7  #EEEEEE
+
+#define fg      shade5
+#define bg      shade1
 
 ! special
 *.foreground:   fg
 *.background:   bg
-*.cursorColor:  fg
 
-! black
 *.color0:       black
-*.color8:       black
-
-! red
 *.color1:       red
-*.color9:       red
-
-! green
 *.color2:       green
-*.color10:      green
-
-! yellow
 *.color3:       yellow
-*.color11:      yellow
-
-! blue
 *.color4:       blue
-*.color12:      blue
-
-! magenta
 *.color5:       magenta
-*.color13:      magenta
-
-! cyan
 *.color6:       cyan
-*.color14:      cyan
-
-! white
 *.color7:       white
+*.color8:       black
+*.color9:       red
+*.color10:      green
+*.color11:      yellow
+*.color12:      blue
+*.color13:      magenta
+*.color14:      cyan
 *.color15:      white
+
+*.font: xft:Terminus:size=10:encoding=ibm862, xft:Symbola
+*.boldFont: xft:Terminus:size=10:encoding=ibm862, xft:Symbola
 
 URxvt.scrollBar: false
 URxvt.perl-ext-common: selection-to-clipboard,keyboard-select
 URxvt.url-launcher: qutebrowser
 URxvt.matcher.button: 1
 URxvt.colorUL: cyan
-URxvt.internalBorder:  padding
+URxvt.internalBorder: 10
 URxvt.urgentOnBell: true
 URxvt.perl-ext: default,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.keyboard-select.clipboard: true
+URxvt.saveLines: 1000000
 
 Term*bellIsUrgent: true
 
-rofi.font: Terminus 10
+rofi.font: Verdana 10
 rofi.separator-style: none
 rofi.bw: borderwidth
 rofi.color-window: bg, fg, bg
-rofi.color-normal: bg, fg, bg, bg, white
+rofi.color-normal: bg, fg, bg, bg, shade6
 rofi.color-active: bg, green, bg, bg, green
 rofi.color-urgent: bg, red, bg, bg, red
 rofi.modi: window,drun,ssh

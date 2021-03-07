@@ -1,4 +1,3 @@
-local print_r = require("misc/print_r")
 local naughty = require("naughty")
 local cairo = require("lgi").cairo
 local gears = require("gears")
@@ -9,7 +8,7 @@ local xrdb = require("beautiful.xresources").get_current_theme()
 
 local theme = {}
 
-theme.font          = "Terminus normal 10"
+theme.font          = "Verdana normal 10"
 
 theme.padding       = 10
 
